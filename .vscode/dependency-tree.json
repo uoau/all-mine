@@ -1,0 +1,49 @@
+{
+    "rootDir": "/Users/luxun/self/git/all-mine",
+    "entry": [
+        "node_modules/webpack-dev-server",
+        "./src/index.js"
+    ],
+    "modules": {
+        "./src/index.js": [
+            "node_modules/vue-router",
+            "node_modules/vue",
+            "./packages/stylesheet/markdown.css",
+            "./packages/stylesheet/reset.css",
+            "./src/App.vue",
+            "./src/routes.js"
+        ],
+        "./src/App.vue": [
+            "./src/routes.js"
+        ],
+        "./packages/stylesheet/reset.css": [
+            "node_modules/normalize.css"
+        ],
+        "./packages/stylesheet/markdown.css": [],
+        "./src/docs/button.md": [
+            "node_modules/highlight.js"
+        ],
+        "./src/docs/color.md": [
+            "node_modules/highlight.js"
+        ],
+        "./src/docs/font.md": [
+            "node_modules/highlight.js"
+        ],
+        "./src/docs/icon.md": [
+            "node_modules/highlight.js"
+        ],
+        "./src/docs/markdown.md": [
+            "node_modules/highlight.js"
+        ],
+        "^\\.\\/.*\\.md$": [
+            "./src/docs/button.md",
+            "./src/docs/color.md",
+            "./src/docs/font.md",
+            "./src/docs/icon.md",
+            "./src/docs/markdown.md"
+        ],
+        "./src/routes.js": [
+            "^\\.\\/.*\\.md$"
+        ]
+    }
+}

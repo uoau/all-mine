@@ -1,0 +1,32 @@
+{
+    "editor.tabSize": 4,                  // tab 为 4 个空格
+    "emmet.triggerExpansionOnTab": true,  // 按下 tab 时展开 Emmet 缩写
+    "files.trimTrailingWhitespace": true, // 保存文件时删除文件末尾的空格
+    "eslint.options": {
+        "ignorePattern": [
+            "dist",
+            "node_modules",
+        ]
+    },
+    "files.exclude": {
+        ".exlintre.js": true,
+        ".gitignore": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.svn": true,
+        "**/CVS": true,
+        // "**/node_modules": true,
+        "package-lock.json": true,
+        // ".eslintrc.js": true,
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    // vuter 插件
+    "vetur.completion.autoImport": false,
+    // csscomb 插件
+    "csscomb.formatOnSave": true,         // 保存文件时自动修复 CSScomb 问题
+    "csscomb.preset": {},
+
+}
