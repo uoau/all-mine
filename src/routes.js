@@ -7,10 +7,22 @@
 const nav = [
     {
         name: 'BASE',
-        children: ['markdown', 'color', 'icon', 'font'],
+        children: ['usage', 'markdown', 'color', 'icon', 'font'],
     },
     {
-        name: 'Form',
+        name: 'STYLESHEET',
+        children: ['reset.css', 'markdown.css'],
+    },
+    {
+        name: 'UTILS',
+        children: ['array'],
+    },
+    {
+        name: 'COMPONENT',
+        children: ['markdown'],
+    },
+    {
+        name: 'DIRECTIVES',
         children: ['markdown'],
     },
 ];

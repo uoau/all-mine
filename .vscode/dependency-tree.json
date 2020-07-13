@@ -8,39 +8,83 @@
         "./src/index.js": [
             "node_modules/vue-router",
             "node_modules/vue",
-            "./packages/stylesheet/markdown.css",
-            "./packages/stylesheet/reset.css",
             "./src/App.vue",
-            "./src/routes.js"
-        ],
-        "./src/App.vue": [
             "./src/routes.js"
         ],
         "./packages/stylesheet/reset.css": [
             "node_modules/normalize.css"
         ],
+        "./src/App.vue": [
+            "./packages/stylesheet/reset.css",
+            "./src/routes.js"
+        ],
+        "./src/components/slider-nav.vue": [],
+        "./src/components/demo-box.vue": [],
         "./packages/stylesheet/markdown.css": [],
         "./src/docs/button.md": [
-            "node_modules/highlight.js"
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
         ],
         "./src/docs/color.md": [
-            "node_modules/highlight.js"
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
         ],
         "./src/docs/font.md": [
-            "node_modules/highlight.js"
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
         ],
         "./src/docs/icon.md": [
-            "node_modules/highlight.js"
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
         ],
         "./src/docs/markdown.md": [
-            "node_modules/highlight.js"
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/usage.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/reset.css.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/markdown.css.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/array.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
         ],
         "^\\.\\/.*\\.md$": [
+            "./src/docs/array.md",
             "./src/docs/button.md",
             "./src/docs/color.md",
             "./src/docs/font.md",
             "./src/docs/icon.md",
-            "./src/docs/markdown.md"
+            "./src/docs/markdown.css.md",
+            "./src/docs/markdown.md",
+            "./src/docs/reset.css.md",
+            "./src/docs/usage.md"
         ],
         "./src/routes.js": [
             "^\\.\\/.*\\.md$"

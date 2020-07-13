@@ -39,11 +39,13 @@
 }
 
 /* special text */
-.markdown-page code {
-    /* padding: .2em .4em;
+.markdown-page :not(pre) code {
+    padding: 0 4px;
     margin: 0;
-    background-color: rgba(27,31,35,.05);
-    border-radius: 3px; */
+    border-radius: 3px;
+    background-color: #fff5f5;
+    color: #ff502c;
+    font-family: inherit;
 }
 .markdown-page em {
 
@@ -52,7 +54,8 @@
 
 }
 .markdown-page a {
-
+    color: #0269c8;
+    text-decoration: underline;
 }
 
 /* blockquote */
@@ -88,6 +91,7 @@
     margin-bottom: 16px;
     border-radius:  3px;
     overflow: hidden;
+    font-size: 14px;
 }
 .markdown-page > pre code {
     padding: 12px 20px;

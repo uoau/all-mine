@@ -9,9 +9,6 @@ import VueRouter from 'vue-router';
 import { routes } from './routes';
 import App from './App.vue';
 
-import '../packages/stylesheet/reset.css';
-import '../packages/stylesheet/markdown.css';
-
 Vue.use(VueRouter);
 
 new Vue({

@@ -10,12 +10,16 @@
         <div class="app-nav">
             <div class="logo">ALL-MINE</div>
             <div class="search">
-                <input type="text" placeholder="Entey something" v-model="search"/>
+                <input type="text" placeholder="Search" v-model="search"/>
             </div>
             <div class="list">
                 <ul :key="one.name" v-for="one in realNav">
                     <span class="title">{{ one.name }}</span>
-                    <li :key="two" v-for="two in one.children">
+                    <li
+                        :key="two"
+                        v-for="two in one.children"
+                        :class="nowNavName == two ? 'active' : ''"
+                    >
                         <RouterLink :to="'/'+two">{{ two }}</RouterLink>
                     </li>
                 </ul>
@@ -31,6 +35,7 @@
 </template>
 
 <script>
+import '../packages/stylesheet/reset.css';
 import { nav } from './routes';
 
 export default {
@@ -53,6 +58,10 @@ export default {
                 }
             });
             return realNav;
+        },
+        nowNavName() {
+            const res = this.$route.path.match(/([^/]*)$/);
+            return res ? res[1] : '';
         },
     },
 };
@@ -85,18 +94,18 @@ export default {
             padding: 0 18px;
             input {
                 width: 100%;
-                height: 30px;
-                line-height: 30px;
+                height: 24px;
+                line-height: 24px;
                 padding: 0 10px;
                 border: 1px solid #ccc;
                 outline: none;
+                font-size: 14px;
             }
         }
         .list {
             flex: 1;
             overflow: auto;
             ul {
-                padding: 0 25px;
                 margin-bottom: 20px;
                 font-size: 16px;
                 line-height: 2;
@@ -104,13 +113,20 @@ export default {
                     font-size: 12px;
                     font-weight: bold;
                     color: #aaa;
+                    padding: 0 25px;
                 }
                 li {
-                    text-transform:capitalize;
-                    cursor: pointer;
-                    font-size: 14px;
-                    &:hover {
-                        text-decoration: underline;
+                    a {
+                        display: flex;
+                        padding: 0 25px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                    &.active {
+                        background: #eee;
                     }
                 }
             }

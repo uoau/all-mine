@@ -29,25 +29,46 @@ module.exports = (source) => {
             script: compile(code).script,
         };
         demoArr.push(demo);
-        content = `${beforeHtml}<Demo${index} />${codeHtml}${afterHtml}`;
+        content = `${beforeHtml}
+            <DemoBox>
+                <template slot="demo">
+                    <Demo${index} />
+                </template>
+                <template slot="code">
+                    ${codeHtml}
+                </template>
+            </DemoBox />
+        ${afterHtml}`;
         index += 1;
     }
+    let demoComponent = '';
+    demoArr.forEach((item) => {
+        const componentCode = item.script.match(/;return([\s\S]*)/)[1];
+        demoComponent += `${item.demoName}: ${componentCode},`;
+    });
     content = `
         <template>
-            <div class='markdown-page'>
+            <div class='markdown-page' ref="page">
                 ${content}
+                <SliderNav class="slider-nav" :list="sliderNavData"/>
             </div>
         </template>
         <script>
             import hljs from 'highlight.js';
             import 'highlight.js/styles/vs2015.css';
+            import SliderNav from '../components/slider-nav.vue';
+            import DemoBox from '../components/demo-box.vue';
+            import '../../packages/stylesheet/markdown.css';
             export default {
-                components:{`;
-    demoArr.forEach((item) => {
-        const componentCode = item.script.match(/;return([\s\S]*)/)[1];
-        content += `${item.demoName}: ${componentCode}`;
-    });
-    content += `
+                components:{
+                    ${demoComponent}
+                    SliderNav,
+                    DemoBox,
+                },
+                data(){
+                    return {
+                        sliderNavData:[]
+                    }
                 },
                 mounted(){
                     // 处理代码模块
@@ -58,8 +79,25 @@ module.exports = (source) => {
                     document.querySelectorAll('.teshu').forEach((item) => {
                         item.innerText = item.innerText.replace(/{xux{(.*)}xux}/,'{{$1}}');
                     })
+
+                    // 处理边栏导航
+                    this.$refs.page.querySelectorAll('.markdown-page >h2').forEach((item) => {
+                        const text = item.innerText;
+                        item.id = text;
+                        this.sliderNavData.push(text);
+                    })
                 }
             }
-        </script>`;
+        </script>
+        <style lang="scss">
+            .markdown-page {
+                position: relative;
+                .slider-nav {
+                    position: absolute;
+                    left: 800px;
+                    top: 80px;
+                }
+            }
+        </style>`;
     return content;
 };
