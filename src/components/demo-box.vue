@@ -4,7 +4,7 @@
             <slot name="demo"/>
         </div>
         <div class="btn" @click="()=>{open = !open}">
-            {{ open ? 'close' : 'open' }}
+            <AmIcon :name="!open ? 'caret-down' : 'caret-up'" />
         </div>
         <div class="code" v-fold="open">
             <slot name="code"/>
@@ -25,7 +25,7 @@ export default {
 <style lang="less" scoped>
 .demo-box {
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid #e5e5e5;
     background: #fff;
     .demo {
         padding: 20px;
@@ -33,7 +33,7 @@ export default {
     .code {
         >pre {
             >code {
-                padding: 8px 10px;
+                padding: 15px 15px;
                 font-size: 13px;
                 line-height: 1.5;
             }
@@ -45,7 +45,15 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #e5e5e5;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+            background: #f5f5f5;
+        }
+    }
+    &:hover {
+
     }
 }
 </style>

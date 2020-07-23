@@ -7,7 +7,9 @@ import AmIcon from './components/icon';
 import AmDivider from './components/divider';
 import AmInput from './components/input';
 import AmLabel from './components/label';
-import AmBread from './components/bread';
+import AmBreadcrumb from './components/breadcrumb';
+import AmBreadcrumbItem from './components/breadcrumb-item';
+
 // 引入指令
 import Clipboard from './directives/clipboard';
 import clickoutside from './directives/clickoutside';
@@ -21,7 +23,8 @@ const AM = {
     AmDivider,
     AmInput,
     AmLabel,
-    AmBread,
+    AmBreadcrumb,
+    AmBreadcrumbItem,
 };
 
 const install = (Vue) => {

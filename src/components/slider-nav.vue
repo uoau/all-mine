@@ -24,7 +24,7 @@ export default {
     ul {
         position: fixed;
         top: 80px;
-        border-left: 2px solid #ccc;
+        border-left: 1px solid #e5e5e5;
         padding-left: 15px;
         list-style-type: none;
         li {

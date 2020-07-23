@@ -1,16 +1,8 @@
-<!--
- * @Author: your name
- * @Date: 2020-07-15 13:53:44
- * @LastEditTime: 2020-07-19 17:43:27
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /all-mine/packages/components/divider/index.vue
--->
 <template>
     <div
         class="am-divider"
-        :style="'margin:'+margin">
-        {{ content || '|' }}
+        :style="'margin:'+margin+';font-size:'+size+'px;color:'+color">
+        {{ content }}
     </div>
 </template>
 
@@ -18,13 +10,21 @@
 export default {
     name: 'AmDivider',
     props: {
-        name: {
+        content: {
             type: String,
-            default: '',
+            default: '|',
         },
         size: {
-            type: Number,
-            default: 14,
+            type: String,
+            default: '14',
+        },
+        margin: {
+            type: String,
+            default: '0 5px',
+        },
+        color: {
+            type: String,
+            default: '#999',
         },
     },
 };
@@ -33,7 +33,7 @@ export default {
 <style lang="less" scoped>
     .am-divider {
         display: inline-flex;
-        color: red;
+        color: #e5e5e5;
         &:before {
 
         }

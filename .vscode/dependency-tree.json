@@ -25,7 +25,7 @@
         "./packages/components/divider/index.vue": [],
         "./packages/components/input/index.vue": [],
         "./packages/components/label/index.vue": [],
-        "./packages/components/bread/index.vue": [],
+        "./packages/components/breadcrumb/index.vue": [],
         "./packages/stylesheet/default.theme.less": [],
         "./src/components/slider-nav.vue": [],
         "./src/components/demo-box.vue": [],
@@ -54,12 +54,7 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/bread.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
+        "./packages/components/breadcrumb-item/index.vue": [],
         "./src/docs/changelog.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -150,10 +145,17 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/breadcrumb.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "node_modules/vue-lazyload",
-            "./packages/components/bread/index.js",
+            "./packages/components/breadcrumb-item/index.js",
+            "./packages/components/breadcrumb/index.js",
             "./packages/components/button/index.js",
             "./packages/components/divider/index.js",
             "./packages/components/icon/index.js",
@@ -167,8 +169,11 @@
         "./packages/directives/clickoutside/index.js": [
             "node_modules/vue"
         ],
-        "./packages/components/bread/index.js": [
-            "./packages/components/bread/index.vue"
+        "./packages/components/breadcrumb-item/index.js": [
+            "./packages/components/breadcrumb-item/index.vue"
+        ],
+        "./packages/components/breadcrumb/index.js": [
+            "./packages/components/breadcrumb/index.vue"
         ],
         "./packages/components/button/index.js": [
             "./packages/components/button/index.vue"
@@ -191,7 +196,7 @@
         "^\\.\\/.*\\.md$": [
             "./src/docs/RegExp.md",
             "./src/docs/array.md",
-            "./src/docs/bread.md",
+            "./src/docs/breadcrumb.md",
             "./src/docs/button.md",
             "./src/docs/changelog.md",
             "./src/docs/color.md",

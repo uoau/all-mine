@@ -5,8 +5,14 @@
 支持设置`size`和`color`属性。
 ::: demo
 ```html
-<AmIcon name="check-circle" size="28" />
-<AmIcon name="check-circle" size="28" color="#999"/>
+<AmIcon name="error" size="28" />
+<AmIcon name="message" size="28" color="#999"/>
+
+<style>
+.am-icon {
+    margin-right: 10px;
+}
+</style>
 ```
 :::
 

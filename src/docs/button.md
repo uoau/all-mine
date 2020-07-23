@@ -1,4 +1,4 @@
-# Button
+# Button 按钮
 Commonly used button.
 
 ## Type
@@ -32,6 +32,11 @@ Commonly used button.
 ``` html
 <AmButton size="small">Small Button</AmButton>
 <AmButton size="big">Big Button</AmButton>
+<style>
+.am-button {
+    margin-right: 5px;
+}
+</style>
 ```
 :::
 

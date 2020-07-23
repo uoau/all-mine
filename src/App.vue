@@ -8,7 +8,10 @@
     <div id='app' class="app">
         <!-- nav -->
         <div class="app-nav">
-            <div class="logo">ALL-MINE</div>
+            <div class="logo">
+                <span>ALL-MINE</span>
+                <i>统统都是我的</i>
+            </div>
             <div class="search">
                 <input type="text" placeholder="Search" v-model="search"/>
             </div>
@@ -18,9 +21,12 @@
                     <li
                         :key="two"
                         v-for="two in one.children"
-                        :class="nowNavName == two ? 'active' : ''"
+                        :class="nowNavName == two.name ? 'active' : ''"
                     >
-                        <RouterLink :to="'/'+two">{{ two }}</RouterLink>
+                        <RouterLink :to="'/'+two.name">
+                            <span>{{ two.name }}</span>
+                            <i>{{ two.cnName }}</i>
+                        </RouterLink>
                     </li>
                 </ul>
             </div>
@@ -49,7 +55,7 @@ export default {
         realNav() {
             const realNav = [];
             this.nav.forEach((one) => {
-                const newChildren = one.children.filter((two) => new RegExp(`${this.search}`).test(two));
+                const newChildren = one.children.filter((two) => new RegExp(`${this.search}`).test(two.name + two.cnName));
                 if (newChildren.length > 0) {
                     realNav.push({
                         name: one.name,
@@ -78,15 +84,23 @@ export default {
         flex-direction: column;
         width: 260px;
         height: 100%;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid #e5e5e5;
         .logo {
             width: 100%;
-            height: 60px;
+            height: 80px;
             padding-left: 25px;
-            align-items: center;
             display: flex;
             font-size: 20px;
             font-weight: bold;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            span {
+                margin-bottom: 5px;
+            }
+            i {
+                font-size: 14px;
+            }
         }
         .search {
             height: 40px;
@@ -94,10 +108,10 @@ export default {
             padding: 0 18px;
             input {
                 width: 100%;
-                height: 24px;
-                line-height: 24px;
+                height: 30px;
+                line-height: 30px;
                 padding: 0 10px;
-                border: 1px solid #ccc;
+                border: 1px solid #e5e5e5;
                 outline: none;
                 font-size: 14px;
             }
@@ -118,11 +132,22 @@ export default {
                 li {
                     a {
                         display: flex;
-                        padding: 0 25px;
+                        padding: 10px 25px;
                         cursor: pointer;
                         font-size: 14px;
+                        span {
+                            margin-right: 6px;
+                            line-height: 10px;
+                            display: inline-flex;
+                        }
+                        i {
+                            font-size: 13px;
+                            line-height: 12px;
+                            display: inline-flex;
+                            color: #666;
+                        }
                         &:hover {
-                            text-decoration: underline;
+                            background: #f7f7f7;
                         }
                     }
                     &.active {
@@ -131,11 +156,15 @@ export default {
                 }
             }
         }
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+        }
     }
     &-main {
         flex: 1;
         height: 100%;
-        background: #F7F8FA;
+        background: #fff;
         padding-left: 100px;
         overflow: auto;
         .wrap {

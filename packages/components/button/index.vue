@@ -54,6 +54,7 @@ export default {
     justify-content: center;
     font-size: 14px;
     line-height: 30px;
+    user-select: none;
     cursor: pointer;
     &:hover {
         opacity: .8;

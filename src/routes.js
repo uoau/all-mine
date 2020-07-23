@@ -7,23 +7,47 @@
 const nav = [
     {
         name: 'BASE',
-        children: ['usage', 'color', 'icon', 'font'],
+        children: [
+            { name: 'usage', cnName: '用法' },
+            { name: 'color', cnName: '色彩' },
+            { name: 'icon', cnName: '图标' },
+            { name: 'font', cnName: '字体' },
+        ],
     },
     {
         name: 'STYLESHEET',
-        children: ['reset.css', 'markdown.css'],
+        children: [
+            { name: 'reset.css', cnName: '样式重置' },
+            { name: 'markdown.css', cnName: 'MD 样式' },
+        ],
     },
     {
         name: 'UTILS',
-        children: ['RegExp', 'array'],
+        children: [
+            { name: 'RegExp', cnName: '正则' },
+            { name: 'array', cnName: '数组' },
+        ],
     },
     {
         name: 'COMPONENT',
-        children: ['button', 'input', 'label', 'divider', 'bread'],
+        children: [
+            { name: 'button', cnName: '按钮' },
+            { name: 'input', cnName: '输入框' },
+            { name: 'label', cnName: '' },
+            { name: 'divider', cnName: '分隔符' },
+            { name: 'breadcrumb', cnName: '面包屑' },
+            { name: 'input', cnName: '输入框' },
+        ],
     },
     {
         name: 'DIRECTIVES',
-        children: ['v-clipboard', 'v-hotkey', 'v-clickoutside', 'v-lazyload', 'v-fold'],
+        children: [
+            { name: 'v-clipboard', cnName: '复制' },
+            { name: 'v-hotkey', cnName: '热键' },
+            { name: 'v-clickoutside', cnName: '点击外部' },
+            { name: 'v-lazyload', cnName: '懒加载' },
+            { name: 'v-fold', cnName: '折叠' },
+        ],
     },
 ];
 
@@ -31,9 +55,9 @@ const routes = [];
 nav.forEach((one) => {
     one.children.forEach((two) => {
         // eslint-disable-next-line import/no-dynamic-require
-        const component = (r) => require.ensure([], () => r(require(`./docs/${two}.md`)), 'component');
+        const component = (r) => require.ensure([], () => r(require(`./docs/${two.name}.md`)), 'component');
         routes.push({
-            path: `/${two}`,
+            path: `/${two.name}`,
             component,
         });
     });

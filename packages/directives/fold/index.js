@@ -4,9 +4,6 @@ function getHeight(el) {
     // 旧数据
     const oldHeight = el.getBoundingClientRect().height; // 旧高度
     const oldWidth = el.getBoundingClientRect().width; // 旧宽度
-    if(oldHeight){
-        return oldHeight +'px';
-    }
     // 克隆元素
     const clone = el.cloneNode(true);
     clone.style.cssText = `
@@ -42,7 +39,7 @@ export default {
         setTimeout(() => {
             // 设置信息
             const elStyle = window.getComputedStyle(el, null);
-            el.style.transition = 'height .3s,border-width .3s, padding .3s, margin .3s';
+            el.style.transition = 'height .3s ,border-width .3s, padding .3s, margin .3s';
             el.dataset.paddingtop = elStyle.paddingTop;
             el.dataset.paddingbottom = elStyle.paddingBottom;
             el.dataset.bordertopwidth = elStyle.borderTopWidth;

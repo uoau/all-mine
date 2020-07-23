@@ -1,24 +1,24 @@
 .markdown-page {
     padding: 40px 0;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     color: #24292e;
 }
 
 /* title */
 .markdown-page > h1 {
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 500;
     padding-bottom: 8px;
     margin-bottom: 16px;
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #e5e5e5; */
 }
 .markdown-page > h2 {
     font-size: 25px;
     font-weight: 500;
     padding-bottom: 5px;
     margin-bottom: 16px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e5e5e5;
     margin-top: 50px;
 }
 .markdown-page > h3 {
@@ -74,7 +74,7 @@
     margin: 0;
     margin-bottom: 16px;
     color: #6a737d;
-    border-left: 4px solid #ccc;
+    border-left: 4px solid #e5e5e5;
 }
 .markdown-page blockquote p {
 
@@ -83,19 +83,19 @@
 /* table */
 .markdown-page >table {
     min-width: 100%;
-    border: 1px solid #ccc;
     margin-bottom: 16px;
     text-align: left;
+    font-size: 14px;
 }
 .markdown-page >table th{
-    padding: 6px 13px;
-    border: 1px solid #ccc;
+    padding: 10px 13px;
+    border-bottom: 1px solid #e5e5e5;
     font-weight: 600;
-    background: #f2f2f2;
+    background: #fafafa;
 }
 .markdown-page >table td{
-    padding: 6px 13px;
-    border: 1px solid #ccc;
+    padding: 10px 13px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 /* code */
