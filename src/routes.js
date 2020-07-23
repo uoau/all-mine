@@ -7,7 +7,7 @@
 const nav = [
     {
         name: 'BASE',
-        children: ['usage', 'markdown', 'color', 'icon', 'font'],
+        children: ['usage', 'color', 'icon', 'font'],
     },
     {
         name: 'STYLESHEET',
@@ -15,15 +15,15 @@ const nav = [
     },
     {
         name: 'UTILS',
-        children: ['array'],
+        children: ['RegExp', 'array'],
     },
     {
         name: 'COMPONENT',
-        children: ['markdown'],
+        children: ['button', 'input', 'label', 'divider', 'bread'],
     },
     {
         name: 'DIRECTIVES',
-        children: ['markdown'],
+        children: ['v-clipboard', 'v-hotkey', 'v-clickoutside', 'v-lazyload', 'v-fold'],
     },
 ];
 
@@ -31,15 +31,13 @@ const routes = [];
 nav.forEach((one) => {
     one.children.forEach((two) => {
         // eslint-disable-next-line import/no-dynamic-require
-        const component = (r) => require.ensure([], () => r(require(`./docs/${two}.md`)), 'compontent');
+        const component = (r) => require.ensure([], () => r(require(`./docs/${two}.md`)), 'component');
         routes.push({
             path: `/${two}`,
             component,
         });
     });
 });
-
-// console.log(routes);
 
 export {
     nav,

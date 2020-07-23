@@ -31,6 +31,8 @@ Or in css code.
 
 [Alibaba](www.alibaba.com) is the best Internet company, but I want to join `Tencent`, or **BILIBILI** is also OK, But *Baidu* is No.
 
+> This is a blockquote.
+
 1. If by life you were deceived,
 2. Don't be dismal,don't be wild!
 
@@ -48,7 +50,9 @@ Or in css code.
 
 #### This is h4 title.There are also h5h6 title.
 
-[Alibaba](www.alibaba.com) is the best Internet company, but I want to join `Tencent`, or **BILIBILI** is also OK, but *Baidu* is No.
+[Alibaba](https://www.alibaba.com) is the best Internet company, but I want to join `Tencent`, or **BILIBILI** is also OK, but *Baidu* is No.
+
+> This is a blockquote.
 
 1. If by life you were deceived,
 2. Don't be dismal,don't be wild!

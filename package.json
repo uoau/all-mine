@@ -4,7 +4,8 @@
   "description": "vue comonents and utils",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --watch --config src/build/webpack.config.js"
+    "dev": "webpack-dev-server --watch --config src/build/webpack.config.js",
+    "build": "webpack --config src/build/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -18,10 +19,13 @@
   "homepage": "https://github.com/uoau/all-mine#readme",
   "dependencies": {
     "@vue/component-compiler-utils": "^3.1.2",
+    "axios": "^0.19.2",
     "css-loader": "^3.6.0",
+    "element-ui": "^2.13.2",
     "github-markdown-css": "^4.0.0",
     "highlight.js": "^10.1.1",
     "js-htmlencode": "^0.3.0",
+    "lodash": "^4.17.19",
     "markdown-it": "^11.0.0",
     "markdown-it-container": "^3.0.0",
     "mini-css-extract-plugin": "^0.9.0",
@@ -29,23 +33,30 @@
     "postcss-loader": "^3.0.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
+    "v-hotkey": "^0.8.0",
     "vue": "^2.6.11",
     "vue-inbrowser-compiler": "^4.23.3",
+    "vue-lazyload": "^1.3.3",
     "vue-loader": "^15.9.3",
     "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.43.0"
   },
   "devDependencies": {
+    "axios": "^0.19.2",
     "dependency-tree-webpack-plugin": "^1.0.12",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-vue": "^6.2.2",
+    "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "less-loader": "^6.2.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
+    "ts-loader": "^8.0.1",
+    "url-loader": "^4.1.0",
     "vue-style-loader": "^4.1.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

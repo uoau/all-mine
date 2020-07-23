@@ -1,19 +1,17 @@
-/*
- * @Author: xux
- * @Date: 2020-07-08 13:33:13
- * @Description: .md -> .vue
- */
-
 const { compile } = require('vue-inbrowser-compiler');
 const { htmlDecode } = require('js-htmlencode');
+const { dealCode, createHash } = require('./utils');
 const md = require('./new-md');
 
 module.exports = (source) => {
+    const hash = createHash(source.toString());
     let content = md.render(source);
-    let index = 0;
     let loop = true;
-    const demoArr = [];
-    // 渲染demo
+    let index = 0;
+    let demoArr = [];
+    let demoComponent = '';
+    let demoStyle = '';
+    // 渲染demo（显示样例和代码）
     while (loop) {
         const match = content.match(/([\s\S]*?)<!--vue-demo start-->([\s\S]*?)<!--vue-demo end-->([\s\S]*)/);
         if (!match) {
@@ -22,17 +20,20 @@ module.exports = (source) => {
         }
         const beforeHtml = match[1]; // 代码前内容
         const codeHtml = match[2].replace(/{{([\s\S]*)}}/, '<span class="teshu">{xux{$1}xux}</span>'); // 代码内容 - 顺便特殊处理 {{ }} 符号
-        const code = htmlDecode(match[2].replace(/[\r\n]/g, '').match(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/)[1]);
+        let code = htmlDecode(match[2].replace(/[\r\n]/g, '').match(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/)[1]);
+        code = dealCode(code);
         const afterHtml = match[3]; // 代码后内容
         const demo = {
-            demoName: `Demo${index}`,
+            demoName: `Demo${hash}${index}`,
+            className: `demo${hash}${index}`,
             script: compile(code).script,
+            style: compile(code).style,
         };
         demoArr.push(demo);
         content = `${beforeHtml}
             <DemoBox>
                 <template slot="demo">
-                    <Demo${index} />
+                    <${demo.demoName} class="${demo.className}"/>
                 </template>
                 <template slot="code">
                     ${codeHtml}
@@ -41,11 +42,52 @@ module.exports = (source) => {
         ${afterHtml}`;
         index += 1;
     }
-    let demoComponent = '';
     demoArr.forEach((item) => {
+        // 组件
         const componentCode = item.script.match(/;return([\s\S]*)/)[1];
         demoComponent += `${item.demoName}: ${componentCode},`;
+        // 样式
+        const style = item.style || '';
+        if (style) {
+            demoStyle += `.${item.className}{${style}}`;
+        }
     });
+    demoArr = [];
+
+    // 渲染实例
+    loop = true;
+    while (loop) {
+        const match = content.match(/([\s\S]*?)<!--vue-example start-->([\s\S]*?)<!--vue-example end-->([\s\S]*)/);
+        if (!match) {
+            loop = false;
+            break;
+        }
+        const beforeHtml = match[1]; // 代码前内容
+        let code = htmlDecode(match[2].replace(/[\r\n]/g, '').match(/<pre><code[^>]*>([\s\S]*?)<\/code><\/pre>/)[1]);
+        code = dealCode(code);
+        const afterHtml = match[3]; // 代码后内容
+        const demo = {
+            demoName: `Demo${hash}${index}`,
+            className: `demo${hash}${index}`,
+            script: compile(code).script,
+            style: compile(code).style,
+        };
+        demoArr.push(demo);
+        content = `${beforeHtml}<${demo.demoName} class="${demo.className}"/>${afterHtml}`;
+        index += 1;
+    }
+    demoArr.forEach((item) => {
+        // 组件
+        const componentCode = item.script.match(/;return([\s\S]*)/)[1];
+        demoComponent += `${item.demoName}: ${componentCode},`;
+        // 样式
+        const style = item.style || '';
+        if (style) {
+            demoStyle += `.${item.className}{${style}}`;
+        }
+    });
+    demoArr = [];
+    // 生成页面html
     content = `
         <template>
             <div class='markdown-page' ref="page">
@@ -89,7 +131,7 @@ module.exports = (source) => {
                 }
             }
         </script>
-        <style lang="scss">
+        <style lang="less">
             .markdown-page {
                 position: relative;
                 .slider-nav {
@@ -97,6 +139,15 @@ module.exports = (source) => {
                     left: 800px;
                     top: 80px;
                 }
+                .demo-box {
+                    margin-bottom: 16px;
+                    pre {
+                        font-size: 13px;
+                        line-height: 20px;
+                        font-family: Menlo;
+                    }
+                }
+                ${demoStyle}
             }
         </style>`;
     return content;

@@ -44,11 +44,26 @@ module.exports = {
                 loader: 'html-loader?minimize=false',
             },
             {
-                test: /\.(sa|sc|c)ss$/,
+                test: /\.(le|c)ss$/,
                 loaders: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader',
+                    'less-loader',
+                ],
+            },
+            {
+                test: /\.otf|ttf|woff2?|eot(\?\S*)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name][hash:5].min.[ext]',
+                            limit: 5000,
+                            publicPath: '/fonts',
+                            outputPath: '/fonts',
+                            useRelativePath: true,
+                        },
+                    },
                 ],
             },
         ],

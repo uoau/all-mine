@@ -8,6 +8,8 @@
         "./src/index.js": [
             "node_modules/vue-router",
             "node_modules/vue",
+            "./packages/index.js",
+            "./packages/stylesheet/default.theme.less",
             "./src/App.vue",
             "./src/routes.js"
         ],
@@ -18,6 +20,13 @@
             "./packages/stylesheet/reset.css",
             "./src/routes.js"
         ],
+        "./packages/components/button/index.vue": [],
+        "./packages/components/icon/index.vue": [],
+        "./packages/components/divider/index.vue": [],
+        "./packages/components/input/index.vue": [],
+        "./packages/components/label/index.vue": [],
+        "./packages/components/bread/index.vue": [],
+        "./packages/stylesheet/default.theme.less": [],
         "./src/components/slider-nav.vue": [],
         "./src/components/demo-box.vue": [],
         "./packages/stylesheet/markdown.css": [],
@@ -27,7 +36,43 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/input.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/RegExp.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/array.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/bread.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/changelog.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/color.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/divider.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -45,19 +90,7 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/markdown.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
-        "./src/docs/usage.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
-        "./src/docs/reset.css.md": [
+        "./src/docs/label.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -69,25 +102,119 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/array.md": [
+        "./src/docs/markdown.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/reset.css.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/usage.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/v-clickoutside.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/v-clipboard.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/v-fold.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/v-hotkey.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/v-lazyload.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./packages/index.js": [
+            "node_modules/v-hotkey",
+            "node_modules/vue-lazyload",
+            "./packages/components/bread/index.js",
+            "./packages/components/button/index.js",
+            "./packages/components/divider/index.js",
+            "./packages/components/icon/index.js",
+            "./packages/components/input/index.js",
+            "./packages/components/label/index.js",
+            "./packages/directives/clickoutside/index.js",
+            "./packages/directives/clipboard/index.js",
+            "./packages/directives/fold/index.js",
+            "./packages/iconfont/default.js"
+        ],
+        "./packages/directives/clickoutside/index.js": [
+            "node_modules/vue"
+        ],
+        "./packages/components/bread/index.js": [
+            "./packages/components/bread/index.vue"
+        ],
+        "./packages/components/button/index.js": [
+            "./packages/components/button/index.vue"
+        ],
+        "./packages/components/divider/index.js": [
+            "./packages/components/divider/index.vue"
+        ],
+        "./packages/components/icon/index.js": [
+            "./packages/components/icon/index.vue"
+        ],
+        "./packages/components/input/index.js": [
+            "./packages/components/input/index.vue"
+        ],
+        "./packages/components/label/index.js": [
+            "./packages/components/label/index.vue"
+        ],
+        "./packages/directives/clipboard/index.js": [],
+        "./packages/directives/fold/index.js": [],
+        "./packages/iconfont/default.js": [],
         "^\\.\\/.*\\.md$": [
+            "./src/docs/RegExp.md",
             "./src/docs/array.md",
+            "./src/docs/bread.md",
             "./src/docs/button.md",
+            "./src/docs/changelog.md",
             "./src/docs/color.md",
+            "./src/docs/divider.md",
             "./src/docs/font.md",
             "./src/docs/icon.md",
+            "./src/docs/input.md",
+            "./src/docs/label.md",
             "./src/docs/markdown.css.md",
             "./src/docs/markdown.md",
             "./src/docs/reset.css.md",
-            "./src/docs/usage.md"
+            "./src/docs/usage.md",
+            "./src/docs/v-clickoutside.md",
+            "./src/docs/v-clipboard.md",
+            "./src/docs/v-fold.md",
+            "./src/docs/v-hotkey.md",
+            "./src/docs/v-lazyload.md"
         ],
         "./src/routes.js": [
             "^\\.\\/.*\\.md$"
         ]
+    },
+    "note": {
+        "./src/docs/input.md": ""
     }
 }

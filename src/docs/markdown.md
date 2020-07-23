@@ -1,9 +1,8 @@
-Markdown Style
-==================================================================
+# Markdown Style
+
 In order to show the markdown style I use. I need to write some content. But what should I write about? Oh，I can write the usage of markdown.
 
-Title
-------------------------------------------------------------------
+## Title
 Start with `#` and write down the title content, like this below.
 
 ``` markdown
@@ -15,8 +14,7 @@ Start with `#` and write down the title content, like this below.
 ###### h6
 ```
 
-Special Text
-------------------------------------------------------------------
+## Special Text
 `code`
 *italics text*
 **blod text**
@@ -29,8 +27,7 @@ Special Text
 [link](https://github.com)
 ```
 
-Widget
-------------------------------------------------------------------
+## Widget
 ___
 ![img](https://github.com)
 > blockquote
@@ -40,8 +37,8 @@ ___
 > blockquote
 ```
 
-List
-------------------------------------------------------------------
+## List
+
 1. If by life you were deceived,
 2. Don't be dismal,don't be wild!
 
@@ -56,8 +53,7 @@ List
 * Merry days will come,believe.
 ```
 
-Table
-------------------------------------------------------------------
+## Table
 
 | name      | level | market value |
 | --------- |:-----:| ------------:|
@@ -73,15 +69,11 @@ Table
 | ByteDance | 3     | 123E         |
 ```
 
-Demo
-------------------------------------------------------------------
+## Demo
 ::: demo
 ```html
-<template>
-    <div>
-        <button @click='add'>You clicked me {{ count }} times.</button>
-    </div>
-</template>
+<AmButton @click='add'>You clicked me {{ count }} times.</AmButton>
+
 <script>
 export default {
     data() {

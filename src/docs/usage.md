@@ -1,11 +1,11 @@
-# Usage
-The project is divided into four parts, `components` , `utils` , `stylesheet` , `directives` .The components and directives based on `Vue2`, utils and stylesheet can be loaded in alone.
+# Usage 用法
+使用`npm`进行安装
 ``` dos
 npm i all-mine -S
 ```
 
 
-## Component & Directives
+## 组件和指令
 
 ``` javascript
 import Vue from 'vue';
@@ -17,7 +17,7 @@ new Vue({
 })
 ```
 
-## Utils
+## 工具库
 ``` javascript
 import { deepcopy } from 'all-mine/utils';
 
@@ -25,7 +25,7 @@ const obj1 = {};
 const obj2 = deepcopy(obj1);
 ```
 
-## stylesheet
+## 样式
 ``` css
 @import 'all-mine/stylesheet/reset.css';
 

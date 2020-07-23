@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-07-12 19:06:16
- * @LastEditTime: 2020-07-12 20:41:26
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /all-mine/src/components/slider-nav.vue
--->
 <template>
     <div class="slider-nav">
         <ul>
@@ -27,16 +19,25 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .slider-nav {
     ul {
         position: fixed;
         top: 80px;
         border-left: 2px solid #ccc;
         padding-left: 15px;
+        list-style-type: none;
         li {
+            list-style-type: none;
             font-size: 14px;
             line-height: 2;
+            a {
+                color: #000;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
     }
 }

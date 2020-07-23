@@ -17,7 +17,18 @@ md.use(mdContainer, 'demo', {
         }
         return '\n<!--vue-demo end-->';
     },
+});
 
+md.use(mdContainer, 'example', {
+    validate: (params) => params.trim().match(/^example(.*)$/),
+
+    render: (tokens, idx) => {
+        const m = tokens[idx].info.trim().match(/^example(.*)$/);
+        if (tokens[idx].nesting === 1) {
+            return `<!--vue-example start-->${m[1]}`;
+        }
+        return '\n<!--vue-example end-->';
+    },
 });
 
 module.exports = md;

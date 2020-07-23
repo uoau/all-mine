@@ -1,22 +1,13 @@
-<!--
- * @Author: your name
- * @Date: 2020-07-12 16:06:29
- * @LastEditTime: 2020-07-12 20:16:23
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /all-mine/src/components/demo-box.vue
--->
-
 <template>
     <div class="demo-box">
         <div class="demo">
             <slot name="demo"/>
         </div>
-        <div class="code" v-show="open">
-            <slot name="code"/>
-        </div>
         <div class="btn" @click="()=>{open = !open}">
             {{ open ? 'close' : 'open' }}
+        </div>
+        <div class="code" v-fold="open">
+            <slot name="code"/>
         </div>
     </div>
 </template>
@@ -31,7 +22,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .demo-box {
     width: 100%;
     border: 1px solid #ccc;
@@ -40,7 +31,13 @@ export default {
         padding: 20px;
     }
     .code {
-
+        >pre {
+            >code {
+                padding: 8px 10px;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+        }
     }
     .btn {
         width: 100%;
