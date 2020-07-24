@@ -151,24 +151,58 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./packages/directives/tooltip/index.vue": [],
+        "./src/docs/v-tooltip.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./packages/components/message/index.vue": [
+            "./packages/components/icon/index.vue"
+        ],
+        "./src/docs/message.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/backtop.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./packages/components/dialog/index.vue": [],
+        "./src/docs/dialog.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "node_modules/vue-lazyload",
+            "./packages/components/backtop/index.js",
             "./packages/components/breadcrumb-item/index.js",
             "./packages/components/breadcrumb/index.js",
             "./packages/components/button/index.js",
+            "./packages/components/dialog/index.js",
             "./packages/components/divider/index.js",
             "./packages/components/icon/index.js",
             "./packages/components/input/index.js",
             "./packages/components/label/index.js",
+            "./packages/components/message/index.js",
             "./packages/directives/clickoutside/index.js",
             "./packages/directives/clipboard/index.js",
             "./packages/directives/fold/index.js",
+            "./packages/directives/tooltip/index.js",
             "./packages/iconfont/default.js"
         ],
         "./packages/directives/clickoutside/index.js": [
             "node_modules/vue"
         ],
+        "./packages/components/backtop/index.js": [],
         "./packages/components/breadcrumb-item/index.js": [
             "./packages/components/breadcrumb-item/index.vue"
         ],
@@ -177,6 +211,9 @@
         ],
         "./packages/components/button/index.js": [
             "./packages/components/button/index.vue"
+        ],
+        "./packages/components/dialog/index.js": [
+            "./packages/components/dialog/index.vue"
         ],
         "./packages/components/divider/index.js": [
             "./packages/components/divider/index.vue"
@@ -190,16 +227,26 @@
         "./packages/components/label/index.js": [
             "./packages/components/label/index.vue"
         ],
+        "./packages/components/message/index.js": [
+            "./packages/components/message/index.vue",
+            "./packages/utils/base.js"
+        ],
         "./packages/directives/clipboard/index.js": [],
         "./packages/directives/fold/index.js": [],
+        "./packages/directives/tooltip/index.js": [
+            "./packages/directives/tooltip/index.vue"
+        ],
         "./packages/iconfont/default.js": [],
+        "./packages/utils/base.js": [],
         "^\\.\\/.*\\.md$": [
             "./src/docs/RegExp.md",
             "./src/docs/array.md",
+            "./src/docs/backtop.md",
             "./src/docs/breadcrumb.md",
             "./src/docs/button.md",
             "./src/docs/changelog.md",
             "./src/docs/color.md",
+            "./src/docs/dialog.md",
             "./src/docs/divider.md",
             "./src/docs/font.md",
             "./src/docs/icon.md",
@@ -207,13 +254,15 @@
             "./src/docs/label.md",
             "./src/docs/markdown.css.md",
             "./src/docs/markdown.md",
+            "./src/docs/message.md",
             "./src/docs/reset.css.md",
             "./src/docs/usage.md",
             "./src/docs/v-clickoutside.md",
             "./src/docs/v-clipboard.md",
             "./src/docs/v-fold.md",
             "./src/docs/v-hotkey.md",
-            "./src/docs/v-lazyload.md"
+            "./src/docs/v-lazyload.md",
+            "./src/docs/v-tooltip.md"
         ],
         "./src/routes.js": [
             "^\\.\\/.*\\.md$"

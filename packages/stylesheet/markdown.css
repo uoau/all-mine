@@ -23,17 +23,17 @@
 }
 .markdown-page > h3 {
     font-size: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: 500;
 }
 .markdown-page > h4 {
     font-size: 16px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: 500;
 }
 .markdown-page > h5 {
     font-size: 14px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-weight: 500;
 }
 .markdown-page > h6 {

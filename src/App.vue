@@ -1,9 +1,3 @@
-<!--
- * @Author: xux
- * @Date: 2020-07-07 22:19:30
- * @Description: root component
--->
-
 <template>
     <div id='app' class="app">
         <!-- nav -->
@@ -19,7 +13,7 @@
                 <ul :key="one.name" v-for="one in realNav">
                     <span class="title">{{ one.name }}</span>
                     <li
-                        :key="two"
+                        :key="two.name"
                         v-for="two in one.children"
                         :class="nowNavName == two.name ? 'active' : ''"
                     >
@@ -119,6 +113,7 @@ export default {
         .list {
             flex: 1;
             overflow: auto;
+            padding-bottom: 50px;
             ul {
                 margin-bottom: 20px;
                 font-size: 16px;

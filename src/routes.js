@@ -36,7 +36,9 @@ const nav = [
             { name: 'label', cnName: '' },
             { name: 'divider', cnName: '分隔符' },
             { name: 'breadcrumb', cnName: '面包屑' },
-            { name: 'input', cnName: '输入框' },
+            { name: 'message', cnName: '消息' },
+            { name: 'backtop', cnName: '回到顶部' },
+            { name: 'dialog', cnName: '对话框' },
         ],
     },
     {
@@ -47,6 +49,7 @@ const nav = [
             { name: 'v-clickoutside', cnName: '点击外部' },
             { name: 'v-lazyload', cnName: '懒加载' },
             { name: 'v-fold', cnName: '折叠' },
+            { name: 'v-tooltip', cnName: '小提示' },
         ],
     },
 ];

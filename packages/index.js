@@ -9,6 +9,9 @@ import AmInput from './components/input';
 import AmLabel from './components/label';
 import AmBreadcrumb from './components/breadcrumb';
 import AmBreadcrumbItem from './components/breadcrumb-item';
+import AmMessage from './components/message';
+import AmBacktop from './components/backtop';
+import AmDialog from './components/dialog';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
@@ -16,6 +19,7 @@ import clickoutside from './directives/clickoutside';
 import VueHotkey from 'v-hotkey';
 import VueLazyload from 'vue-lazyload';
 import fold from './directives/fold';
+import tooltip from './directives/tooltip';
 
 const AM = {
     AmButton,
@@ -32,6 +36,10 @@ const install = (Vue) => {
         const component = AM[key];
         Vue.component(component.name, component);
     });
+    // 通过安装的方式
+    Vue.use(AmMessage);
+    Vue.use(AmBacktop);
+    Vue.use(AmDialog);
 
     // 指令
     Vue.use(Clipboard);
@@ -39,6 +47,7 @@ const install = (Vue) => {
     Vue.directive('clickoutside', clickoutside);
     Vue.use(VueLazyload);
     Vue.directive('fold',fold);
+    Vue.use(tooltip);
 };
 AM.install = install;
 

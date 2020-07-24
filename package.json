@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --watch --config src/build/webpack.config.js",
-    "build": "webpack --config src/build/webpack.config.js"
+    "build": "webpack --config src/build/webpack.config.js",
+    "updateicon": "node ./script/deal-icon.js"
   },
   "repository": {
     "type": "git",
