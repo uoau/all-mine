@@ -1,7 +1,7 @@
 .markdown-page {
     padding: 40px 0;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.6;
     color: #24292e;
 }
 
@@ -48,7 +48,7 @@
 }
 
 /* special text */
-.markdown-page p > code {
+.markdown-page *:not(pre) > code {
     padding: 0 4px;
     margin: 0;
     border-radius: 3px;

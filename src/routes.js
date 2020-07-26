@@ -12,6 +12,7 @@ const nav = [
             { name: 'color', cnName: '色彩' },
             { name: 'icon', cnName: '图标' },
             { name: 'font', cnName: '字体' },
+            { name: 'design', cnName: '设计规范' },
         ],
     },
     {
@@ -39,6 +40,7 @@ const nav = [
             { name: 'message', cnName: '消息' },
             { name: 'backtop', cnName: '回到顶部' },
             { name: 'dialog', cnName: '对话框' },
+            { name: 'notification', cnName: '通知' },
         ],
     },
     {

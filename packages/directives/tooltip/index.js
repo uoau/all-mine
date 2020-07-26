@@ -12,17 +12,40 @@ function init(Vue) {
                 }
                 const direction = binding.arg || 'right';
                 const content = binding.value || '默认值默认值默认值';
-                const left = (direction === 'top' || direction === 'bottom') ? (el.offsetLeft + el.offsetWidth / 2) : (el.offsetLeft + el.offsetWidth);
-                const top = (direction === 'left' || direction === 'right') ? (el.offsetTop + el.offsetHeight / 2) : (el.offsetTop + el.offsetHeight);
+                // 获取原点坐标
+                const rect = el.getBoundingClientRect();
+                const { width } = rect;
+                const { height } = rect;
+                let { left } = rect;
+                let { top } = rect;
+                switch (direction) {
+                case 'left':
+                    top += 0.5 * height;
+                    break;
+                case 'right':
+                    left += width;
+                    top += 0.5 * height;
+                    break;
+                case 'top':
+                    left += 0.5 * width;
+                    break;
+                case 'bottom':
+                    left += 0.5 * width;
+                    top += height;
+                    break;
+                default: break;
+                }
                 instance = new TooltipConstructor({
                     data: {
                         direction,
                         content,
                         left,
                         top,
+                        elWidth: width,
+                        elHeight: height,
                     },
                 }).$mount();
-                el.parentNode.appendChild(instance.$el);
+                document.body.appendChild(instance.$el);
                 instance.show = true;
             });
             // el.addEventListener('mouseleave', () => {

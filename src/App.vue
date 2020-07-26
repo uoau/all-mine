@@ -73,6 +73,7 @@ export default {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    min-width: 1300px;
     &-nav {
         display: flex;
         flex-direction: column;

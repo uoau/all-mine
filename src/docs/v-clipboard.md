@@ -27,14 +27,19 @@ export default {
             }
         },
         copySuccess(){
-            console.log('复制成功');
+            this.$message.success('复制成功');
         },
         copyError(){
-            console.log('复制失败');
+            this.$message.error('复制失败');
         },
     }
 }
 </script>
+<style>
+.am-button {
+    margin-right: 10px;
+}
+</style>
 ```
 :::
 

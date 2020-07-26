@@ -28,7 +28,7 @@
 <div class="box">
     <div class="item" v-for="(item,index) in iconList" :key="index">
         <AmIcon :name="item" size="28"/>
-        <span>{{ item }}</span>
+        <span @click="copy(item)">{{ item }}</span>
     </div>
 </div>
 <script>
@@ -36,6 +36,14 @@
         data(){
             return {
                 iconList:["check-circle-fill","close-circle-fill","info-circle-fill","warning-circle-fill","check-circle","close-circle","info-circle","warning-circle","sync","reload","message","poweroff","logout","setting","edit-square","save","file-text","folder","folder-open","cloud-upload","cloud-download","error","edit","link","right","left","up","down","arrowright","arrowup","arrowleft","arrowdown","menu","check","close","caret-down","caret-up","caret-right","caret-left","search"],
+            }
+        },
+        methods: {
+            copy(content) {
+                const copyContent = this.$clipboard(content);
+                if(copyContent){
+                    this.$message.success(`复制成功${content}`);
+                }
             }
         }
     }

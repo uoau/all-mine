@@ -12,6 +12,7 @@ import AmBreadcrumbItem from './components/breadcrumb-item';
 import AmMessage from './components/message';
 import AmBacktop from './components/backtop';
 import AmDialog from './components/dialog';
+import AmNotification from './components/notification';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
@@ -29,6 +30,7 @@ const AM = {
     AmLabel,
     AmBreadcrumb,
     AmBreadcrumbItem,
+    AmNotification,
 };
 
 const install = (Vue) => {
