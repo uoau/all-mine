@@ -3,12 +3,12 @@
         class='am-tooltip'
         :style='"transform: translate("+ left +"px,"+ top +"px);"'>
         <transition
-            name='tooltip-anime'
+            name='am-tooltip-in'
             v-on:after-leave='afterLeave'>
             <div
                 ref="tip"
                 v-show='show'
-                class='tooltip-body'
+                class='bd'
                 :style='"transform: translate("+ tipX +","+ tipY +");"'>
                 <i :class='direction'></i>
                 <span>{{ content }}</span>
@@ -18,18 +18,19 @@
 </template>
 
 <script>
+import { getScrollBoxOfEl } from '../../utils/dom';
+
 export default {
     data() {
         return {
             show: false,
+            el: '',
+            fatherScrollEls: [],
             direction: 'right',
             content: 'tooltip',
             // 原点的坐标
             left: 0,
             top: 0,
-            // 原元素的宽高
-            elWidth: 0,
-            elHeight: 0,
             // 黑色块的偏移
             tipX: '',
             tipY: '',
@@ -38,27 +39,60 @@ export default {
         };
     },
     mounted() {
+        this.check();
         if (this.direction === 'left') {
-            this.tipX = '-100%';
+            this.tipX = 'calc(-100% - 10px)';
             this.tipY = '-50%';
         } else if (this.direction === 'right') {
-            this.tipX = '0';
+            this.tipX = '10px';
             this.tipY = '-50%';
         } else if (this.direction === 'top') {
             this.tipX = '-50%';
-            this.tipY = '-100%';
+            this.tipY = 'calc(-100% - 10px)';
         } else if (this.direction === 'bottom') {
             this.tipX = '-50%';
-            this.tipY = '0';
+            this.tipY = '10px';
         }
+        // 监听滚动调整位置
+        this.fatherScrollEls = getScrollBoxOfEl(this.el);
+        this.fatherScrollEls.forEach((scrollBox) => {
+            scrollBox.addEventListener('scroll', this.check);
+        });
     },
     methods: {
+        check() {
+            const rect = this.el.getBoundingClientRect();
+            const { width, height } = rect;
+            let { left, top } = rect;
+            switch (this.direction) {
+            case 'left':
+                top += 0.5 * height;
+                break;
+            case 'right':
+                left += width;
+                top += 0.5 * height;
+                break;
+            case 'top':
+                left += 0.5 * width;
+                break;
+            case 'bottom':
+                left += 0.5 * width;
+                top += height;
+                break;
+            default: break;
+            }
+            this.left = left;
+            this.top = top;
+        },
         afterLeave() {
+            this.fatherScrollEls.forEach((scrollBox) => {
+                scrollBox.removeEventListener('scroll', this.check);
+            });
             this.remove();
         },
         remove() {
+            this.$el.remove();
             this.$destroy(true);
-            this.$el.parentNode.removeChild(this.$el);
         },
         close() {
             this.show = false;
@@ -69,12 +103,12 @@ export default {
 
 <style lang="less">
 .am-tooltip {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 0;
     height: 0;
-    .tooltip-body {
+    .bd {
         left:0;
         top: 0;
         position: absolute;
@@ -85,50 +119,50 @@ export default {
             display: inline-block;
             position: absolute;
             transform: rotate(45deg);
+            z-index: 1;
             &.left {
                 top: 0;
                 bottom: 0;
                 margin: auto;
-                right: -3px;
+                right: -2px;
             }
             &.right {
                 top: 0;
                 bottom: 0;
                 margin: auto;
-                left: -3px;
+                left: -2px;
             }
             &.top {
                 left:0;
                 right:0;
                 margin:auto;
-                bottom:-3px;
+                bottom:-2px;
             }
             &.bottom {
                 left:0;
                 right:0;
                 margin:auto;
-                top:-3px;
+                top:-2px;
             }
         }
         span {
-            padding:5px 10px;
-            word-break:break-all;
-            border-radius: 4px;
-            font-size:14px;
-            line-height:1.5;
+            padding: 3px 5px;
+            word-break: break-all;
+            border-radius: 2px;
+            font-size: 14px;
+            line-height: 1.6;
             color: #fff;
-            background:#333;
+            background: #333;
             display: inline-block;
             white-space: nowrap;
+            position: relative;
+            z-index: 2;
         }
     }
-    .tooltip-anime-enter-active {
-        animation: tooltip_in .2s;
+    .am-tooltip-in-leave-active {
+        animation: am-tooltip-in .2s reverse;
     }
-    .tooltip-anime-leave-active {
-        animation: tooltip_in .2s reverse;
-    }
-    @keyframes tooltip_in {
+    @keyframes am-tooltip-in {
         from {
             opacity: 0;
         }

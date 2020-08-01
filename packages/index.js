@@ -6,31 +6,51 @@ import AmButton from './components/button';
 import AmIcon from './components/icon';
 import AmDivider from './components/divider';
 import AmInput from './components/input';
-import AmLabel from './components/label';
+import AmForm from './components/form';
+import AmFormItem from './components/form-item';
 import AmBreadcrumb from './components/breadcrumb';
 import AmBreadcrumbItem from './components/breadcrumb-item';
 import AmMessage from './components/message';
 import AmBacktop from './components/backtop';
 import AmDialog from './components/dialog';
 import AmNotification from './components/notification';
+import AmPopover from './components/popover';
+import AmSelect from './components/select';
+import AmOption from './components/option';
+import AmCheckbox from './components/checkbox';
+import AmRadio from './components/radio';
+import AmSwitch from './components/switch';
+import AmDatePicker from './components/date-picker';
+import AmPagination from './components/pagination';
+import AmDropdown from './components/dropdown';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
 import clickoutside from './directives/clickoutside';
 import VueHotkey from 'v-hotkey';
-import VueLazyload from 'vue-lazyload';
 import fold from './directives/fold';
 import tooltip from './directives/tooltip';
+import clickanime from './directives/clickanime';
 
 const AM = {
     AmButton,
     AmIcon,
     AmDivider,
     AmInput,
-    AmLabel,
+    AmForm,
+    AmFormItem,
     AmBreadcrumb,
     AmBreadcrumbItem,
     AmNotification,
+    AmPopover,
+    AmSelect,
+    AmOption,
+    AmCheckbox,
+    AmRadio,
+    AmSwitch,
+    AmDatePicker,
+    AmPagination,
+    AmDropdown,
 };
 
 const install = (Vue) => {
@@ -47,8 +67,8 @@ const install = (Vue) => {
     Vue.use(Clipboard);
     Vue.use(VueHotkey);
     Vue.directive('clickoutside', clickoutside);
-    Vue.use(VueLazyload);
     Vue.directive('fold',fold);
+    Vue.directive('clickanime',clickanime);
     Vue.use(tooltip);
 };
 AM.install = install;

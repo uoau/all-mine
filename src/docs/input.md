@@ -2,7 +2,7 @@
 
 ::: demo
 ``` html
-<AmInput v-model="value" :value="value" :match="/^[0-9]*$/"/>
+<AmInput v-model="value" :match="/^[0-9]*$/"/>
 <script>
     export default {
         data() {

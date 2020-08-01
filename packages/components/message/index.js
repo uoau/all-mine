@@ -1,5 +1,5 @@
 import AmMessage from './index.vue';
-import { isWhat } from '../../utils/base';
+import { getType } from '../../utils/base';
 
 const instances = [];
 
@@ -15,7 +15,7 @@ export default {
             };
             // 选择挂载的父元素
             let father = document.body;
-            if (isWhat(arg) === 'String') {
+            if (getType(arg) === 'String') {
                 initData.content = arg;
             } else {
                 initData = { ...initData, ...arg };

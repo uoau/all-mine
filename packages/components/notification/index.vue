@@ -3,7 +3,7 @@
         <div
             class="am-notification"
             :class="themeName">
-            <div class="am-notification__icon" :class="type">
+            <div class="am-notification__icon">
                 <AmIcon :name="iconName"/>
             </div>
             <div class="am-notification__content">
@@ -43,10 +43,10 @@ export default {
         themeName() {
             let themeName = '';
             switch (this.type) {
-            case 'success': themeName = 'success'; break;
-            case 'fail': themeName = 'fail'; break;
-            case 'info': themeName = 'info'; break;
-            case 'warning': themeName = 'warning'; break;
+            case 'success': themeName = 'am-notification--success'; break;
+            case 'fail': themeName = 'am-notification--fail'; break;
+            case 'info': themeName = 'am-notification--info'; break;
+            case 'warning': themeName = 'am-notification--warning'; break;
             default: break;
             }
             return themeName;
@@ -90,16 +90,16 @@ export default {
     }
 
     // 风格
-    &__sucess {
-
+    &--success &__icon{
+        color: green;
     }
-    &__fail {
-
+    &--fail &__icon {
+        color: red;
     }
-    &__info {
-
+    &--info &__icon{
+        color: gray;
     }
-    &__warning {
+    &--warning {
 
     }
 }

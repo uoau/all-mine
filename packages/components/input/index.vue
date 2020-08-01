@@ -69,7 +69,7 @@ export default {
     .am-input {
         height: 30px;
         padding: 0 5px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--border);
         display: inline-flex;
         input {
             background: none;
