@@ -36,7 +36,6 @@ export default {
             }
             // 按下去
             el.addEventListener('mousedown', () => {
-                console.log('1');
                 if(nowEl){
                     clear(nowEl);
                     return;
@@ -51,7 +50,6 @@ export default {
             // 弹起来
             document.body.addEventListener('mouseup', () => {
                 if (nowEl) {
-                    console.log('2');
                     // 当前元素弹起
                     hasUp = true;
                     if(mdend){

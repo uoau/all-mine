@@ -7,7 +7,7 @@
             class="hd"
             :style="labelHdStyle"
         >
-            <span>{{ labelName }}</span>
+            <span>{{ label }}</span>
         </div>
         <div class="bd">
             <slot />
@@ -20,17 +20,16 @@ export default {
     name: 'AmFormItem',
     inject: ['form'],
     props: {
-        labelName: {
+        label: {
             type: String,
             default: '',
         },
         labelWidth: {
-            type: String,
-            default: '80px',
+            type: Number,
         },
         position: {
             type: String,
-            default: 'left',
+            default: '',
         },
         required: {
             type: Boolean,
@@ -46,7 +45,7 @@ export default {
         },
         labelHdStyle() {
             return {
-                width: this.position !== 'top' ? (this.labelWidth || this.form.labelWidth) : '100%',
+                width: this.position !== 'top' ? `${this.labelWidth || this.form.labelWidth}px` : '100%',
             };
         },
     },
@@ -58,9 +57,10 @@ export default {
     // 默认样式
     display: flex;
     >.hd {
-        line-height: 30px;
+        line-height: 32px;
         display: flex;
         padding-right: 12px;
+        font-size: 14px;
     }
     >.bd {
         display: flex;

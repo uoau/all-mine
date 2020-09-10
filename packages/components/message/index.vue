@@ -17,6 +17,7 @@
 import AmIcon from '../icon/index.vue';
 
 export default {
+    name: 'AmMessage',
     components: {
         AmIcon,
     },

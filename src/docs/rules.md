@@ -1,8 +1,13 @@
 # Rules 一些规则
 
 ## 文本规范
-* 文本采用 `14px 1.6x行高`
+* 主文本采用 `14px 20px`
 * 字体颜色采用 `#333` `#666` `#999`三色
+* 12px - 16px
+* 14px - 20px
+* 16px - 24px
+* 18px - 26px
+* 20px - 28px
 
 ## 阴影规范
 * 阴影用于表现页面的`层级关系`和`亲密度`，所以参考antd，我也将阴影分为三层。
@@ -40,12 +45,23 @@
 * P页面采用 `page-*` 命名
 * M模块采用 `m-*` 命名
 * E元素随意命名
+* 常用的E元素命名规范
 * IS装饰符，比如`is-active, is-focus, is-success` 用来表示状态
-* 此组件库项目，每个独立组件采用 `am-*`命名
+* 此组件库项目，每个独立组件采用 `am-*`命名，如果组件里有slot，要怎么命名比较好？
+
 
 ``` css
 .am-button {}
 .am-button.is-active {}
 .am_button span {}
 .am-button .text {}
+```
+常用的元素命名名词
+``` md
+布局相关：left top right bottom middle hd bd ft wrap（外包层）
+部件相关: text（文本） img（图片） box（盒子） list(列表) item(循环元素)
+        content(内容) tip(辅助文字) title(标题) btns(按钮组) info(信息)
+具象相关：tab(可切换元素) icon(图标) user(用户)
+动画相关: anime(动画) fade(渐显渐隐)
+修饰符: is-active(激活态，选中态) is-selected (被选中)
 ```

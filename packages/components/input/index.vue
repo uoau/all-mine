@@ -1,7 +1,10 @@
 <template>
-    <div class="am-input">
+    <div
+        class="am-input"
+        :class="aiClass">
         <input
             :value="value"
+            :placeholder="placeholder"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"
@@ -22,13 +25,35 @@ export default {
         event: 'changeValue',
     },
     props: {
+        // 值
         value: {
             type: String,
             default: '',
         },
+        // 正则过滤
         match: {
             type: RegExp,
+        },
+        // 提示文字
+        placeholder: {
+            type: String,
             default: '',
+        },
+        // 最大字符数（未实现）
+        maxLength: {
+            type: Number,
+        },
+    },
+    data() {
+        return {
+            isFocus: false,
+        };
+    },
+    computed: {
+        aiClass() {
+            return {
+                'is-focus': this.isFocus,
+            };
         },
     },
     methods: {
@@ -43,12 +68,13 @@ export default {
                 this.$emit('input', e);
                 this.$emit('changeValue', e.target.value);
             } while (false);
-            e.target.value = this.value;
         },
         onFocus(e) {
+            this.isFocus = true;
             this.$emit('focus', e);
         },
         onBlur(e) {
+            this.isFocus = false;
             this.$emit('blur', e);
         },
         onChange(e) {
@@ -66,13 +92,25 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .am-input {
-        height: 30px;
-        padding: 0 5px;
-        border: 1px solid var(--border);
-        display: inline-flex;
-        input {
-            background: none;
-        }
+.am-input {
+    width: 230px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid var(--border);
+    display: inline-flex;
+    transition: border .2s;
+    input {
+        background: none;
+        width: 100%;
+        font-size: 14px;
     }
+
+    // 修饰
+    &:hover {
+        border: 1px solid #333;
+    }
+    &.is-focus {
+        border: 1px solid #333;
+    }
+}
 </style>

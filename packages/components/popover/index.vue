@@ -1,20 +1,23 @@
 <template>
-    <transition
-        name="am-popover-anime">
-        <div
-            ref="pop"
-            class="am-popover"
-            :style='apStyle'
-            v-show="show">
-            <div class="inner">
+    <div
+        ref="ap"
+        class="am-popover"
+        :style='apStyle'
+        v-show="apShow">
+        <transition
+            name="am-popover-pop-anime"
+            @after-leave="onPopHide">
+            <div class="pop" v-show="popShow" ref="pop" :style="popStyle">
                 <slot />
             </div>
-        </div>
-    </transition>
+        </transition>
+    </div>
 </template>
 
 <script>
-import { getScrollBoxOfEl, observeElResize } from '../../utils/dom';
+import {
+    getScrollBoxOfEl, observeElResize, offObserveElResize, getHiddenDomRect,
+} from '../../utils/dom';
 
 export default {
     name: 'AmPopover',
@@ -28,13 +31,13 @@ export default {
             type: String,
             default: 'auto',
         },
+        // ap宽
         width: {
             type: Number,
-            default: 0,
         },
+        // ap高
         height: {
             type: Number,
-            default: 0,
         },
         show: {
             type: Boolean,
@@ -44,71 +47,113 @@ export default {
     data() {
         return {
             fatherScrollEls: [],
+            ro: null,
+            apShow: false,
+            popShow: false,
+            // ap定位
             x: 0,
             y: 0,
-            thisWidth: 0,
-            thisHeight: 0,
+            // pop规格
+            popOrigin: 'top',
+            popWidth: 0,
+            popHeight: 0,
         };
     },
     computed: {
         apStyle() {
             const obj = {};
-            // obj.transform = `translate(${this.x}, ${this.y})`;
-            obj.left = `${this.x}`;
-            obj.top = `${this.y}`;
-            obj.width = `${this.thisWidth}px`;
+            obj.transform = `translate(${this.x}px, ${this.y}px)`;
+            return obj;
+        },
+        popStyle() {
+            const obj = {};
+            obj.width = `${this.popWidth}px`;
+            obj.transformOrigin = this.popOrigin;
             if (this.height) {
-                obj.height = `${this.thisHeight}px`;
+                obj.height = `${this.popHeight}`;
             }
             return obj;
         },
     },
-    mounted() {
-        // 监听滚动调整位置
-        this.check();
-        this.fatherScrollEls = getScrollBoxOfEl(this.linkEl);
-        this.fatherScrollEls.forEach((scrollBox) => {
-            scrollBox.addEventListener('scroll', this.check);
-        });
-        window.addEventListener('resize', this.check);
-        observeElResize(this.linkEl, this.check);
+    watch: {
+        show() {
+            if (this.show) {
+                // 开始监听
+                this.apShow = true;
+                this.startObserve();
+                setTimeout(() => {
+                    this.popShow = true;
+                }, 0);
+            } else {
+                this.popShow = false;
+                this.endObserve();
+            }
+        },
     },
     methods: {
+        // 检查位置
         check() {
-            const thisRect = this.$refs.pop.getBoundingClientRect();
-            const linkRect = this.linkEl.getBoundingClientRect();
-            const {
-                left, top, width, height,
-            } = linkRect;
-            const bottom = window.innerHeight - top - height;
-            // 计算弹出层宽高
-            this.thisWidth = this.width || width;
-            this.thisHeight = this.height || thisRect.height;
-            // 计算 x
-            const leftX = `${left}px`;
-            const rightX = `${left - this.thisWidth + width}px`;
-            if (this.xDirection === 'left') {
-                this.x = leftX;
-            } else if (this.xDirection === 'right') {
-                this.x = rightX;
-            }
-            // 计算 y
-            const topY = `${top - this.thisHeight - 6}px`;
-            const bottomY = `${top + height + 6}px`;
-            if (this.yDirection === 'top') {
-                this.y = topY;
-            } else if (this.yDirection === 'bottom') {
-                this.y = bottomY;
-            } else if (this.yDirection === 'auto') {
-                // 上足下不足 走上
-                if (bottom < this.thisHeight && top > this.thisHeight) {
+            this.thisWidth = '';
+            this.$nextTick(() => {
+                const popRect = getHiddenDomRect(this.$refs.pop);
+                const linkRect = this.linkEl.getBoundingClientRect();
+                const {
+                    left, top, width, height,
+                } = linkRect;
+                const bottom = window.innerHeight - top - height;
+                // 计算弹出层宽高
+                this.popWidth = this.width || `${popRect.width < width ? width : popRect.width}`;
+                this.popHeight = this.height || `${popRect.height}`;
+                // 计算 x
+                const leftX = left;
+                const rightX = left - this.popWidth + width;
+                if (this.xDirection === 'left') {
+                    this.x = leftX;
+                } else if (this.xDirection === 'right') {
+                    this.x = rightX;
+                }
+                // 计算 y
+                const topY = top - this.popHeight - 6;
+                const bottomY = top + height + 6;
+                if (this.yDirection === 'top') {
                     this.y = topY;
-                }
-                // 否则走下
-                else {
+                } else if (this.yDirection === 'bottom') {
                     this.y = bottomY;
+                } else if (this.yDirection === 'auto') {
+                    // 上足下不足 走上
+                    // console.log(this.popHeight 716, bottom 61, top 171);
+                    if (bottom < this.popHeight && top > this.popHeight) {
+                        this.y = topY;
+                        this.popOrigin = 'bottom';
+                    } else {
+                        this.y = bottomY;
+                        this.popOrigin = 'top';
+                    }
                 }
-            }
+            });
+        },
+        // 启动监听
+        startObserve() {
+            this.check();
+            this.fatherScrollEls = getScrollBoxOfEl(this.linkEl);
+            this.fatherScrollEls.forEach((scrollBox) => {
+                scrollBox.addEventListener('scroll', this.check);
+            });
+            // 窗口变化
+            window.addEventListener('resize', this.check);
+            this.ro = observeElResize(this.linkEl, this.check);
+        },
+        // 结束监听
+        endObserve() {
+            this.fatherScrollEls.forEach((scrollBox) => {
+                scrollBox.removeEventListener('scroll', this.check);
+            });
+            window.removeEventListener('resize', this.check);
+            offObserveElResize(this.linkEl, this.ro);
+        },
+        // 监听pop动画结束
+        onPopHide() {
+            this.apShow = false;
         },
     },
 };
@@ -119,34 +164,30 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    border-radius: 4px;
     z-index: 20;
-    overflow: hidden;
-    >.inner {
+    width: auto;
+    >.pop {
         overflow: auto;
-        width: 100%;
-        height: 100%;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        background: #fff;
+        border-radius: 4px;
     }
 }
-.am-popover-anime-enter-active {
-    animation: am-popover-in .2s;
-    transform-origin: top;
+.am-popover-pop-anime-enter-active {
+    animation: am-popover-pop-in .2s;
 }
-.am-popover-anime-leave-active {
-    animation: am-popover-in .2s reverse;
-    transform-origin: top;
+.am-popover-pop-anime-leave-active {
+    animation: am-popover-pop-in .2s reverse;
     animation-fill-mode: forwards;
 }
-@keyframes am-popover-in {
+@keyframes am-popover-pop-in {
     from {
-        transform: scaleY(.7);
         opacity: 0;
+        transform: scaleY(.8);
     }
     to {
-        transform: scaleY(1);
         opacity: 1;
+        transform: scaleY(1);
     }
 }
 </style>

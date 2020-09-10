@@ -1,12 +1,13 @@
 {
   "name": "all-mine",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "vue comonents and utils",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --watch --config src/build/webpack.config.js",
     "build": "webpack --config src/build/webpack.config.js",
-    "updateicon": "node ./script/deal-icon.js"
+    "updateicon": "node ./script/deal-icon.js",
+    "package": "webpack --config packages//webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/uoau/all-mine#readme",
   "dependencies": {
     "@vue/component-compiler-utils": "^3.1.2",
+    "autosize": "^4.0.2",
     "axios": "^0.19.2",
     "css-loader": "^3.6.0",
     "dayjs": "^1.8.31",
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "axios": "^0.19.2",
+    "clean-webpack-plugin": "^3.0.0",
     "dependency-tree-webpack-plugin": "^1.0.12",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
@@ -55,9 +58,11 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "img-loader": "^3.0.1",
     "less-loader": "^6.2.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
     "ts-loader": "^8.0.1",
     "url-loader": "^4.1.0",
     "vue-style-loader": "^4.1.2",

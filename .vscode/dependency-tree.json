@@ -9,7 +9,6 @@
             "node_modules/vue-router",
             "node_modules/vue",
             "./packages/index.js",
-            "./packages/stylesheet/default.theme.less",
             "./src/App.vue",
             "./src/routes.js"
         ],
@@ -20,16 +19,13 @@
             "./packages/stylesheet/reset.css",
             "./src/routes.js"
         ],
+        "./packages/stylesheet/default.theme.less": [],
         "./packages/components/button/index.vue": [],
         "./packages/components/icon/index.vue": [],
         "./packages/components/divider/index.vue": [],
         "./packages/components/input/index.vue": [],
-        "./src/docs/form.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
+        "./packages/components/form/index.vue": [],
+        "./packages/components/form-item/index.vue": [],
         "./packages/components/breadcrumb/index.vue": [],
         "./packages/components/breadcrumb-item/index.vue": [],
         "./packages/components/message/index.vue": [
@@ -41,18 +37,45 @@
             "./packages/utils/dom.js"
         ],
         "./packages/components/select/index.vue": [],
-        "./packages/components/option/index.vue": [],
-        "./packages/components/checkbox/index.vue": [],
+        "./packages/components/option/index.vue": [
+            "./packages/utils/base.js"
+        ],
+        "./packages/components/checkbox/index.vue": [
+            "./packages/utils/base.js"
+        ],
         "./packages/components/radio/index.vue": [],
         "./packages/components/switch/index.vue": [],
+        "./packages/components/date-picker/date-base.vue": [
+            "node_modules/dayjs"
+        ],
+        "./packages/components/date-picker/index.vue": [
+            "./packages/components/date-picker/date-base.vue"
+        ],
+        "./packages/components/pagination/index.vue": [],
+        "./packages/components/dropdown/index.vue": [],
+        "./packages/components/dropdown-item/index.vue": [],
+        "./packages/components/popup/index.vue": [],
+        "./packages/components/table/index.vue": [
+            "./packages/utils/dom.js"
+        ],
+        "./packages/components/preview/index.vue": [],
+        "./packages/components/textarea/index.vue": [
+            "node_modules/autosize"
+        ],
+        "./packages/components/upload/index.vue": [],
         "./packages/directives/tooltip/index.vue": [
             "./packages/utils/dom.js"
         ],
-        "./packages/stylesheet/default.theme.less": [],
         "./src/components/slider-nav.vue": [],
         "./src/components/demo-box.vue": [],
         "./packages/stylesheet/markdown.css": [],
         "./src/docs/RegExp.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/all.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -118,7 +141,19 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/dropdown.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/font.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/form.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -136,7 +171,6 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./packages/components/form-item/index.vue": [],
         "./src/docs/markdown.css.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -161,7 +195,25 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/pagination.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/popover.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/popup.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/preview.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -192,6 +244,30 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/switch.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/table.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/textarea.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/todo.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/upload.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -245,24 +321,6 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./packages/components/date-picker/date-base.vue": [
-            "node_modules/dayjs"
-        ],
-        "./src/docs/pagination.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
-        "./packages/components/pagination/index.vue": [],
-        "./packages/components/form/index.vue": [],
-        "./packages/components/dropdown/index.vue": [],
-        "./src/docs/dropdown.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",
@@ -273,6 +331,7 @@
             "./packages/components/date-picker/index.js",
             "./packages/components/dialog/index.js",
             "./packages/components/divider/index.js",
+            "./packages/components/dropdown-item/index.js",
             "./packages/components/dropdown/index.js",
             "./packages/components/form-item/index.js",
             "./packages/components/form/index.js",
@@ -283,22 +342,28 @@
             "./packages/components/option/index.js",
             "./packages/components/pagination/index.js",
             "./packages/components/popover/index.js",
+            "./packages/components/popup/index.js",
+            "./packages/components/preview/index.js",
             "./packages/components/radio/index.js",
             "./packages/components/select/index.js",
             "./packages/components/switch/index.js",
+            "./packages/components/table-column/index.js",
+            "./packages/components/table/index.js",
+            "./packages/components/textarea/index.js",
+            "./packages/components/upload/index.js",
             "./packages/directives/clickanime/index.js",
             "./packages/directives/clickoutside/index.js",
             "./packages/directives/clipboard/index.js",
             "./packages/directives/fold/index.js",
             "./packages/directives/tooltip/index.js",
-            "./packages/iconfont/default.js"
+            "./packages/iconfont/default.js",
+            "./packages/stylesheet/default.theme.less",
+            "./packages/stylesheet/reset.css"
         ],
         "./packages/directives/clickoutside/index.js": [
             "node_modules/vue"
         ],
-        "./packages/components/date-picker/index.vue": [
-            "./packages/components/date-picker/date-base.vue"
-        ],
+        "./packages/components/table-column/index.vue": [],
         "./packages/components/backtop/index.js": [],
         "./packages/components/breadcrumb-item/index.js": [
             "./packages/components/breadcrumb-item/index.vue"
@@ -320,6 +385,9 @@
         ],
         "./packages/components/divider/index.js": [
             "./packages/components/divider/index.vue"
+        ],
+        "./packages/components/dropdown-item/index.js": [
+            "./packages/components/dropdown-item/index.vue"
         ],
         "./packages/components/dropdown/index.js": [
             "./packages/components/dropdown/index.vue"
@@ -352,6 +420,12 @@
         "./packages/components/popover/index.js": [
             "./packages/components/popover/index.vue"
         ],
+        "./packages/components/popup/index.js": [
+            "./packages/components/popup/index.vue"
+        ],
+        "./packages/components/preview/index.js": [
+            "./packages/components/preview/index.vue"
+        ],
         "./packages/components/radio/index.js": [
             "./packages/components/radio/index.vue"
         ],
@@ -360,6 +434,18 @@
         ],
         "./packages/components/switch/index.js": [
             "./packages/components/switch/index.vue"
+        ],
+        "./packages/components/table-column/index.js": [
+            "./packages/components/table-column/index.vue"
+        ],
+        "./packages/components/table/index.js": [
+            "./packages/components/table/index.vue"
+        ],
+        "./packages/components/textarea/index.js": [
+            "./packages/components/textarea/index.vue"
+        ],
+        "./packages/components/upload/index.js": [
+            "./packages/components/upload/index.vue"
         ],
         "./packages/directives/clickanime/index.js": [],
         "./packages/directives/clipboard/index.js": [],
@@ -372,6 +458,7 @@
         "./packages/utils/dom.js": [],
         "^\\.\\/.*\\.md$": [
             "./src/docs/RegExp.md",
+            "./src/docs/all.md",
             "./src/docs/array.md",
             "./src/docs/backtop.md",
             "./src/docs/breadcrumb.md",
@@ -393,11 +480,17 @@
             "./src/docs/notification.md",
             "./src/docs/pagination.md",
             "./src/docs/popover.md",
+            "./src/docs/popup.md",
+            "./src/docs/preview.md",
             "./src/docs/radio.md",
             "./src/docs/reset.css.md",
             "./src/docs/rules.md",
             "./src/docs/select.md",
             "./src/docs/switch.md",
+            "./src/docs/table.md",
+            "./src/docs/textarea.md",
+            "./src/docs/todo.md",
+            "./src/docs/upload.md",
             "./src/docs/usage.md",
             "./src/docs/v-clickanime.md",
             "./src/docs/v-clickoutside.md",
@@ -412,6 +505,38 @@
         ]
     },
     "note": {
-        "./src/docs/input.md": ""
+        "./src/docs/input.md": "",
+        "./packages/components/backtop/index.js": "回到顶部",
+        "./packages/components/breadcrumb-item/index.js": "面包屑子",
+        "./packages/components/breadcrumb/index.js": "面包屑",
+        "./packages/components/button/index.js": "按钮",
+        "./packages/components/checkbox/index.js": "多选框",
+        "./packages/components/date-picker/index.js": "日期选择器",
+        "./packages/components/dialog/index.js": "对话框",
+        "./packages/components/divider/index.js": "分隔符",
+        "./packages/components/dropdown-item/index.js": "下拉菜单子",
+        "./packages/components/dropdown/index.js": "下拉菜单",
+        "./packages/components/form-item/index.js": "表单子",
+        "./packages/components/form/index.js": "表单",
+        "./packages/components/icon/index.js": "图标",
+        "./packages/components/input/index.js": "输入框",
+        "./packages/components/message/index.js": "消息",
+        "./packages/components/notification/index.js": "任务提示",
+        "./packages/components/option/index.js": "选项子",
+        "./packages/components/pagination/index.js": "分页",
+        "./packages/components/popover/index.js": "弹出框",
+        "./packages/components/popup/index.js": "弹出层",
+        "./packages/components/preview/index.js": "图片预览",
+        "./packages/components/radio/index.js": "单选框",
+        "./packages/components/select/index.js": "选择器",
+        "./packages/components/switch/index.js": "开关",
+        "./packages/components/table-column/index.js": "表格子",
+        "./packages/components/table/index.js": "表格",
+        "./packages/directives/clickanime/index.js": "指令 - 点击动画",
+        "./packages/directives/clickoutside/index.js": "指令 - 点外部",
+        "./packages/directives/clipboard/index.js": "指令 - 复制",
+        "./packages/directives/fold/index.js": "指令 - 折叠",
+        "./packages/directives/tooltip/index.js": "指令 - 提示",
+        "./packages/components/textarea/index.js": "文本框"
     }
 }

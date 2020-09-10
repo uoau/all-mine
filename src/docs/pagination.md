@@ -3,12 +3,14 @@
 ## 用法
 ::: demo
 ```html
-<AmPagination />
+<AmPagination :total="total" :current="current" :page-num="pageNum"/>
 <script>
 export default {
     data(){
         return {
-            value: '',
+            total: 105,
+            pageSize: 20,
+            current: 5,
         }
     }
 }

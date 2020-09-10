@@ -1,18 +1,20 @@
 <template>
     <div class="am-date-base">
         <div class="hd">
-            <div>
-                <AmButton icon="doubleleft" size="small" @click="clickHdBtn('prevyear')"></AmButton>
-                <AmButton icon="left" size="small" @click="clickHdBtn('prevmonth')"></AmButton>
+            <div class="prev-btns">
+                <AmButton icon="doubleleft" size="small" @click="clickHdBtn('prev12Year')" v-if="nowView === 'years'"></AmButton>
+                <AmButton icon="doubleleft" size="small" @click="clickHdBtn('prevYear')" v-if="nowView !== 'years'"></AmButton>
+                <AmButton icon="left" size="small" @click="clickHdBtn('prevMonth')" v-if="nowView === 'days'"></AmButton>
             </div>
-            <div>
-                <a v-if="nowView === 'years'">{{ `${years[0].num}年 - ${years[11].num}年` }}</a>
-                <a v-if="nowView !== 'years'" @click="changeView('years')">{{ viewYear }}年</a>
-                <a v-if="nowView === 'days'" @click="changeView('months')">{{ viewMonth+1 }}月</a>
+            <div class="info">
+                <a v-if="nowView === 'years'">{{ `${years[0].num} - ${years[11].num}` }}</a>
+                <a v-if="nowView !== 'years'" @click="changeView('years')">{{ viewYear }}</a>
+                <a v-if="nowView === 'days'" @click="changeView('months')">{{ viewMonth+1 }}</a>
             </div>
-            <div>
-                <AmButton icon="right" size="small" @click="clickHdBtn('nextmonth')"></AmButton>
-                <AmButton icon="doubleright" size="small" @click="clickHdBtn('nextyear')"></AmButton>
+            <div class="next-btns">
+                <AmButton icon="right" size="small" @click="clickHdBtn('nextMonth')" v-if="nowView === 'days'"></AmButton>
+                <AmButton icon="doubleright" size="small" @click="clickHdBtn('nextYear')" v-if="nowView !== 'years'"></AmButton>
+                <AmButton icon="doubleright" size="small" @click="clickHdBtn('next12Year')" v-if="nowView === 'years'"></AmButton>
             </div>
         </div>
         <div class="bd">
@@ -55,9 +57,10 @@
             </div>
         </div>
         <div class="ft">
-            <AmButton size="small">今日</AmButton>
+            <AmButton size="small" @click="clickToday">今日</AmButton>
+            <AmButton size="small" @click="confirm">确定</AmButton>
         </div>
-        <div>选择日期：{{ selectedDate }}</div>
+        <div style="display:none">选择日期：{{ selectedDate }}</div>
     </div>
 </template>
 
@@ -67,8 +70,12 @@ import dayjs from 'dayjs';
 const dayNames = ['一', '二', '三', '四', '五', '六', '日'];
 
 export default {
+    model: {
+        prop: 'value',
+        event: 'changeValue',
+    },
     props: {
-        // 类型 years months days rangeyears rangemonths rangedays
+        // 类型 years months days rangeYears rangeMonths rangeDays
         type: {
             type: Boolean,
             default: false,
@@ -78,6 +85,11 @@ export default {
             type: Array,
             default: () => [],
         },
+        // 起始日期
+        startDate: null,
+        endDate: null,
+        // 值
+        value: null,
     },
     data() {
         return {
@@ -86,7 +98,9 @@ export default {
             viewYear: 2020, // 视图的年
             viewMonth: 6, // 视图的月
 
-            selectedDate: dayjs('2020-7-21'), // 选中的天
+            oneDate: dayjs('2020-7-21'), // 选中的天
+            twoDate: null,
+            hoverDate: null,
         };
     },
     computed: {
@@ -133,19 +147,21 @@ export default {
                     // 上个月的
                     day.num = prevMonthDays + index - firstDay + 1;
                     day.position = 'prev';
+                    day.date = dayjs(`${this.viewYear}-${this.viewMonth}-${day.num}`);
                 } else if (index >= firstDay && index < firstDay + monthDays) {
                     // 本月的
                     day.num = index - firstDay + 1;
                     day.position = 'this';
+                    day.date = dayjs(`${this.viewYear}-${this.viewMonth + 1}-${day.num}`);
                 } else {
                     // 下个月的
                     day.num = index - monthDays - firstDay + 1;
                     day.position = 'next';
+                    day.date = dayjs(`${this.viewYear}-${this.viewMonth + 2}-${day.num}`);
                 }
-                day.date = dayjs(`${this.viewYear}-${this.viewMonth + 1}-${day.num}`);
                 day.class = {
                     [`${day.position}-item`]: true,
-                    'is-active': day.date.unix() === this.selectedDate.unix(),
+                    'is-active': day.date.unix() === this.oneDate.unix(),
                 };
                 return day;
             });
@@ -154,14 +170,34 @@ export default {
     methods: {
         // 操控视图
         clickHdBtn(type) {
-            if (type === 'prevyear') {
-                this.viewYear -= 1;
-            } else if (type === 'prevmonth') {
-                this.viewMonth -= 1;
-            } else if (type === 'nextmonth') {
-                this.viewMonth += 1;
-            } else if (type === 'nextyear') {
+            if (type === 'prev12Year') {
+                if (this.viewYear >= 12) {
+                    this.viewYear -= 12;
+                }
+            } else if (type === 'prevYear') {
+                if (this.viewYear > 0) {
+                    this.viewYear -= 1;
+                }
+            } else if (type === 'prevMonth') {
+                if (this.viewMonth === 0) {
+                    if (this.viewYear > 0) {
+                        this.viewYear -= 1;
+                        this.viewMonth = 11;
+                    }
+                } else {
+                    this.viewMonth -= 1;
+                }
+            } else if (type === 'nextMonth') {
+                if (this.viewMonth === 11) {
+                    this.viewYear += 1;
+                    this.viewMonth = 0;
+                } else {
+                    this.viewMonth += 1;
+                }
+            } else if (type === 'nextYear') {
                 this.viewYear += 1;
+            } else if (type === 'next12Year') {
+                this.viewYear += 12;
             }
         },
         changeView(view) {
@@ -198,14 +234,27 @@ export default {
             }
             // 选择单天
             if (this.type === 'days') {
-
+                this.selectedDate = item.date;
             }
             // 选择区间天
-            if (this.type === 'rangedays') {
-
+            if (this.type === 'rangeDays') {
+                if (!this.selectedDate) {
+                    this.selectedDate = item.date;
+                } else {
+                    this.secondDate = item.date;
+                }
             }
-            this.selectedDate = item.date;
         },
+        // 其他功能
+        clickToday() {
+            // 选择今天
+            this.selectedDate = dayjs();
+        },
+        confirm() {
+            // 点击确认
+            this.$emit('changeValue', this.selectedDate);
+        },
+
     },
 };
 
@@ -216,6 +265,7 @@ export default {
     width: 280px;
     background: #fff;
     border: 1px solid var(--border);
+    user-select: none;
     >.hd {
         display: flex;
         height: 40px;
@@ -223,7 +273,21 @@ export default {
         padding: 0 10px;
         border-bottom: 1px solid var(--border);
         justify-content: space-between;
-        .am-button {
+        .prev-btns {
+
+        }
+        .info {
+            a {
+                color: var(--fcolor-1);
+                text-decoration: none;
+                font-weight: bold;
+                transition: color .2s;
+                &:hover {
+                    color: var(--primary);
+                }
+            }
+        }
+        .next-btns {
 
         }
     }
@@ -267,6 +331,7 @@ export default {
                     align-items: center;
                     justify-content: center;
                     border-radius: 2px;
+                    transition: background .2s;
                 }
                 &.prev-item, &.next-item {
                     color: #aaa;

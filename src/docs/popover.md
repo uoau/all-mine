@@ -7,7 +7,6 @@
 <AmPopover
     v-if="linkEl"
     :link-el="linkEl"
-    :width="300"
     :show.sync="show"
 >
     <div>你好你好你好<br/>你好你好你好你好<br/>你好你好你好<br/>你好你好你好<br/>你好你好你好<br/></div>

@@ -1,14 +1,15 @@
 <template>
-    <div class="am-dropdown">
+    <div class="am-dropdown" v-clickoutside="hideDropdown">
         <AmButton ref="btn" @click="()=>{ show=!show }">
-            <span>1212</span>
+            <span>{{ placeholder }}</span>
+            <AmIcon name="caret-down" :size="12"/>
         </AmButton>
         <AmPopover
             v-if="linkEl"
             :link-el="linkEl"
             :show.sync="show"
         >
-            <div>你好你好你好<br/>你好你好你好你好<br/>你好你好你好<br/>你好你好你好<br/>你好你好你好<br/></div>
+            <slot />
         </AmPopover>
     </div>
 </template>
@@ -17,10 +18,21 @@
 export default {
     name: 'AmDropdown',
     props: {
+        // 占位符
         placeholder: {
             type: String,
-
+            default: '点击展开下拉',
         },
+        // 更新占位符
+        updatePlaceholder: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    provide() {
+        return {
+            dropdown: this,
+        };
     },
     data() {
         return {
@@ -31,11 +43,17 @@ export default {
     mounted() {
         this.linkEl = this.$refs.btn.$el;
     },
+    methods: {
+        // 隐藏下拉
+        hideDropdown() {
+            this.show = false;
+        },
+    },
 };
 </script>
 
 <style lang="less">
 .am-dropdown {
-
+    display: inline-flex;
 }
 </style>

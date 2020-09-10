@@ -7,7 +7,7 @@
                 <i>统统都是我的</i>
             </div>
             <div class="search">
-                <input type="text" placeholder="Search" v-model="search"/>
+                <AmInput placeholder="Search" v-model="search"/>
             </div>
             <div class="list">
                 <ul :key="one.name" v-for="one in realNav">
@@ -39,6 +39,7 @@ import '../packages/stylesheet/reset.css';
 import { nav } from './routes';
 
 export default {
+    name: 'app',
     data() {
         return {
             nav,
@@ -104,15 +105,6 @@ html, body {
             height: 40px;
             width: 100%;
             padding: 0 18px;
-            input {
-                width: 100%;
-                height: 30px;
-                line-height: 30px;
-                padding: 0 10px;
-                border: 1px solid #e5e5e5;
-                outline: none;
-                font-size: 14px;
-            }
         }
         .list {
             flex: 1;

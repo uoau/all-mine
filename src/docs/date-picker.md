@@ -4,5 +4,6 @@
 ::: demo
 ``` html
 <AmDatePicker />
+<AmDatePicker type="rangeDays"/>
 ```
 :::

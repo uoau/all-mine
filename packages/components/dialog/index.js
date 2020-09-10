@@ -3,12 +3,10 @@ import AmDialog from './index.vue';
 export default {
     install(Vue) {
         const DialogConstructor = Vue.extend(AmDialog);
-        Vue.prototype.$dialog = ({
-            content = 'Are U sure?',
-        } = {}) => {
+        Vue.prototype.$dialog = (params) => {
             const instance = new DialogConstructor({
                 data: {
-                    content,
+                    ...params,
                 },
             }).$mount();
             document.body.appendChild(instance.$el);

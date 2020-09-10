@@ -16,7 +16,7 @@ export default {
             default: '',
         },
         size: {
-            type: String,
+            type: Number,
         },
         color: {
             type: String,

@@ -1,12 +1,15 @@
 <template>
-    <div
+    <component
+        :is="componentIs"
+        :to="to"
+        :href="href"
         class="am-button"
         :class="className"
         @click="handleClick"
-        v-clickanime="'down'">
+        v-clickanime="'is-down'">
         <AmIcon v-if="icon" :name="icon" :size="iconSize"/>
         <div class="content" v-if="$slots.default"><slot/></div>
-    </div>
+    </component>
 </template>
 
 <script>
@@ -30,11 +33,28 @@ export default {
             default: '',
         },
         iconSize: {
+            type: Number,
+            default: 14,
+        },
+        // 跳转
+        href: {
             type: String,
-            default: '12',
+        },
+        // 路由切换
+        to: {
+            type: Object,
         },
     },
     computed: {
+        componentIs() {
+            if (this.to) {
+                return 'router-link';
+            }
+            if (this.href) {
+                return 'a';
+            }
+            return 'div';
+        },
         className() {
             return {
                 'is-disabled': this.disabled,
@@ -45,7 +65,6 @@ export default {
     },
     methods: {
         handleClick(e) {
-            console.log('3');
             if (this.disabled) {
                 e.preventDefault();
                 return;
@@ -58,38 +77,36 @@ export default {
 
 <style lang="less" scoped>
 .am-button {
-    height: 30px;
-    padding: 0 5px;
+    padding: 0 12px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
     user-select: none;
-    min-width: 30px;
+    height: 32px;
+    min-width: 32px;
     cursor: pointer;
-    transition: transform 200ms, background .2s;
+    transition: background .2s;
+    box-sizing: border-box;
     >.am-icon ~ .content {
         margin-left: 3px;
-    }
-    &.down {
-        transform: scale(.8);
-    }
-    &.up {
-        transform: scale(1);
-    }
-    &.upend {
-        transform: scale(1);
     }
     // 按钮类型
     &.is-default {
         border: 1px solid var(--border);
+        &.is-down {
+            background: var(--light-bg);
+        }
     }
     &.is-primary {
         background: var(--primary);
         color: #fff;
+        &.is-down {
+            background: var(--dark-primary);
+        }
     }
-    &.is-weak-primary {
+    &.is-dark-primary {
         background: var(--weak-primary);
         border: 1px solid var(--primary);
         color: var(--primary);
@@ -107,9 +124,11 @@ export default {
     &.is-small {
         height: 24px;
         padding: 0 5px;
+        min-width: 24px;
     }
     &.is-big {
         height:40px;
+        min-width: 240x;
     }
 }
 </style>

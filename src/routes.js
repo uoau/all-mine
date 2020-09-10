@@ -13,6 +13,8 @@ const nav = [
             { name: 'icon', cnName: '图标' },
             { name: 'font', cnName: '字体' },
             { name: 'rules', cnName: '一些规则' },
+            { name: 'todo', cnName: '待办清单' },
+            { name: 'all', cnName: '显示所有组件' },
         ],
     },
     {
@@ -50,6 +52,11 @@ const nav = [
             { name: 'date-picker', cnName: '日期选择器' },
             { name: 'pagination', cnName: '分页' },
             { name: 'dropdown', cnName: '下拉菜单' },
+            { name: 'popup', cnName: '弹出层' },
+            { name: 'table', cnName: '表格' },
+            { name: 'preview', cnName: '图片预览' },
+            { name: 'textarea', cnName: '文本框' },
+            { name: 'upload', cnName: '图片上传' },
         ],
     },
     {

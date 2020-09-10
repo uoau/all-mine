@@ -1,7 +1,8 @@
 :root {
     // 主题色
     --primary: #409EFF;
-    --weak-primary: #E6F7FF;
+    --light-primary: #E6F7FF;
+    --dark-primary: #096dd9;
 
     // 系统色
     --success: #67C23A;
@@ -13,6 +14,7 @@
     --fcolor-1: #333;
     --fcolor-2: #666;
     --fcolor-3: #999;
+    --placeholder: #999;
 
     // 边框色
     --border: #e5e5e5;
@@ -24,4 +26,8 @@
     --shadow-1: 0px 4px 12px rgba(0, 0, 0, 0.13);
     --shadow-2: 0px 4px 12px rgba(0, 0, 0, 0.10);
     --shadow-3: 0px 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+::-webkit-input-placeholder {
+    color: var(--placeholder);
 }

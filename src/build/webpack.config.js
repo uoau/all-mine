@@ -40,6 +40,19 @@ module.exports = {
                 ],
             },
             {
+                test: /\.png|jpe?g|gif/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 1024,
+                            esModule: false,
+                        },
+                    },
+                    'img-loader',
+                ],
+            },
+            {
                 test: /\.html$/,
                 loader: 'html-loader?minimize=false',
             },

@@ -26,13 +26,42 @@ export function getScrollBoxOfEl(el) {
     return els;
 }
 
-// 监听元素属性
+// 监听元素变化
 export function observeElResize(el, callBack) {
-    const ro = new ResizeObserver((change) => {
-        console.log(change);
+    const ro = new ResizeObserver(() => {
         callBack();
     });
     ro.observe(el);
+    return ro;
+}
+
+// 取消监听元素变化
+export function offObserveElResize(el, ro) {
+    ro.unobserve(el);
 }
 
 // 事件 - 委托
+
+// 元素 - 计算隐藏元素宽度
+export function getHiddenDomRect(el) {
+    // 获取旧元素宽高
+    const oldElStyle = window.getComputedStyle(el, null);
+    const oldWidth = oldElStyle.width;
+    // 克隆元素
+    const cloneEl = el.cloneNode(true);
+    cloneEl.style.cssText = `
+        z-index: -999;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: ${oldWidth};
+        visibility: hidden;`;
+    el.parentNode.append(cloneEl);
+    const cloneElRect = window.getComputedStyle(cloneEl, null);
+    const obj = {
+        height: window.parseFloat(cloneElRect.height),
+        width: window.parseFloat(cloneElRect.width),
+    };
+    cloneEl.remove();
+    return obj;
+}

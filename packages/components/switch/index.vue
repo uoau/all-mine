@@ -40,7 +40,7 @@ export default {
 .am-switch {
     display: inline-flex;
     align-items: center;
-    height: 30px;
+    height: 32px;
     user-select: none;
     cursor: pointer;
     >.switch {

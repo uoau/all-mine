@@ -2,12 +2,14 @@
     <div
         class="am-radio"
         :class="{
-            ['is-active']: value === selectedValue
+            ['is-active']: label === selectedValue
         }"
         @click="handleClick"
     >
         <div class="radio">
-            <i></i>
+            <transition name="am-radio-anime">
+                <i v-show="label === selectedValue"></i>
+            </transition>
         </div>
         <div class="text" v-if="$slots.default">
             <slot />
@@ -26,14 +28,12 @@ export default {
         selectedValue: {
             type: null,
         },
-        value: {
-            type: null,
-        },
-
+        // 值
+        label: null,
     },
     methods: {
         handleClick() {
-            this.$emit('changeValue', this.value);
+            this.$emit('changeValue', this.label);
         },
     },
 };
@@ -43,7 +43,7 @@ export default {
 .am-radio {
     display: inline-flex;
     align-items: center;
-    height: 30px;
+    height: 32px;
     cursor: pointer;
     >.radio {
         width: 16px;
@@ -54,9 +54,8 @@ export default {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        transition: transform .2s;
+        transition: border .2s;
         i {
-            transform: scale(0);
             width: 8px;
             height: 8px;
             background: var(--primary);
@@ -65,20 +64,38 @@ export default {
         }
     }
     >.text {
-        margin-left: 5px;
+        margin-left: 8px;
+        font-size: 14px;
     }
-    &.is-active {
-        >.radio {
-            border: 1px solid var(--primary);
-            i {
-                transform: scale(1);
-            }
+    .am-radio-anime-enter-active {
+        animation: am-radio-in .2s;
+    }
+    .am-radio-anime-leave-active {
+        animation: am-radio-in .2s reverse;
+        animation-fill-mode: forwards;
+    }
+    @keyframes am-radio-in {
+        from {
+            opacity: 0;
+            transform: scale(0);
+            background: none;
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+            background: var(--primary);
         }
     }
+
     // 悬停
     &:hover {
         >.radio {
             border-color: var(--primary);
+        }
+    }
+    &.is-active {
+        >.radio {
+            border: 1px solid var(--primary);
         }
     }
 }

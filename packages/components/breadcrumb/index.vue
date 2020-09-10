@@ -8,9 +8,15 @@
 export default {
     name: 'AmBreadcrumb',
     props: {
+        // 分隔符
         separator: {
             type: String,
             default: '/',
+        },
+        // 分割图标
+        separatorIcon: {
+            type: String,
+            default: '',
         },
     },
     provide() {
@@ -27,6 +33,9 @@ export default {
         >.am-breadcrumb-item {
             &:last-child {
                 >i {
+                    display: none;
+                }
+                >.am-icon {
                     display: none;
                 }
             }

@@ -9,8 +9,9 @@
 export default {
     methods: {
         deleteItem() {
-            this.$dialog('你确定删除吗?')
-            .then(()=>{
+            this.$dialog({
+                content: '你确定删除吗?'
+            }).then(()=>{
                 this.$message.success('删除成功');
             }).catch(()=>{
                 this.$message.info('取消删除');

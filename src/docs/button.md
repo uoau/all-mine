@@ -8,7 +8,7 @@ Commonly used button.
 <div class="row">
     <AmButton @click="sayHi">Default</AmButton>
     <AmButton type="primary">Primary</AmButton>
-    <AmButton type="weak-primary">Weak Primary</AmButton>
+    <AmButton type="dark-primary">Weak Primary</AmButton>
     <AmButton type="line-primary">Line Primary</AmButton>
 </div>
 <script>

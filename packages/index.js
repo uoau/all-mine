@@ -1,6 +1,9 @@
 /* eslint-disable */
 // 引入图标字体文件
 import './iconfont/default';
+// 引入基础样式
+import './stylesheet/default.theme.less';
+import './stylesheet/reset.css';
 // 引入组件
 import AmButton from './components/button';
 import AmIcon from './components/icon';
@@ -23,6 +26,13 @@ import AmSwitch from './components/switch';
 import AmDatePicker from './components/date-picker';
 import AmPagination from './components/pagination';
 import AmDropdown from './components/dropdown';
+import AmDropdownItem from './components/dropdown-item';
+import AmPopup from './components/popup';
+import AmTable from './components/table';
+import AmTableColumn from './components/table-column';
+import AmPreview from './components/preview';
+import AmTextarea from './components/textarea';
+import AmUpload from './components/upload';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
@@ -51,12 +61,21 @@ const AM = {
     AmDatePicker,
     AmPagination,
     AmDropdown,
+    AmDropdownItem,
+    AmPopup,
+    AmTable,
+    AmTableColumn,
+    AmPreview,
+    AmTextarea,
+    AmUpload,
 };
 
 const install = (Vue) => {
     Object.keys(AM).forEach((key) => {
         const component = AM[key];
-        Vue.component(component.name, component);
+        if(component.name){
+            Vue.component(component.name, component);
+        }
     });
     // 通过安装的方式
     Vue.use(AmMessage);
