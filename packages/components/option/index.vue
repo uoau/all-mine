@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { getType, findOne } from '../../utils/base';
+import { getType } from '../../utils/base';
 
 export default {
     name: 'AmOption',
@@ -20,15 +20,17 @@ export default {
             required: true,
         },
     },
-    data() {
-        return {
-
-        };
+    watch: {
+        item() {
+            this.select.options.push(this.item);
+        },
     },
     computed: {
         isSelected() {
-            if (getType(this.select.selectedValue) === 'Array' && findOne(this.select.selectedValue, { value: this.item.value })) return true;
-            if (this.select.selectedValue && this.select.selectedValue.value === this.item.value) return true;
+            if (getType(this.select.selectedValue) === 'Array' && this.select.selectedValue.findIndex((item) => item === this.item.value) > -1) return true;
+            if (this.select.selectedValue && this.select.selectedValue === this.item.value) {
+                return true;
+            }
             return false;
         },
         aoClass() {
@@ -36,6 +38,13 @@ export default {
                 'is-selected': this.isSelected,
             };
         },
+    },
+    created() {
+        this.select.options.push(this.item);
+    },
+    beforeDestroy() {
+        const index = this.select.options.findIndex((item) => item === this.item);
+        this.select.options.splice(index, 1);
     },
     methods: {
         clickOption() {

@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .am-input {
     width: 230px;
     height: 32px;

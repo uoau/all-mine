@@ -12,14 +12,13 @@
 export default {
     name: 'AmUpload',
     props: {
+        // 多选
         multiple: Boolean,
     },
     methods: {
         changeFile(e) {
             const { files } = e.target;
-            this.file = files;
-            this.$refs.input.value = '';
-            this.$emit('afterSelected', this.file);
+            this.$emit('after-selected', files);
         },
     },
 };

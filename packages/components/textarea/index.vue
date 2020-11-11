@@ -3,6 +3,7 @@
         <textarea
             ref="textarea"
             :placeholder="placeholder"
+            :value="value"
             @input="onInput"
             @focus="onFocus"
             @blur="onBlur"

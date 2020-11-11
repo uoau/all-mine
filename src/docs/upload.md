@@ -3,7 +3,7 @@
 ## 用法
 ::: demo
 ``` html
-<AmUpload :multiple="true" @afterSelected="after"/>
+<AmUpload :multiple="true" @after-selected="afterSelected"/>
 
 <script>
 export default {

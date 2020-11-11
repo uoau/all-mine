@@ -52,7 +52,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .am-form-item {
     // 默认样式
     display: flex;

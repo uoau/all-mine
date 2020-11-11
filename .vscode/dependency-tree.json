@@ -36,7 +36,9 @@
         "./packages/components/popover/index.vue": [
             "./packages/utils/dom.js"
         ],
-        "./packages/components/select/index.vue": [],
+        "./packages/components/select/index.vue": [
+            "./packages/utils/base.js"
+        ],
         "./packages/components/option/index.vue": [
             "./packages/utils/base.js"
         ],

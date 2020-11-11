@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     .am-icon {
         width: 1em;
         height: 1em;

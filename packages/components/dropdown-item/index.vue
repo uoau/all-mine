@@ -24,6 +24,7 @@ export default {
             type: String,
             default: '',
         },
+        value: null,
     },
     methods: {
         handleClick() {
@@ -31,6 +32,7 @@ export default {
                 this.dropdown.placeholder = this.label;
             }
             this.dropdown.hideDropdown();
+            this.dropdown.$emit('change', this.value);
         },
     },
 };

@@ -45,7 +45,7 @@ export function removeRepeat(arr) {
 }
 
 // 数组 - 根据内容对数组进行检索，如从对象数组里搜索 id=12 的对象
-export default function findOne(arrs, where) {
+export function findOne(arrs, where) {
     if (!Array.isArray(arrs) || !arrs.length) return {};
 
     if (typeof where === 'object' && !Array.isArray(where) && Object.keys(where).length) {

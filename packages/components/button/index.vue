@@ -75,7 +75,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .am-button {
     padding: 0 12px;
     display: inline-flex;

@@ -138,7 +138,7 @@ export default {
             pageSize: 20,
             current: 5,
             input: '',
-            textarea: '',
+            textarea: '你好',
             radioValue: 1,
             checkboxValue: [],
             switchValue: false,

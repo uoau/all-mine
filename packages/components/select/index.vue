@@ -7,17 +7,17 @@
         <div class="select-box" @click="clickSelectBox" ref="selectBox">
             <!-- 单选 -->
             <div class="alone" v-if="!multiple">
-                <p class="placeholder" v-if="!selectedValue">{{ placeholder }}</p>
-                <div v-else class="content">{{ selectedValue.label }}</div>
+                <p class="placeholder" v-if="!selectedItem">{{ placeholder }}</p>
+                <div v-else class="content">{{ selectedItem.label }}</div>
                 <AmIcon name="down"/>
             </div>
             <!-- 多选 -->
             <div class="multiple" v-else>
-                <p class="placeholder" v-if="!selectedValue.length">{{ placeholder }}</p>
+                <p class="placeholder" v-if="!selectedItem.length">{{ placeholder }}</p>
                 <div v-else class="content">
                     <div
                         class="tag"
-                        v-for="item in selectedValue"
+                        v-for="item in selectedItem"
                         :key="item.value"
                     >
                         <span>{{ item.label }}</span>
@@ -32,12 +32,14 @@
             v-if="selectBoxEl"
             :link-el="selectBoxEl"
             :show="dropDownShow">
-            <slot/>
+            <slot />
         </AmPopover>
     </div>
 </template>
 
 <script>
+import { getType, findOne } from '../../utils/base';
+
 export default {
     name: 'AmSelect',
     model: {
@@ -56,9 +58,7 @@ export default {
             default: '请选择',
         },
         // 所选值
-        selectedValue: {
-            type: [Array, Object],
-        },
+        selectedValue: null,
     },
     provide() {
         return {
@@ -71,6 +71,8 @@ export default {
             selectBoxEl: '',
             // 下拉框显示
             dropDownShow: false,
+            // 选项
+            options: [],
         };
     },
     computed: {
@@ -78,6 +80,27 @@ export default {
             return {
                 'is-focus': this.dropDownShow,
             };
+        },
+        selectedItem() {
+            if (getType(this.selectedValue) === 'Array') {
+                const arr = this.selectedValue.map((item) => {
+                    const res = findOne(this.options, {
+                        value: item,
+                    });
+                    return res.result;
+                });
+                if (arr.length) {
+                    return arr;
+                }
+                return [];
+            }
+            let res = '';
+            this.options.forEach((item) => {
+                if (item.value === this.selectedValue) {
+                    res = item;
+                }
+            });
+            return res;
         },
     },
     mounted() {
@@ -96,13 +119,21 @@ export default {
             if (this.multiple) {
                 // 多选
                 const newValue = this.selectedValue ? this.selectedValue : [];
-                newValue.push(option);
+                newValue.push(option.value);
                 this.$emit('changeValue', newValue);
             } else {
                 // 单选
-                this.$emit('changeValue', option);
+                this.$emit('changeValue', option.value);
                 this.dropDownShow = false;
             }
+        },
+        delOption(option) {
+            console.log('点击了');
+            // 去除多选项
+            const index = this.selectedValue.findIndex((item) => option.value === item);
+            this.selectedValue.splice(index, 1);
+            console.log(this.selectedValue);
+            this.$emit('changeValue', this.selectedValue);
         },
     },
 };

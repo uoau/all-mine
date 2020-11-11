@@ -71,8 +71,10 @@ export default {
                     this.selectedValue.push(this.label);
                 }
                 this.$emit('changeValue', this.selectedValue);
+                this.$emit('change', this.selectedValue);
             } else {
                 this.$emit('changeValue', !this.selectedValue);
+                this.$emit('change', this.selectedValue);
             }
         },
     },
