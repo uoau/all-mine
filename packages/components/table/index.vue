@@ -82,7 +82,7 @@ export default {
         },
         // 高度
         height: {
-            type: Number,
+            type: String,
         },
         // 对齐方式
         align: {
@@ -106,7 +106,7 @@ export default {
     computed: {
         bdStyle() {
             return {
-                height: this.height ? `${this.height}px` : '',
+                height: this.height ? `${this.height}` : '',
                 overflow: this.height ? 'auto' : '',
             };
         },

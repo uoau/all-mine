@@ -17,7 +17,14 @@
                 <div class="hd">
                     <div class="title" v-if="title">{{ title }}</div>
                     <slot name="hd"/>
-                    <AmButton class="close" icon="close" type="text" icon-size="16" @click="close" v-if="showCloseBtn"/>
+                    <AmButton
+                        v-if="showCloseBtn"
+                        class="close"
+                        icon="close"
+                        type="text"
+                        icon-size="16"
+                        @click="close"
+                    />
                 </div>
                 <div class="bd">
                     <slot />

@@ -323,6 +323,12 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/editor.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",
@@ -472,6 +478,7 @@
             "./src/docs/dialog.md",
             "./src/docs/divider.md",
             "./src/docs/dropdown.md",
+            "./src/docs/editor.md",
             "./src/docs/font.md",
             "./src/docs/form.md",
             "./src/docs/icon.md",

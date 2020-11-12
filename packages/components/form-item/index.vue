@@ -25,7 +25,8 @@ export default {
             default: '',
         },
         labelWidth: {
-            type: Number,
+            type: String,
+            default: '',
         },
         position: {
             type: String,
@@ -44,8 +45,9 @@ export default {
             };
         },
         labelHdStyle() {
+            const position = this.position || this.form.position;
             return {
-                width: this.position !== 'top' ? `${this.labelWidth || this.form.labelWidth}px` : '100%',
+                width: position !== 'top' ? `${this.labelWidth || this.form.labelWidth}` : '100%',
             };
         },
     },

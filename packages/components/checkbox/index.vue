@@ -105,7 +105,7 @@ export default {
         }
     }
     >.text {
-        margin-left: 5px;
+        margin-left: 8px;
         font-size: 14px;
     }
 

@@ -96,6 +96,8 @@ export default {
             this.thisWidth = '';
             this.$nextTick(() => {
                 const popRect = getHiddenDomRect(this.$refs.pop);
+                console.log(popRect);
+                // 获取关联元素的大小偏移
                 const linkRect = this.linkEl.getBoundingClientRect();
                 const {
                     left, top, width, height,

@@ -11,7 +11,6 @@
             @change="onChange"
             @enter="onEnter"
             @keyup="onKeyup"
-            @keyup.enter="onEnter"
         />
     </div>
 </template>

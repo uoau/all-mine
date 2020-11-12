@@ -3,7 +3,7 @@
 # 用法
 ::: demo
 ```html
-<AmTable :data="list" fixed :height="200">
+<AmTable :data="list" height="200px">
     <AmTableColumn label="姓名" prop="name"></AmTableColumn>
     <AmTableColumn label="年龄" prop="age" :width="300">
         <template v-slot:default="row">
@@ -31,3 +31,19 @@ export default {
 </script>
 ```
 :::
+
+## AmTable Attributes
+
+| 参数       | 说明        | 类型       | 可选值         | 默认值   |
+|---------- |------------ |---------- |-------------  |-------- |
+| data | 数据列表 | array | | |
+| height | 内容区域的高度 | string | 200px | - |
+| align | 内容对齐方式 | string | 'left' 'center' 'right' | 'left' |
+
+## AmTableItem Attributes
+
+| 参数       | 说明        | 类型       | 可选值         | 默认值   |
+|---------- |------------ |---------- |-------------  |-------- |
+| data | 数据列表 | array | | |
+| height | 内容区域的高度 | string | 200px | - |
+| align | 内容对齐方式 | string | 'left' 'center' 'right' | 'left' |

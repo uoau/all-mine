@@ -55,6 +55,7 @@ export function getHiddenDomRect(el) {
         top: 0;
         left: 0;
         width: ${oldWidth};
+        width: max-content;
         visibility: hidden;`;
     el.parentNode.append(cloneEl);
     const cloneElRect = window.getComputedStyle(cloneEl, null);

@@ -70,6 +70,12 @@ const nav = [
             { name: 'v-clickanime', cnName: '点击动画' },
         ],
     },
+    {
+        name: 'BIG THING',
+        children: [
+            { name: 'editor', cnName: '文章编辑器' },
+        ],
+    },
 ];
 
 const routes = [];

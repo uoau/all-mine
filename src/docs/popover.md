@@ -9,7 +9,7 @@
     :link-el="linkEl"
     :show.sync="show"
 >
-    <div>你好你好你好<br/>你好你好你好你好<br/>你好你好你好<br/>你好你好你好<br/>你好你好你好<br/></div>
+    <div>你好你好你好你好你好你好你好你好你好<br/>你好你好你好你好<br/>你好你好你好<br/>你好你好你好<br/>你好你好你好<br/></div>
 </AmPopover>
 </div>
 <script>
@@ -25,16 +25,5 @@ export default {
     }
 }
 </script>
-```
-:::
-
-::: example
-``` html
-<div></div>
-<style>
-    div {
-        height: 2000px;
-    }
-</style>
 ```
 :::

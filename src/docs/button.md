@@ -40,10 +40,11 @@ export default {
 :::
 
 ## 规格
-small 24px, 默认是 30px, big 50px
+small 24px, 默认是 32px, big 40px
 ::: demo
 ``` html
 <AmButton size="small">Small Button</AmButton>
+<AmButton>Default Button</AmButton>
 <AmButton size="big">Big Button</AmButton>
 <style>
 .am-button {
