@@ -35,7 +35,7 @@
     export default {
         data(){
             return {
-                iconList:["see","calendar","calendar-fill","plus","ellipsis","doubleleft","doubleright","check2","check-circle-fill","close-circle-fill","info-circle-fill","warning-circle-fill","check-circle","close-circle","info-circle","warning-circle","sync","reload","message","poweroff","logout","setting","edit-square","save","file-text","folder","folder-open","cloud-upload","cloud-download","error","edit","link","right","left","up","down","arrowright","arrowup","arrowleft","arrowdown","menu","check","close","caret-down","caret-up","caret-right","caret-left","search"],
+                iconList:["appstore","piechart-circle-fil","appstore-fill","bulb-fill","pie","piechart","bulb","read","block","verticalright","verticalleft","step-backward","step-forward","image-fill","see","calendar","calendar-fill","plus","ellipsis","doubleleft","doubleright","check2","check-circle-fill","close-circle-fill","info-circle-fill","warning-circle-fill","check-circle","close-circle","info-circle","warning-circle","sync","reload","message","poweroff","logout","setting","edit-square","save","file-text","folder","folder-open","cloud-upload","cloud-download","error","edit","link","right","left","up","down","arrowright","arrowup","arrowleft","arrowdown","menu","check","close","caret-down","caret-up","caret-right","caret-left","search"],
             }
         },
         methods: {

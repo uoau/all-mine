@@ -9,9 +9,13 @@ import VueRouter from 'vue-router';
 import { routes } from './routes';
 import App from './App.vue';
 import AM from '../packages/index';
+import AmEditor from '../packages/components/editor';
+
+console.log(AmEditor);
 
 Vue.use(VueRouter);
 Vue.use(AM);
+Vue.component(AmEditor.name, AmEditor);
 
 new Vue({
     router: new VueRouter({

@@ -1,6 +1,6 @@
 {
   "name": "all-mine",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "vue comonents and utils",
   "main": "lib/index.js",
   "scripts": {

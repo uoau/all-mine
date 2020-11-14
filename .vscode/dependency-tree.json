@@ -8,6 +8,7 @@
         "./src/index.js": [
             "node_modules/vue-router",
             "node_modules/vue",
+            "./packages/components/editor/index.js",
             "./packages/index.js",
             "./src/App.vue",
             "./src/routes.js"
@@ -329,6 +330,9 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./packages/components/editor/index.vue": [
+            "node_modules/markdown-it"
+        ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",
@@ -399,6 +403,9 @@
         ],
         "./packages/components/dropdown/index.js": [
             "./packages/components/dropdown/index.vue"
+        ],
+        "./packages/components/editor/index.js": [
+            "./packages/components/editor/index.vue"
         ],
         "./packages/components/form-item/index.js": [
             "./packages/components/form-item/index.vue"
