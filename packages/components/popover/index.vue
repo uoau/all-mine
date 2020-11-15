@@ -99,6 +99,7 @@ export default {
                 console.log(popRect);
                 // 获取关联元素的大小偏移
                 const linkRect = this.linkEl.getBoundingClientRect();
+                console.log(linkRect, 'link');
                 const {
                     left, top, width, height,
                 } = linkRect;

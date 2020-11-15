@@ -14,8 +14,8 @@ export default {
     },
     props: {
         labelWidth: {
-            type: Number,
-            default: 80,
+            type: String,
+            default: '80px',
         },
         position: {
             type: String,

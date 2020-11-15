@@ -3,6 +3,7 @@
         <AmPopup
             :show.sync="show"
             @after-leave="afterLeave">
+
             <template>
                 <p>{{ content }}</p>
             </template>
