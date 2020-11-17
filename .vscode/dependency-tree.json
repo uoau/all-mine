@@ -8,6 +8,7 @@
         "./src/index.js": [
             "node_modules/vue-router",
             "node_modules/vue",
+            "./packages/components/cropper/index.js",
             "./packages/components/editor/index.js",
             "./packages/index.js",
             "./src/App.vue",
@@ -66,8 +67,19 @@
             "node_modules/autosize"
         ],
         "./packages/components/upload/index.vue": [],
+        "./packages/components/fixed-bottom-bar/index.vue": [
+            "./packages/utils/dom.js"
+        ],
         "./packages/directives/tooltip/index.vue": [
             "./packages/utils/dom.js"
+        ],
+        "./packages/components/editor/index.vue": [
+            "node_modules/markdown-it",
+            "./packages/utils/browser.js"
+        ],
+        "./packages/components/cropper/index.vue": [
+            "node_modules/croppie",
+            "./packages/utils/browser.js"
         ],
         "./src/components/slider-nav.vue": [],
         "./src/components/demo-box.vue": [],
@@ -126,6 +138,12 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/cropper.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/date-picker.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -145,6 +163,12 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/dropdown.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/editor.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -324,14 +348,11 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/editor.md": [
+        "./src/docs/fixed-bottom-bar.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
-        ],
-        "./packages/components/editor/index.vue": [
-            "node_modules/markdown-it"
         ],
         "./packages/index.js": [
             "node_modules/v-hotkey",
@@ -345,6 +366,7 @@
             "./packages/components/divider/index.js",
             "./packages/components/dropdown-item/index.js",
             "./packages/components/dropdown/index.js",
+            "./packages/components/fixed-bottom-bar/index.js",
             "./packages/components/form-item/index.js",
             "./packages/components/form/index.js",
             "./packages/components/icon/index.js",
@@ -389,6 +411,9 @@
         "./packages/components/checkbox/index.js": [
             "./packages/components/checkbox/index.vue"
         ],
+        "./packages/components/cropper/index.js": [
+            "./packages/components/cropper/index.vue"
+        ],
         "./packages/components/date-picker/index.js": [
             "./packages/components/date-picker/index.vue"
         ],
@@ -406,6 +431,9 @@
         ],
         "./packages/components/editor/index.js": [
             "./packages/components/editor/index.vue"
+        ],
+        "./packages/components/fixed-bottom-bar/index.js": [
+            "./packages/components/fixed-bottom-bar/index.vue"
         ],
         "./packages/components/form-item/index.js": [
             "./packages/components/form-item/index.vue"
@@ -470,6 +498,7 @@
         ],
         "./packages/iconfont/default.js": [],
         "./packages/utils/base.js": [],
+        "./packages/utils/browser.js": [],
         "./packages/utils/dom.js": [],
         "^\\.\\/.*\\.md$": [
             "./src/docs/RegExp.md",
@@ -481,11 +510,13 @@
             "./src/docs/changelog.md",
             "./src/docs/checkbox.md",
             "./src/docs/color.md",
+            "./src/docs/cropper.md",
             "./src/docs/date-picker.md",
             "./src/docs/dialog.md",
             "./src/docs/divider.md",
             "./src/docs/dropdown.md",
             "./src/docs/editor.md",
+            "./src/docs/fixed-bottom-bar.md",
             "./src/docs/font.md",
             "./src/docs/form.md",
             "./src/docs/icon.md",

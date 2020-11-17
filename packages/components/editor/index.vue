@@ -4,12 +4,19 @@
         <div class="am-editor__main">
             <!-- 控制栏 -->
             <div class="am-editor__control-bar">
-                <AmIcon name="image-fill" :size="24" />
-                <AmIcon name="verticalleft" :size="24" />
+                <!-- 添加图片 -->
+                <div class="add-img">
+                    <AmIcon name="image-fill" :size="20" />
+                    <input type="file" @change="addImg"/>
+                </div>
             </div>
             <!-- 输入区域 -->
             <div class="am-editor__textarea">
-                <AmTextarea v-model="inputContent" @input="contentChange" autosize/>
+                <AmTextarea
+                    v-model="inputContent"
+                    @input="contentChange"
+                    autosize
+                />
             </div>
         </div>
         <!-- 渲染 -->
@@ -21,25 +28,37 @@
 
 <script>
 import MarkdownIt from 'markdown-it';
+import { fileTo64 } from '../../utils/browser';
 
 const md = new MarkdownIt();
 export default {
     name: 'AmEditor',
     props: {
-        // 输入内容
-        content: null,
+        // md内容
+        mdContent: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
-            inputContent: this.content,
-            htmlContent: '',
+            inputContent: this.mdContent,
+            htmlConetent: '',
         };
+    },
+    watch: {
+        inputContent() {
+            this.htmlContent = md.render(this.inputContent);
+        },
     },
     methods: {
         contentChange(val) {
-            console.log(val, this.inputContent);
-            this.$emit('update:content', this.inputContent);
-            this.htmlContent = md.render(this.inputContent);
+            this.$emit('update:content', val);
+        },
+        async addImg(e) {
+            const file = e.target.files[0];
+            const base64 = await fileTo64(file);
+            this.inputContent += `![img](${base64})`;
         },
     },
 };
@@ -72,6 +91,26 @@ export default {
         align-items: center;
         padding: 0 8px 0 16px;
         justify-content: space-between;
+        .add-img {
+            width: 32px;
+            height: 32px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background .2s;
+            input {
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 0;
+            }
+            &:hover {
+                background: #eee;
+            }
+        }
     }
     &__textarea {
         flex: 1;

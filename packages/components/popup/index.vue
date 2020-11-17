@@ -3,18 +3,22 @@
         class="am-popup"
     >
         <transition name="mask-anime">
-            <div class="mask" v-if="show" @click="close" :style="'z-index:'+zIndex"></div>
+            <div
+                class="am-popup__mask"
+                v-if="show" @click="maskClose ? close : ''"
+                :style="'z-index:'+zIndex"
+            ></div>
         </transition>
         <transition
             name="popup-anime"
             v-on:after-leave="afterLeave"
         >
             <div
-                class="popup"
+                class="am-popup__popup"
                 :style="popupStyle"
                 v-if="show"
             >
-                <div class="hd">
+                <div class="am-popup__hd">
                     <div class="title" v-if="title">{{ title }}</div>
                     <slot name="hd"/>
                     <AmButton
@@ -26,10 +30,10 @@
                         @click="close"
                     />
                 </div>
-                <div class="bd">
+                <div class="am-popup__bd">
                     <slot />
                 </div>
-                <div class="ft" v-if="$slots.ft">
+                <div class="am-popup__ft" v-if="$slots.ft">
                     <slot name="ft"/>
                 </div>
             </div>
@@ -71,6 +75,11 @@ export default {
             type: String,
             default: '',
         },
+        // 点击mask关闭
+        maskClose: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
@@ -105,7 +114,8 @@ export default {
 
 <style lang="less">
 .am-popup {
-    >.mask {
+    // 阴影
+    &__mask {
         position: fixed;
         width: 100vw;
         height: 100vh;
@@ -119,56 +129,58 @@ export default {
             opacity: 0;
         }
     }
-    >.popup {
+    &__popup {
         width: 400px;
         max-height: calc(100% - 80px);
         background: #fff;
         overflow: auto;
         position: fixed;
-        top: 100px;
+        top: 50px;
         left: 0;
         right: 0;
         margin: auto;
         display: flex;
         flex-direction: column;
-        >.hd {
-            >.title {
-                height: 50px;
-                margin: auto;
-                font-size: 16px;
-                font-weight: bold;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                padding: 0 20px;
-            }
-            >.close {
-                position: absolute;
-                right: 10px;
-                top: 10px;
-                margin: auto;
-            }
-        }
-        >.bd {
-            flex: 1;
-            padding: 32px;
-            padding-bottom: 24px;
-        }
-        >.ft {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 24px 32px;
-            >.am-button {
-                margin-left: 10px;
-            }
-        }
         &.popup-anime-enter-active, &.popup-anime-leave-active {
             transition: transform .4s, opacity .4s;
         }
         &.popup-anime-enter, &.popup-anime-leave-to {
-            transform: translateY(-50px);
+            transform: translateY(-20px);
             opacity: 0;
+        }
+    }
+
+    &__hd {
+        >.title {
+            height: 50px;
+            margin: auto;
+            font-size: 16px;
+            font-weight: bold;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        >.close {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            margin: auto;
+        }
+    }
+    &__bd {
+        flex: 1;
+        padding: 32px;
+        padding-bottom: 24px;
+    }
+    &__ft {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 24px 32px;
+        padding-top: 0;
+        >.am-button {
+            margin-left: 8px;
         }
     }
 }

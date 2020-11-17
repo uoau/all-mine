@@ -10,6 +10,7 @@
             @blur="onBlur"
             @change="onChange"
             @enter="onEnter"
+            @keyup.enter="onEnter"
             @keyup="onKeyup"
         />
     </div>

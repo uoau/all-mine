@@ -23,6 +23,7 @@
     "@vue/component-compiler-utils": "^3.1.2",
     "autosize": "^4.0.2",
     "axios": "^0.19.2",
+    "croppie": "^2.6.5",
     "css-loader": "^3.6.0",
     "dayjs": "^1.8.31",
     "element-ui": "^2.13.2",

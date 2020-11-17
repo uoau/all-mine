@@ -37,6 +37,7 @@ const nav = [
             { name: 'button', cnName: '按钮' },
             { name: 'divider', cnName: '分隔符' },
             { name: 'breadcrumb', cnName: '面包屑' },
+
             { name: 'message', cnName: '消息' },
             { name: 'backtop', cnName: '回到顶部' },
             { name: 'dialog', cnName: '对话框' },
@@ -53,6 +54,7 @@ const nav = [
             { name: 'pagination', cnName: '分页' },
             { name: 'dropdown', cnName: '下拉菜单' },
             { name: 'popup', cnName: '弹出层' },
+            { name: 'fixed-bottom-bar', cnName: '固定底部栏' },
             { name: 'table', cnName: '表格' },
             { name: 'preview', cnName: '图片预览' },
             { name: 'textarea', cnName: '文本框' },
@@ -74,6 +76,7 @@ const nav = [
         name: 'BIG THING',
         children: [
             { name: 'editor', cnName: '文章编辑器' },
+            { name: 'cropper', cnName: '图片裁剪' },
         ],
     },
 ];

@@ -80,7 +80,7 @@ export default {
         transform: translate(-50%, 30px);
         background: #fff;
         color:#333;
-        z-index:20;
+        z-index:120;
         border-radius:4px;
         max-width:250px;
         min-width:120px;

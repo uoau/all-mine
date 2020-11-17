@@ -10,12 +10,12 @@ import { routes } from './routes';
 import App from './App.vue';
 import AM from '../packages/index';
 import AmEditor from '../packages/components/editor';
-
-console.log(AmEditor);
+import AmCropper from '../packages/components/cropper';
 
 Vue.use(VueRouter);
 Vue.use(AM);
 Vue.component(AmEditor.name, AmEditor);
+Vue.component(AmCropper.name, AmCropper);
 
 new Vue({
     router: new VueRouter({

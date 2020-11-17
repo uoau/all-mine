@@ -92,48 +92,43 @@ export default {
     },
     methods: {
         // 检查位置
-        check() {
-            this.thisWidth = '';
-            this.$nextTick(() => {
-                const popRect = getHiddenDomRect(this.$refs.pop);
-                console.log(popRect);
-                // 获取关联元素的大小偏移
-                const linkRect = this.linkEl.getBoundingClientRect();
-                console.log(linkRect, 'link');
-                const {
-                    left, top, width, height,
-                } = linkRect;
-                const bottom = window.innerHeight - top - height;
-                // 计算弹出层宽高
-                this.popWidth = this.width || `${popRect.width < width ? width : popRect.width}`;
-                this.popHeight = this.height || `${popRect.height}`;
-                // 计算 x
-                const leftX = left;
-                const rightX = left - this.popWidth + width;
-                if (this.xDirection === 'left') {
-                    this.x = leftX;
-                } else if (this.xDirection === 'right') {
-                    this.x = rightX;
-                }
-                // 计算 y
-                const topY = top - this.popHeight - 6;
-                const bottomY = top + height + 6;
-                if (this.yDirection === 'top') {
+        async check() {
+            await this.$nextTick();
+            const popRect = getHiddenDomRect(this.$refs.pop);
+            // 获取关联元素的大小偏移
+            const linkRect = this.linkEl.getBoundingClientRect();
+            const {
+                left, top, width, height,
+            } = linkRect;
+            const bottom = window.innerHeight - top - height;
+            // 计算弹出层宽高
+            this.popWidth = this.width || `${popRect.width < width ? width : popRect.width}`;
+            this.popHeight = this.height || `${popRect.height}`;
+            // 计算 x
+            const leftX = left;
+            const rightX = left - this.popWidth + width;
+            if (this.xDirection === 'left') {
+                this.x = leftX;
+            } else if (this.xDirection === 'right') {
+                this.x = rightX;
+            }
+            // 计算 y
+            const topY = top - this.popHeight - 6;
+            const bottomY = top + height + 6;
+            if (this.yDirection === 'top') {
+                this.y = topY;
+            } else if (this.yDirection === 'bottom') {
+                this.y = bottomY;
+            } else if (this.yDirection === 'auto') {
+                // 上足下不足 走上
+                if (bottom < this.popHeight && top > this.popHeight) {
                     this.y = topY;
-                } else if (this.yDirection === 'bottom') {
+                    this.popOrigin = 'bottom';
+                } else {
                     this.y = bottomY;
-                } else if (this.yDirection === 'auto') {
-                    // 上足下不足 走上
-                    // console.log(this.popHeight 716, bottom 61, top 171);
-                    if (bottom < this.popHeight && top > this.popHeight) {
-                        this.y = topY;
-                        this.popOrigin = 'bottom';
-                    } else {
-                        this.y = bottomY;
-                        this.popOrigin = 'top';
-                    }
+                    this.popOrigin = 'top';
                 }
-            });
+            }
         },
         // 启动监听
         startObserve() {

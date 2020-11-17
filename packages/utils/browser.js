@@ -6,6 +6,7 @@
  *   存储 - localStorage 存
  *   存储 - localStorage 取
  *   存储 - localStorage 删
+ *   图片 - file转base64
  */
 
 // url - 获取 url 的参数
@@ -34,4 +35,17 @@ export function localStorageGet(key) {
 }
 export function localStorageRemove(key) {
     localStorage.removeItem(key);
+}
+
+export function fileTo64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            resolve(this.result);
+        };
+        reader.onerror = function () {
+            reject();
+        };
+    });
 }

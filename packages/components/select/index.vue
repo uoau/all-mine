@@ -128,11 +128,9 @@ export default {
             }
         },
         delOption(option) {
-            console.log('点击了');
             // 去除多选项
             const index = this.selectedValue.findIndex((item) => option.value === item);
             this.selectedValue.splice(index, 1);
-            console.log(this.selectedValue);
             this.$emit('changeValue', this.selectedValue);
         },
     },
