@@ -1,8 +1,16 @@
 <template>
-    <div class="am-dropdown" v-clickoutside="hideDropdown">
-        <AmButton ref="btn" @click="()=>{ show=!show }">
+    <div
+        class="am-dropdown"
+        v-clickoutside="clickOutside"
+        @mouseenter="mouseenter"
+        @mouseleave="mouseleave"
+    >
+        <AmButton
+            ref="btn"
+            @click="clickBtn"
+        >
             <span>{{ placeholder }}</span>
-            <AmIcon name="caret-down" :size="12"/>
+            <AmIcon name="caret-down" :size="12" />
         </AmButton>
         <AmPopover
             v-if="linkEl"
@@ -28,6 +36,11 @@ export default {
             type: Boolean,
             default: false,
         },
+        // 触发方式
+        trigger: {
+            type: String,
+            default: 'click',
+        },
     },
     provide() {
         return {
@@ -38,6 +51,8 @@ export default {
         return {
             linkEl: '',
             show: false,
+
+            leaveTimer: null, // 移出计时器
         };
     },
     mounted() {
@@ -48,6 +63,37 @@ export default {
         hideDropdown() {
             this.show = false;
         },
+        clickOutside() {
+            if (this.trigger === 'click') {
+                this.show = false;
+            }
+        },
+        // 点击按钮
+        clickBtn() {
+            if (this.trigger === 'click') {
+                this.show = !this.show;
+            }
+        },
+        // 悬停进
+        mouseenter() {
+            if (this.trigger !== 'hover') {
+                return;
+            }
+            this.show = true;
+            if (this.leaveTimer) {
+                clearTimeout(this.leaveTimer);
+                this.leaveTimer = null;
+            }
+        },
+        // 移出
+        mouseleave() {
+            if (this.trigger !== 'hover') {
+                return;
+            }
+            this.leaveTimer = setTimeout(() => {
+                this.show = false;
+            }, 100);
+        },
     },
 };
 </script>
@@ -55,5 +101,14 @@ export default {
 <style lang="less">
 .am-dropdown {
     display: inline-flex;
+    >.am-button {
+        span {
+
+        }
+        .am-icon {
+            margin-left: 4px;
+            color: #999;
+        }
+    }
 }
 </style>

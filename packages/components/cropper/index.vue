@@ -7,9 +7,8 @@
         >
             <!-- 控制栏 -->
             <div class="am-cropper__control-bar">
-                <AmButton type="primary" class="i1">
+                <AmButton type="primary" class="i1" @click="selectImg">
                     选择图片
-                    <input type="file" @change="selectImg"/>
                 </AmButton>
                 <AmInput placeholder="输入网络地址,回车确认" v-model="inputUrl" @enter="enterImg"/>
             </div>
@@ -34,7 +33,7 @@
 <script>
 import Croppie from 'croppie';
 import 'croppie/croppie.css';
-import { fileTo64 } from '../../utils/browser';
+import { fileTo64, selectFile, urlToImg } from '../../utils/browser';
 
 export default {
     name: 'AmCropper',
@@ -73,6 +72,37 @@ export default {
         };
     },
     methods: {
+        // 选择图片
+        async selectImg(e) {
+            const files = await selectFile();
+            const file = files[0];
+            const base64 = await fileTo64(file);
+            this.loadCropie('base64', base64);
+        },
+        // 输入图片地址
+        enterImg() {
+            this.loadCropie('url', this.inputUrl);
+        },
+        // 加载图片
+        async loadCropie(mode, file) {
+            if (this.croppie) {
+                this.croppie.destroy();
+                this.croppie = null;
+            }
+            if(mode === 'url') {
+                try {
+                    await urlToImg(file);
+                } catch(e) {
+                    this.$message.fail('图片加载失败');
+                    return;
+                }
+            }
+            this.croppie = new Croppie(document.getElementById('cropperBox'), {
+                url: file,
+                viewport: { width: this.viewport[0], height: this.viewport[1] },
+                showZoomer: false,
+            });
+        },
         // 点击取消
         clickCancel() {
             this.$emit('update:show', false);
@@ -92,28 +122,7 @@ export default {
             this.$emit('confirm', result);
             this.$emit('update:show', false);
         },
-        // 选择图片
-        async selectImg(e) {
-            const file = e.target.files[0];
-            const base64 = await fileTo64(file);
-            this.loadCropie(base64);
-        },
-        // 输入图片地址
-        enterImg() {
-            this.loadCropie(this.inputUrl);
-        },
-        // 加载图片
-        loadCropie(file) {
-            if (this.croppie) {
-                this.croppie.destroy();
-                this.croppie = null;
-            }
-            this.croppie = new Croppie(document.getElementById('cropperBox'), {
-                url: file,
-                viewport: { width: this.viewport[0], height: this.viewport[1] },
-                showZoomer: false,
-            });
-        },
+        // 结束，清空数据
         afterLeave() {
             this.inputUrl = '';
             if (this.croppie) {
@@ -140,14 +149,19 @@ export default {
         .i1 {
             position: relative;
             overflow: hidden;
-            input {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
+            label {
+                display: inline-flex;
                 height: 100%;
-                opacity: 0;
-                cursor: pointer;
+                position: relative;
+                input {
+                    position: absolute;
+                    left: -1px;
+                    top: -1px;
+                    width: 1px;
+                    height: 1px;
+                    opacity: 0;
+                    cursor: pointer;
+                }
             }
         }
     }

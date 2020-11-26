@@ -200,6 +200,11 @@ export default {
             }
         }
     }
+    .am-popover {
+        &__pop {
+            max-height: 180px;
+        }
+    }
     // 修饰
     &:hover {
         .select-box {

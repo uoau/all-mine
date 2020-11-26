@@ -38,9 +38,9 @@ module.exports = {
             {
                 test: /\.(le|c)ss$/,
                 loaders: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'less-loader',
+                    'less-loader'
                 ],
             },
             {
@@ -63,7 +63,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: 'index.css',
         }),
         new CleanWebpackPlugin(),
     ],

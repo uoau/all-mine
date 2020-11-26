@@ -6,9 +6,15 @@
         class="am-button"
         :class="className"
         @click="handleClick"
-        v-clickanime="'is-down'">
+        v-clickanime="'is-down'"
+    >
         <AmIcon v-if="icon" :name="icon" :size="iconSize"/>
-        <div class="content" v-if="$slots.default"><slot/></div>
+        <div
+            class="am-button__content"
+            v-if="$slots.default"
+        >
+            <slot/>
+        </div>
     </component>
 </template>
 
@@ -82,17 +88,20 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    line-height: 20px;
     user-select: none;
     height: 32px;
     min-width: 32px;
     cursor: pointer;
-    transition: background .2s;
+    transition: background .2s, border .2s, color .2s;
     box-sizing: border-box;
-    >.am-icon ~ .content {
-        margin-left: 3px;
+    >.am-icon ~ .am-button__content {
+        margin-left: 4px;
     }
-    // 按钮类型
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+    // 按钮风格
     &.is-default {
         border: 1px solid var(--border);
         &.is-down {
@@ -100,20 +109,25 @@ export default {
         }
     }
     &.is-primary {
+        border: 1px solid var(--primary);
         background: var(--primary);
         color: #fff;
         &.is-down {
             background: var(--dark-primary);
         }
     }
-    &.is-dark-primary {
-        background: var(--weak-primary);
-        border: 1px solid var(--primary);
-        color: var(--primary);
-    }
     &.is-line-primary {
         border: 1px solid var(--primary);
         color: var(--primary);
+        &.is-down {
+            background: var(--light-primary);
+        }
+    }
+    &.is-text {
+        padding: 0;
+        &.is-down {
+            color: var(--primary);
+        }
     }
     // 按钮不可用
     &.is-disabled {

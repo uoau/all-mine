@@ -1,7 +1,7 @@
 <template>
     <div class="am-breadcrumb-item" :class="biClass">
         <!-- 内容 -->
-        <component :is="to?'router-link':'a'" :to="to" class="content">
+        <component :is="to?'router-link':'a'" :to="to" class="am-breadcrumb-item__content">
             <slot />
         </component>
         <!-- 图标 -->
@@ -41,7 +41,7 @@ export default {
     display: inline-flex;
     align-items: center;
     font-size: 14px;
-    >.content {
+    &__content {
         color: #666;
         text-decoration: none;
     }
@@ -55,13 +55,13 @@ export default {
 
     // 当前
     &.is-current {
-        >.content {
+        .am-breadcrumb-item__content {
             color: #000;
             font-weight: bold;
         }
     }
     &.is-hasto {
-        >.content {
+        .am-breadcrumb-item__content {
             &:hover {
                 text-decoration: underline;
             }

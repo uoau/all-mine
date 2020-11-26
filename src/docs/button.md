@@ -2,14 +2,14 @@
 Commonly used button.
 
 ## 按钮类型
-
+默认按钮样式有四种，白按钮、主题色按钮、主题色描边按钮、文字按钮
 ::: demo
 ``` html
 <div class="row">
-    <AmButton @click="sayHi">Default</AmButton>
-    <AmButton type="primary">Primary</AmButton>
-    <AmButton type="dark-primary">Weak Primary</AmButton>
-    <AmButton type="line-primary">Line Primary</AmButton>
+    <AmButton @click="sayHi">默认按钮</AmButton>
+    <AmButton type="primary">主题色按钮</AmButton>
+    <AmButton type="line-primary">主题色线边按钮</AmButton>
+    <AmButton type="text">文字按钮</AmButton>
 </div>
 <script>
 export default {
@@ -25,7 +25,7 @@ export default {
     display: flex;
 }
 .am-button {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 </style>
 

@@ -70,11 +70,15 @@
         "./packages/components/fixed-bottom-bar/index.vue": [
             "./packages/utils/dom.js"
         ],
+        "./packages/components/tag/index.vue": [],
+        "./packages/components/color-picker/index.vue": [],
         "./packages/directives/tooltip/index.vue": [
             "./packages/utils/dom.js"
         ],
+        "./packages/stylesheet/markdown.css": [],
         "./packages/components/editor/index.vue": [
             "node_modules/markdown-it",
+            "./packages/stylesheet/markdown.css",
             "./packages/utils/browser.js"
         ],
         "./packages/components/cropper/index.vue": [
@@ -83,7 +87,6 @@
         ],
         "./src/components/slider-nav.vue": [],
         "./src/components/demo-box.vue": [],
-        "./packages/stylesheet/markdown.css": [],
         "./src/docs/RegExp.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -132,6 +135,12 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/color-picker.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/color.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -169,6 +178,12 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/editor.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/fixed-bottom-bar.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -282,6 +297,12 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/tag.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/textarea.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -348,7 +369,7 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/fixed-bottom-bar.md": [
+        "./src/docs/webpack.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -361,6 +382,7 @@
             "./packages/components/breadcrumb/index.js",
             "./packages/components/button/index.js",
             "./packages/components/checkbox/index.js",
+            "./packages/components/color-picker/index.js",
             "./packages/components/date-picker/index.js",
             "./packages/components/dialog/index.js",
             "./packages/components/divider/index.js",
@@ -383,6 +405,7 @@
             "./packages/components/switch/index.js",
             "./packages/components/table-column/index.js",
             "./packages/components/table/index.js",
+            "./packages/components/tag/index.js",
             "./packages/components/textarea/index.js",
             "./packages/components/upload/index.js",
             "./packages/directives/clickanime/index.js",
@@ -410,6 +433,9 @@
         ],
         "./packages/components/checkbox/index.js": [
             "./packages/components/checkbox/index.vue"
+        ],
+        "./packages/components/color-picker/index.js": [
+            "./packages/components/color-picker/index.vue"
         ],
         "./packages/components/cropper/index.js": [
             "./packages/components/cropper/index.vue"
@@ -484,6 +510,9 @@
         "./packages/components/table/index.js": [
             "./packages/components/table/index.vue"
         ],
+        "./packages/components/tag/index.js": [
+            "./packages/components/tag/index.vue"
+        ],
         "./packages/components/textarea/index.js": [
             "./packages/components/textarea/index.vue"
         ],
@@ -498,7 +527,9 @@
         ],
         "./packages/iconfont/default.js": [],
         "./packages/utils/base.js": [],
-        "./packages/utils/browser.js": [],
+        "./packages/utils/browser.js": [
+            "./packages/utils/base.js"
+        ],
         "./packages/utils/dom.js": [],
         "^\\.\\/.*\\.md$": [
             "./src/docs/RegExp.md",
@@ -509,6 +540,7 @@
             "./src/docs/button.md",
             "./src/docs/changelog.md",
             "./src/docs/checkbox.md",
+            "./src/docs/color-picker.md",
             "./src/docs/color.md",
             "./src/docs/cropper.md",
             "./src/docs/date-picker.md",
@@ -535,6 +567,7 @@
             "./src/docs/select.md",
             "./src/docs/switch.md",
             "./src/docs/table.md",
+            "./src/docs/tag.md",
             "./src/docs/textarea.md",
             "./src/docs/todo.md",
             "./src/docs/upload.md",
@@ -545,7 +578,8 @@
             "./src/docs/v-fold.md",
             "./src/docs/v-hotkey.md",
             "./src/docs/v-lazyload.md",
-            "./src/docs/v-tooltip.md"
+            "./src/docs/v-tooltip.md",
+            "./src/docs/webpack.md"
         ],
         "./src/routes.js": [
             "^\\.\\/.*\\.md$"

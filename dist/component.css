@@ -268,19 +268,19 @@
   line-height: 20px;
   font-family: Menlo;
 }
-.markdown-page .demo3140380690 .row {
+.markdown-page .demo17042691060 .row {
   display: flex;
 }
-.markdown-page .demo3140380690 .am-button {
+.markdown-page .demo17042691060 .am-button {
+  margin-right: 8px;
+}
+.markdown-page .demo17042691062 .am-button {
   margin-right: 5px;
 }
-.markdown-page .demo3140380692 .am-button {
-  margin-right: 5px;
-}
-.markdown-page .demo3140380693 .row {
+.markdown-page .demo17042691063 .row {
   display: flex;
 }
-.markdown-page .demo3140380693 .am-button {
+.markdown-page .demo17042691063 .am-button {
   margin-right: 5px;
 }
 
@@ -457,6 +457,47 @@
   font-size: 13px;
   line-height: 20px;
   font-family: Menlo;
+}
+
+.markdown-page {
+  position: relative;
+}
+.markdown-page .slider-nav {
+  position: absolute;
+  left: 800px;
+  top: 80px;
+}
+.markdown-page .demo-box {
+  margin-bottom: 16px;
+}
+.markdown-page .demo-box pre {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: Menlo;
+}
+
+.markdown-page {
+  position: relative;
+}
+.markdown-page .slider-nav {
+  position: absolute;
+  left: 800px;
+  top: 80px;
+}
+.markdown-page .demo-box {
+  margin-bottom: 16px;
+}
+.markdown-page .demo-box pre {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: Menlo;
+}
+.markdown-page .demo16035095390 .am-fixed-bottom-bar {
+  background: #fff;
+  box-shadow: var(--shadow-1);
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
 }
 
 .markdown-page {
@@ -1133,5 +1174,22 @@
 }
 .markdown-page .demo6096993951 div {
   height: 2000px;
+}
+
+.markdown-page {
+  position: relative;
+}
+.markdown-page .slider-nav {
+  position: absolute;
+  left: 800px;
+  top: 80px;
+}
+.markdown-page .demo-box {
+  margin-bottom: 16px;
+}
+.markdown-page .demo-box pre {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: Menlo;
 }
 

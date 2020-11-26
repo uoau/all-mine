@@ -4,31 +4,47 @@
         <div class="am-editor__main">
             <!-- 控制栏 -->
             <div class="am-editor__control-bar">
-                <!-- 添加图片 -->
-                <div class="add-img">
-                    <AmIcon name="image-fill" :size="20" />
-                    <input type="file" @change="addImg"/>
+                <div v-clickoutside="()=>{ addImgDropDownShow = false }">
+                    <!-- 添加图片 -->
+                    <AmButton
+                        ref="addImg"
+                        icon="image-fill"
+                        :icon-size="20"
+                        @click="addImgDropDownShow = !addImgDropDownShow"
+                    />
+                    <!-- 添加图片下拉窗口 -->
+                    <AmPopover
+                        v-if="addImgBtnEl"
+                        :link-el="addImgBtnEl"
+                        :show="addImgDropDownShow">
+                        <div class="am-editor__upload-img">
+                            <AmButton type="primary" class="i1" @click="selectImg('file')">
+                                本地图片
+                            </AmButton>
+                            <AmInput placeholder="输入网络地址,回车确认" v-model="imgHref" @enter="selectImg('url')"/>
+                        </div>
+                    </AmPopover>
                 </div>
             </div>
             <!-- 输入区域 -->
             <div class="am-editor__textarea">
                 <AmTextarea
                     v-model="inputContent"
-                    @input="contentChange"
                     autosize
                 />
             </div>
         </div>
         <!-- 渲染 -->
         <div class="am-editor__show">
-            <div v-html="htmlContent"></div>
+            <div class="markdown-page" v-html="htmlContent"></div>
         </div>
     </div>
 </template>
 
 <script>
 import MarkdownIt from 'markdown-it';
-import { fileTo64 } from '../../utils/browser';
+import { fileTo64, urlTo64, selectFile, urlToImg } from '../../utils/browser';
+import '../../stylesheet/markdown.css';
 
 const md = new MarkdownIt();
 export default {
@@ -39,26 +55,90 @@ export default {
             type: String,
             default: '',
         },
+        // md内容
+        htmlContent: {
+            type: String,
+            default: '',
+        },
+        dealImg: {
+            type: Function,
+            default: () => {},
+        },
     },
     data() {
         return {
-            inputContent: this.mdContent,
-            htmlConetent: '',
+            inputContent: '',
+
+            addImgBtnEl: null,
+            addImgDropDownShow: false,
+            imgHref: '',
         };
+    },
+    mounted() {
+        this.addImgBtnEl = this.$refs.addImg.$el;
     },
     watch: {
         inputContent() {
-            this.htmlContent = md.render(this.inputContent);
+            this.$emit('update:htmlContent', md.render(this.inputContent));
+            this.$emit('update:mdContent', this.inputContent);
         },
+        mdContent(){
+            this.inputContent = this.mdContent;
+        }
     },
     methods: {
-        contentChange(val) {
-            this.$emit('update:content', val);
-        },
-        async addImg(e) {
-            const file = e.target.files[0];
-            const base64 = await fileTo64(file);
-            this.inputContent += `![img](${base64})`;
+        async selectImg(mode) {
+            this.addImgDropDownShow = false;
+            // 统一将图片转化为base64
+            const base64Arr = [];
+            if (mode === 'file') {
+                const files = await selectFile({
+                    multiple: true,
+                });
+                await Promise.all(files.map((item)=>{
+                    return new Promise(async (resolve,reject)=>{
+                        try{
+                            const base64 = await fileTo64(item);
+                            base64Arr.push(base64);
+                            resolve();
+                        }catch(e){
+                            reject();
+                        }
+                    })
+                }));
+            } else if (mode === 'url') {
+                try {
+                    await urlToImg(this.imgHref);
+                } catch(e) {
+                    this.$message.fail('图片加载失败');
+                    return;
+                }
+                const base64 = await urlTo64(this.imgHref);
+                base64Arr.push(base64);
+            }
+            console.log('# base64Arr', base64Arr);
+            // 将base64统一交给上级处理
+            const urlArr = [];
+            await Promise.all(base64Arr.map((item)=> {
+                return new Promise(async (resolve,reject) => {
+                    try {
+                        const res = await this.dealImg(item);
+                        urlArr.push(res);
+                        resolve();
+                    } catch(e) {
+                        reject();
+                    }
+                })
+            }))
+
+            // 统一将url 输入进md里
+            if(urlArr.length) {
+                urlArr.forEach((url) => {
+                    if(url){
+                        this.inputContent += `\n![img](${url})  `;
+                    }
+                })
+            }
         },
     },
 };
@@ -80,6 +160,10 @@ export default {
     // 展示区域
     &__show {
         width: 50%;
+        padding: 3px 8px;
+        .markdown-page {
+
+        }
     }
     // 控制栏
     &__control-bar {
@@ -91,24 +175,24 @@ export default {
         align-items: center;
         padding: 0 8px 0 16px;
         justify-content: space-between;
-        .add-img {
-            width: 32px;
-            height: 32px;
+    }
+    &__upload-img {
+        padding: 8px;
+        display: flex;
+        .am-button {
+            margin-right: 8px;
+        }
+        .i1 {
             position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            transition: background .2s;
             input {
                 position: absolute;
                 left: 0;
                 top: 0;
+                width: 100%;
+                height: 100%;
                 opacity: 0;
-            }
-            &:hover {
-                background: #eee;
+                cursor: pointer;
             }
         }
     }
@@ -125,5 +209,6 @@ export default {
             }
         }
     }
+
 }
 </style>

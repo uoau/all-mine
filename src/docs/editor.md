@@ -4,13 +4,23 @@
 ::: demo
 ``` html
 <template>
-    <AmEditor :content.sync="content"/>
+    <AmEditor
+        :md-content.sync="mdContent"
+        :html-content.sync="htmlContent"
+        :dealImg="dealImg"
+    />
 </template>
 <script>
 export default {
     data(){
         return {
-            content: '',
+            mdContent: '',
+            htmlContent: '',
+        }
+    },
+    methods: {
+        dealImg(base64){
+            return '123';
         }
     }
 }

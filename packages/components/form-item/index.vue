@@ -4,12 +4,12 @@
         :class="labelClass"
     >
         <div
-            class="hd"
+            class="am-form-item__hd"
             :style="labelHdStyle"
         >
             <span>{{ label }}</span>
         </div>
-        <div class="bd">
+        <div class="am-form-item__bd">
             <slot />
         </div>
     </div>
@@ -58,20 +58,20 @@ export default {
 .am-form-item {
     // 默认样式
     display: flex;
-    >.hd {
+    &__hd {
         line-height: 32px;
         display: flex;
         padding-right: 12px;
         font-size: 14px;
     }
-    >.bd {
+    &__bd {
         display: flex;
     }
 
     // 文字居上
     &.is-top {
         flex-wrap: wrap;
-        >.hd {
+        .am-form-item__hd {
             display: flex;
         }
     }
@@ -81,7 +81,7 @@ export default {
     }
     // 文字居右
     &.is-right {
-        .hd {
+        .am-form-item__hd {
             justify-content: flex-end;
         }
     }

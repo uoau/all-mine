@@ -1,5 +1,5 @@
 .markdown-page {
-    padding: 40px 0;
+    padding: 16px 0;
     font-size: 14px;
     line-height: 1.6;
     color: #24292e;
@@ -127,4 +127,9 @@
 .markdown-page  ul li{
     margin-bottom: 4px;
     list-style-type: disc;
+}
+
+/* 图片 */
+.markdown-page img {
+    max-width: 100%;
 }

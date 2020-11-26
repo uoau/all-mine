@@ -7,7 +7,7 @@
         <transition
             name="am-popover-pop-anime"
             @after-leave="onPopHide">
-            <div class="pop" v-show="popShow" ref="pop" :style="popStyle">
+            <div class="am-popover__pop" v-show="popShow" ref="pop" :style="popStyle">
                 <slot />
             </div>
         </transition>
@@ -164,7 +164,7 @@ export default {
     top: 0;
     z-index: 20;
     width: auto;
-    >.pop {
+    &__pop {
         overflow: auto;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         background: #fff;

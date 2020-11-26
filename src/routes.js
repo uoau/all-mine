@@ -37,6 +37,7 @@ const nav = [
             { name: 'button', cnName: '按钮' },
             { name: 'divider', cnName: '分隔符' },
             { name: 'breadcrumb', cnName: '面包屑' },
+            { name: 'tag', cnName: '标签' },
 
             { name: 'message', cnName: '消息' },
             { name: 'backtop', cnName: '回到顶部' },
@@ -59,6 +60,7 @@ const nav = [
             { name: 'preview', cnName: '图片预览' },
             { name: 'textarea', cnName: '文本框' },
             { name: 'upload', cnName: '图片上传' },
+            { name: 'color-picker', cnName: '颜色选择器' },
         ],
     },
     {
@@ -77,6 +79,12 @@ const nav = [
         children: [
             { name: 'editor', cnName: '文章编辑器' },
             { name: 'cropper', cnName: '图片裁剪' },
+        ],
+    },
+    {
+        name: 'TOOL',
+        children: [
+            { name: 'webpack', cnName: '构建配置' },
         ],
     },
 ];

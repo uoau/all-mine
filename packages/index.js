@@ -34,6 +34,8 @@ import AmPreview from './components/preview';
 import AmTextarea from './components/textarea';
 import AmUpload from './components/upload';
 import AmFixedBottomBar from './components/fixed-bottom-bar';
+import AmTag from './components/tag';
+import AmColorPicker from './components/color-picker';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
@@ -70,6 +72,8 @@ const AM = {
     AmTextarea,
     AmUpload,
     AmFixedBottomBar,
+    AmTag,
+    AmColorPicker,
 };
 
 const install = (Vue) => {

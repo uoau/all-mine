@@ -27,6 +27,6 @@
     "vetur.completion.autoImport": false,
     // csscomb 插件
     "csscomb.formatOnSave": true,         // 保存文件时自动修复 CSScomb 问题
-    "csscomb.preset": {},
+    "csscomb.preset": {}
 
 }
