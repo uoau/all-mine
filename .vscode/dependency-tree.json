@@ -71,7 +71,10 @@
             "./packages/utils/dom.js"
         ],
         "./packages/components/tag/index.vue": [],
-        "./packages/components/color-picker/index.vue": [],
+        "./packages/components/color-picker/index.vue": [
+            "node_modules/vanilla-picker",
+            "./packages/utils/base.js"
+        ],
         "./packages/directives/tooltip/index.vue": [
             "./packages/utils/dom.js"
         ],

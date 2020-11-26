@@ -3,13 +3,18 @@
 ## 用法
 ::: demo
 ```html
-<AmColorPicker/>
+<AmColorPicker style="margin-right: 16px;" :color.sync="color"/>
+
+<AmColorPicker :color.sync="color">
+    <AmButton>选择颜色</AmButton>
+</AmColorPicker>
+<div>{{ color }}</div>
 
 <script>
 export default {
     data(){
         return {
-
+            color: '#aabbcc'
         }
     },
     mounted(){
