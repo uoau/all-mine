@@ -20,7 +20,7 @@
                 >
                     <div
                         class="am-img-viewer__img"
-                        v-if="index === now"
+                        v-if="index === nowIndex"
                         :class="{
                             'is-original': item.isOriginal,
                         }"
@@ -54,7 +54,9 @@
                 <AmIconButton icon-name="zoomin" @click="scaleImg('big')" mode="white-text"/>
                 <AmIconButton icon-name="zoomout" @click="scaleImg('small')" mode="white-text" />
                 <AmIconButton
-                    :icon-name="dealedImgs[now].isOriginal ? 'compress' : 'expend'"
+                    :icon-name="dealedImgs[nowIndex] &&
+                        dealedImgs[nowIndex].isOriginal
+                        ? 'compress' : 'expend'"
                     mode="white-text"
                     @click="originalImg"
                 />
@@ -83,7 +85,7 @@ export default {
             default: () => [],
         },
         // 当前顺序
-        nowIndex: {
+        initIndex: {
             type: Number,
             default: 0,
         },
@@ -91,16 +93,19 @@ export default {
     data() {
         return {
             dealedImgs: [],
-            now: 0,
+            nowIndex: 0,
             direction: 'left',
         };
     },
-    computed: {
-        nowImg() {
-            return this.imgs[this.now];
-        },
-    },
     watch: {
+        initIndex: {
+            immediate: true,
+            deep: true,
+            handler() {
+                console.log('执行了', this.nowIndex, this.initIndex);
+                this.nowIndex = this.initIndex;
+            },
+        },
         imgs: {
             immediate: true,
             deep: true,
@@ -131,17 +136,17 @@ export default {
         // 点击切换按钮
         clickSwitch(type) {
             const imgLen = this.dealedImgs.length;
-            if (type === 'prev' && this.now > 0) {
+            if (type === 'prev' && this.nowIndex > 0) {
                 this.direction = 'left';
-                this.now -= 1;
-            } else if (type === 'next' && this.now < (imgLen - 1)) {
+                this.nowIndex -= 1;
+            } else if (type === 'next' && this.nowIndex < (imgLen - 1)) {
                 this.direction = 'right';
-                this.now += 1;
+                this.nowIndex += 1;
             }
         },
         // 缩放图片
         scaleImg(type) {
-            const item = this.dealedImgs[this.now];
+            const item = this.dealedImgs[this.nowIndex];
             if (type === 'big') {
                 item.scale += 0.2;
             } else if (type === 'small') {
@@ -151,7 +156,7 @@ export default {
         },
         // 旋转图片
         rotateImg(type) {
-            const item = this.dealedImgs[this.now];
+            const item = this.dealedImgs[this.nowIndex];
             if (type === 'left') {
                 item.rotate -= 90;
             } else if (type === 'right') {
@@ -161,7 +166,7 @@ export default {
         },
         // 原比例
         async originalImg() {
-            const item = this.dealedImgs[this.now];
+            const item = this.dealedImgs[this.nowIndex];
             item.isOriginal = !item.isOriginal;
             await this.$nextTick();
             item.roate = 0;
@@ -184,6 +189,7 @@ export default {
     &__img {
         max-width: 100%;
         max-height: 100%;
+        padding: 32px;
         position: absolute;
         left: 0;
         top: 0;

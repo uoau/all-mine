@@ -7,6 +7,7 @@
 <AmImgViewer
     :show.sync="show"
     :imgs="imgs"
+    :init-index="now"
 />
 
 <script>
@@ -27,7 +28,8 @@ export default {
                 {
                     url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3300550661,1121971374&fm=11&gp=0.jpg',
                 },
-            ]
+            ],
+            now: 1,
         }
     },
     methods: {
