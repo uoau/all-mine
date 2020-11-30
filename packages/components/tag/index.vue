@@ -2,12 +2,19 @@
     <div
         class="am-tag"
         :class="{
-            ['am-tag--' + color]: color,
-            ['am-tag--' + size]: size,
+            ['is-' + size]: size,
+            ['is-' + mode]: mode,
         }"
+        :style="tagStyle"
     >
         <span>{{ text }}</span>
-        <AmIcon name="close" v-if="showDelete" @click.native="clickDelete"/>
+        <AmIconButton
+            icon-name="close"
+            @click="clickDelete"
+            v-if="showDelete"
+            mode="white-text"
+            size="small"
+        />
     </div>
 </template>
 
@@ -17,12 +24,12 @@ export default {
     props: {
         // 存值，方便删除操作
         value: null,
-        // 大小
+        // 大小 small middle big
         size: {
             type: String,
-            default: 'middle', // small middle large
+            default: 'middle',
         },
-        // 颜色
+        // 颜色 红橙黄绿青蓝紫灰黑白
         color: {
             type: String,
             default: 'gray',
@@ -30,7 +37,7 @@ export default {
         // 程度
         level: {
             type: String,
-            default: '', // light,dark,
+            default: 'light', // light,dark,
         },
         // 边框
         showBorder: {
@@ -47,6 +54,31 @@ export default {
             type: Boolean,
             default: false,
         },
+        // 模式,自定义模糊
+        mode: {
+            type: String,
+            default: '',
+        },
+    },
+    computed: {
+        tagStyle() {
+            const style = {};
+            // 程度
+            if (this.level === 'light') {
+                style.background = `var(--light-${this.color})`;
+                style.color = `var(--${this.color})`;
+                if (this.showBorder) {
+                    style.border = `1px solid var(--${this.color})`;
+                }
+            } else {
+                style.background = `var(--${this.color})`;
+                style.color = '#fff';
+                if (this.showBorder) {
+                    style.border = `1px solid var(--dark-${this.color})`;
+                }
+            }
+            return style;
+        },
     },
     methods: {
         clickDelete() {
@@ -60,39 +92,23 @@ export default {
 .am-tag {
     display: inline-flex;
     align-items: center;
-    .am-icon {
-        margin-left: 4px;
-        cursor: pointer;
-    }
-    // 灰色标签
-    &--gray {
-        background: #f6f7f9;
-        color: #636c78;
-    }
-    &--primary {
-        background: var(--light-primary);
-        color: var(--primary);
-    }
-
-    //
-
     // 大小
-    &--small {
+    &.is-small {
         height: 20px;
         padding: 0 4px;
         font-size: 12px;
         border-radius: 2px;
     }
-    &--middle {
+    &.is-middle {
         height: 28px;
         font-size: 12px;
         padding: 0 8px;
         border-radius: 3px;
     }
-    &--large {
+    &.is-big {
         height: 32px;
         font-size: 14px;
-        padding: 0 8px;
+        padding: 0 12px;
         border-radius: 4px;
     }
 }

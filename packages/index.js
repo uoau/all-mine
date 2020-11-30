@@ -6,6 +6,7 @@ import './stylesheet/default.theme.less';
 import './stylesheet/reset.css';
 // 引入组件
 import AmButton from './components/button';
+import AmIconButton from './components/icon-button';
 import AmIcon from './components/icon';
 import AmDivider from './components/divider';
 import AmInput from './components/input';
@@ -30,12 +31,13 @@ import AmDropdownItem from './components/dropdown-item';
 import AmPopup from './components/popup';
 import AmTable from './components/table';
 import AmTableColumn from './components/table-column';
-import AmPreview from './components/preview';
+import AmImgViewer from './components/img-viewer';
 import AmTextarea from './components/textarea';
 import AmUpload from './components/upload';
 import AmFixedBottomBar from './components/fixed-bottom-bar';
 import AmTag from './components/tag';
 import AmColorPicker from './components/color-picker';
+import AmMovieScreen from './components/movie-screen';
 
 // 引入指令
 import Clipboard from './directives/clipboard';
@@ -68,12 +70,14 @@ const AM = {
     AmPopup,
     AmTable,
     AmTableColumn,
-    AmPreview,
+    AmImgViewer,
     AmTextarea,
     AmUpload,
     AmFixedBottomBar,
     AmTag,
     AmColorPicker,
+    AmMovieScreen,
+    AmIconButton,
 };
 
 const install = (Vue) => {

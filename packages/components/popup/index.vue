@@ -5,7 +5,8 @@
         <transition name="mask-anime">
             <div
                 class="am-popup__mask"
-                v-if="show" @click="maskClose ? close : ''"
+                v-show="show"
+                @click="clickMask"
                 :style="'z-index:'+zIndex"
             ></div>
         </transition>
@@ -16,7 +17,7 @@
             <div
                 class="am-popup__popup"
                 :style="popupStyle"
-                v-if="show"
+                v-show="show"
             >
                 <div class="am-popup__hd">
                     <div class="title" v-if="title">{{ title }}</div>
@@ -107,6 +108,11 @@ export default {
         },
         afterLeave() {
             this.$emit('after-leave', this);
+        },
+        clickMask() {
+            if (this.maskClose) {
+                this.close();
+            }
         },
     },
 };

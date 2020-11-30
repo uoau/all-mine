@@ -62,7 +62,7 @@
         "./packages/components/table/index.vue": [
             "./packages/utils/dom.js"
         ],
-        "./packages/components/preview/index.vue": [],
+        "./packages/components/img-viewer/index.vue": [],
         "./packages/components/textarea/index.vue": [
             "node_modules/autosize"
         ],
@@ -75,6 +75,7 @@
             "node_modules/vanilla-picker",
             "./packages/utils/base.js"
         ],
+        "./packages/components/movie-screen/index.vue": [],
         "./packages/directives/tooltip/index.vue": [
             "./packages/utils/dom.js"
         ],
@@ -204,7 +205,19 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/icon-button.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/icon.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/img-viewer.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -234,6 +247,12 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./src/docs/movie-screen.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
         "./src/docs/notification.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -253,12 +272,6 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/popup.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
-        "./src/docs/preview.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -378,6 +391,7 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./packages/components/icon-button/index.vue": [],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",
@@ -394,15 +408,17 @@
             "./packages/components/fixed-bottom-bar/index.js",
             "./packages/components/form-item/index.js",
             "./packages/components/form/index.js",
+            "./packages/components/icon-button/index.js",
             "./packages/components/icon/index.js",
+            "./packages/components/img-viewer/index.js",
             "./packages/components/input/index.js",
             "./packages/components/message/index.js",
+            "./packages/components/movie-screen/index.js",
             "./packages/components/notification/index.js",
             "./packages/components/option/index.js",
             "./packages/components/pagination/index.js",
             "./packages/components/popover/index.js",
             "./packages/components/popup/index.js",
-            "./packages/components/preview/index.js",
             "./packages/components/radio/index.js",
             "./packages/components/select/index.js",
             "./packages/components/switch/index.js",
@@ -470,8 +486,14 @@
         "./packages/components/form/index.js": [
             "./packages/components/form/index.vue"
         ],
+        "./packages/components/icon-button/index.js": [
+            "./packages/components/icon-button/index.vue"
+        ],
         "./packages/components/icon/index.js": [
             "./packages/components/icon/index.vue"
+        ],
+        "./packages/components/img-viewer/index.js": [
+            "./packages/components/img-viewer/index.vue"
         ],
         "./packages/components/input/index.js": [
             "./packages/components/input/index.vue"
@@ -479,6 +501,9 @@
         "./packages/components/message/index.js": [
             "./packages/components/message/index.vue",
             "./packages/utils/base.js"
+        ],
+        "./packages/components/movie-screen/index.js": [
+            "./packages/components/movie-screen/index.vue"
         ],
         "./packages/components/notification/index.js": [
             "./packages/components/notification/index.vue"
@@ -494,9 +519,6 @@
         ],
         "./packages/components/popup/index.js": [
             "./packages/components/popup/index.vue"
-        ],
-        "./packages/components/preview/index.js": [
-            "./packages/components/preview/index.vue"
         ],
         "./packages/components/radio/index.js": [
             "./packages/components/radio/index.vue"
@@ -554,16 +576,18 @@
             "./src/docs/fixed-bottom-bar.md",
             "./src/docs/font.md",
             "./src/docs/form.md",
+            "./src/docs/icon-button.md",
             "./src/docs/icon.md",
+            "./src/docs/img-viewer.md",
             "./src/docs/input.md",
             "./src/docs/markdown.css.md",
             "./src/docs/markdown.md",
             "./src/docs/message.md",
+            "./src/docs/movie-screen.md",
             "./src/docs/notification.md",
             "./src/docs/pagination.md",
             "./src/docs/popover.md",
             "./src/docs/popup.md",
-            "./src/docs/preview.md",
             "./src/docs/radio.md",
             "./src/docs/reset.css.md",
             "./src/docs/rules.md",

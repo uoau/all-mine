@@ -35,6 +35,7 @@ const nav = [
         name: 'COMPONENT',
         children: [
             { name: 'button', cnName: '按钮' },
+            { name: 'icon-button', cnName: '图标按钮' },
             { name: 'divider', cnName: '分隔符' },
             { name: 'breadcrumb', cnName: '面包屑' },
             { name: 'tag', cnName: '标签' },
@@ -44,6 +45,7 @@ const nav = [
             { name: 'dialog', cnName: '对话框' },
             { name: 'notification', cnName: '通知' },
             { name: 'popover', cnName: '弹出框' },
+            { name: 'movie-screen', cnName: '电影银幕' },
 
             { name: 'form', cnName: '表单' },
             { name: 'input', cnName: '输入框' },
@@ -57,7 +59,7 @@ const nav = [
             { name: 'popup', cnName: '弹出层' },
             { name: 'fixed-bottom-bar', cnName: '固定底部栏' },
             { name: 'table', cnName: '表格' },
-            { name: 'preview', cnName: '图片预览' },
+            { name: 'img-viewer', cnName: '图片预览' },
             { name: 'textarea', cnName: '文本框' },
             { name: 'upload', cnName: '图片上传' },
             { name: 'color-picker', cnName: '颜色选择器' },

@@ -278,7 +278,7 @@ export default {
         }
         .info {
             a {
-                color: var(--fcolor-1);
+                color: #333;
                 text-decoration: none;
                 font-weight: bold;
                 transition: color .2s;

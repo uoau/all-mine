@@ -4,7 +4,7 @@
 ::: demo
 ``` html
 <AmButton @click="show = !show">显示隐藏</AmButton>
-<AmPopup :show.sync="show"/>
+<AmPopup :show.sync="show" :mask-close="true"/>
 
 <script>
 export default {
