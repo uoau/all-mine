@@ -2,6 +2,7 @@
     <div class="am-pagination">
         <!-- 每页条数 -->
         <AmDropdown
+            v-if="showPageSize"
             :placeholder="`每页${pageSize}条`"
             @change="changePageSize"
         >
@@ -17,7 +18,7 @@
         <!-- 上一页 -->
         <AmButton
             class="am-pagination-left"
-            icon="left"
+            icon-name="left"
             :disabled="current <= 1"
             @click="clickPrev"
         />
@@ -35,7 +36,7 @@
         <!-- 下一页 -->
         <AmButton
             class="am-pagination-right"
-            icon="right"
+            icon-name="right"
             :disabled="current >= pagerTotal"
             @click="clickNext"
         />
@@ -69,6 +70,11 @@ export default {
         pageSizeOptions: {
             type: Array,
             default: () => [20, 40, 60],
+        },
+        // 显示分页数量
+        showPageSize: {
+            type: Boolean,
+            default: true,
         },
     },
     computed: {
@@ -127,11 +133,11 @@ export default {
     },
     methods: {
         clickPager(num) {
-            let current = 0;
+            let { current } = this;
             if (num === 'prev') {
-                current -= (this.pagerCount - 2);
+                current -= (this.pagerCount - 3);
             } else if (num === 'next') {
-                current += (this.pagerCount - 2);
+                current += (this.pagerCount - 3);
             } else {
                 current = num;
             }
@@ -146,6 +152,7 @@ export default {
             this.$emit('update:current', current);
         },
         changePageSize(value) {
+            this.$emit('update:current', 1);
             this.$emit('update:pageSize', value);
         },
     },
@@ -171,7 +178,7 @@ export default {
         padding: 0;
         // 选中状态
         &.active {
-            background: #1c1d30;
+            background: var(--primary);
             color: #fff;
             border: none;
         }

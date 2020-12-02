@@ -62,7 +62,9 @@
         "./packages/components/table/index.vue": [
             "./packages/utils/dom.js"
         ],
-        "./packages/components/img-viewer/index.vue": [],
+        "./packages/components/img-viewer/index.vue": [
+            "./packages/utils/browser.js"
+        ],
         "./packages/components/textarea/index.vue": [
             "node_modules/autosize"
         ],

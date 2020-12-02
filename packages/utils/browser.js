@@ -14,7 +14,7 @@
  *   图片 - base64 转 file
  */
 
-import { uuid } from "./base";
+import { uuid } from './base';
 
 // url - 获取 url 的参数
 export function getURLParams(url) {
@@ -66,7 +66,6 @@ export function urlToImg(url) {
         };
         image.onerror = reject;
         image.src = url;
-        image.crossOrigin = '*';
     });
 }
 
@@ -79,7 +78,6 @@ export function imgTo64(image) {
     canvas.height = img.height;
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, img.width, img.height);
-    console.log(canvas);
     const dataURL = canvas.toDataURL();
     return dataURL;
 }
@@ -97,11 +95,11 @@ export async function urlTo64(url) {
     return base64;
 }
 
-export function base64ToFile(dataurl,filename) {
+export function base64ToFile(dataurl, filename) {
     const name = filename || uuid();
-    const arr = dataurl.split(','),
-        mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]);
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
     while (n--) {
@@ -110,14 +108,14 @@ export function base64ToFile(dataurl,filename) {
     return new File([u8arr], name, { type: mime });
 }
 
-export function selectFile(params){
+export function selectFile(params) {
     return new Promise((resolve, reject) => {
         const newParams = {
             accept: 'image/*',
             multiple: false,
             capture: false,
         };
-        const { accept,multiple,capture } = {...newParams, ...params};
+        const { accept, multiple, capture } = { ...newParams, ...params };
         // 创建文件输入框对象
         const input = document.createElement('input');
         input.type = 'file';
@@ -132,5 +130,5 @@ export function selectFile(params){
             const event = new MouseEvent('click');
             input.dispatchEvent(event);
         }, 0);
-    })
+    });
 }

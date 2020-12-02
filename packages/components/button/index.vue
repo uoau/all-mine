@@ -114,18 +114,20 @@ export default {
     cursor: pointer;
     transition: background .2s, border .2s, color .2s;
     box-sizing: border-box;
-    >.am-icon.is-front {
-        margin-right: 4px;
-        order: 1;
-    }
-    >.am-icon.is-back {
-        margin-left: 4px;
-        order: 10;
-    }
     &__content {
         display: flex;
         align-items: center;
+    }
+    .am-icon {
         order: 5;
+    }
+    .am-icon.is-front + &__content {
+        margin-left: 4px;
+        order: 6;
+    }
+    .am-icon.is-back +  &__content {
+        margin-right: 4px;
+        order: 4;
     }
     // 按钮大小
     &.is-small {

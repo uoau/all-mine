@@ -92,6 +92,7 @@ export default {
 .am-tag {
     display: inline-flex;
     align-items: center;
+    color: #333;
     // 大小
     &.is-small {
         height: 20px;
@@ -101,7 +102,7 @@ export default {
     }
     &.is-middle {
         height: 28px;
-        font-size: 12px;
+        font-size: 14px;
         padding: 0 8px;
         border-radius: 3px;
     }

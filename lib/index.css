@@ -488,18 +488,20 @@ code {
   transition: background 0.2s, border 0.2s, color 0.2s;
   box-sizing: border-box;
 }
-.am-button > .am-icon.is-front {
-  margin-right: 4px;
-  order: 1;
-}
-.am-button > .am-icon.is-back {
-  margin-left: 4px;
-  order: 10;
-}
 .am-button__content {
   display: flex;
   align-items: center;
+}
+.am-button .am-icon {
   order: 5;
+}
+.am-icon.is-front + .am-button__content {
+  margin-left: 4px;
+  order: 6;
+}
+.am-icon.is-back + .am-button__content {
+  margin-right: 4px;
+  order: 4;
 }
 .am-button.is-small {
   height: 24px;
@@ -1226,17 +1228,13 @@ to {
   padding: 0;
 }
 .am-pagination .am-pagination-number.active {
-  background: #1c1d30;
+  background: var(--primary);
   color: #fff;
   border: none;
 }
 
 .am-dropdown {
   display: inline-flex;
-}
-.am-dropdown > .am-button .am-icon {
-  margin-left: 4px;
-  color: #999;
 }
 
 .am-dropdown-item {
@@ -1361,25 +1359,23 @@ to {
 .am-img-viewer__img {
   max-width: 100%;
   max-height: 100%;
-  padding: 32px;
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: auto;
+  display: flex;
 }
 .am-img-viewer__img img {
   max-width: 100%;
   max-height: 100%;
+  margin: auto;
 }
 .am-img-viewer__img.is-original img {
-  max-width: none;
-  max-height: none;
+  max-width: none!important;
+  max-height: none!important;
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-enter-active,
 .am-img-viewer--dir-left .am-img-viewer__anime-leave-active {
@@ -1514,6 +1510,7 @@ to {
 .am-tag {
   display: inline-flex;
   align-items: center;
+  color: #333;
 }
 .am-tag.is-small {
   height: 20px;
@@ -1523,7 +1520,7 @@ to {
 }
 .am-tag.is-middle {
   height: 28px;
-  font-size: 12px;
+  font-size: 14px;
   padding: 0 8px;
   border-radius: 3px;
 }

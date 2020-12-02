@@ -1,5 +1,29 @@
 # Tag 标签
 
+## 标签形式
+::: demo
+``` html
+<AmTag text="纯文字" size="small"/>
+<AmTag text="红色" color="red" level="dark"/>
+<AmTag text="红色" color="red" level="dark" size="big"/>
+<script>
+export default {
+    data(){
+        return {
+            value: '',
+        }
+    }
+}
+</script>
+<style>
+.am-tag {
+    margin-right: 8px;
+}
+</style>
+```
+:::
+
+
 ## 大小
 ::: demo
 ``` html

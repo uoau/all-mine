@@ -6,11 +6,13 @@
         @mouseleave="mouseleave"
     >
         <AmButton
+            icon-name="caret-down"
+            icon-position="back"
+            icon-size="12"
             ref="btn"
             @click="clickBtn"
         >
-            <span>{{ placeholder }}</span>
-            <AmIcon name="caret-down" :size="12" />
+            {{ placeholder }}
         </AmButton>
         <AmPopover
             v-if="linkEl"
@@ -104,10 +106,6 @@ export default {
     >.am-button {
         span {
 
-        }
-        .am-icon {
-            margin-left: 4px;
-            color: #999;
         }
     }
 }
