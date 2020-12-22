@@ -8,7 +8,7 @@
         <AmButton
             icon-name="caret-down"
             icon-position="back"
-            icon-size="12"
+            :icon-size="12"
             ref="btn"
             @click="clickBtn"
         >

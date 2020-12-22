@@ -38,6 +38,9 @@ export default {
 ``` html
 <AmButton disabled>Disabled</AmButton>
 <AmButton type="primary" disabled>Disabled</AmButton>
+<AmButton type="primary" disabled>Disabled</AmButton>
+<AmButton type="text" disabled>Disabled</AmButton>
+<AmButton type="text-primary" disabled>Disabled</AmButton>
 <style>
 .am-button {
     margin-right: 8px;

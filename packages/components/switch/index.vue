@@ -31,6 +31,7 @@ export default {
     methods: {
         handleClick() {
             this.$emit('changeValue', !this.value);
+            this.$emit('change', this.value);
         },
     },
 };

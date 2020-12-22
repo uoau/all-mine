@@ -2,7 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 // iconfont 的 地址
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1954226_f592j2awni';
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1954226_vcqiukilo08';
 
 const iconJsUrl = `http:${ICON_FONT_URL}.js`;
 

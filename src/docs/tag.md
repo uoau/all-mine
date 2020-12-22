@@ -1,20 +1,24 @@
 # Tag 标签
 
-## 标签形式
+## 预设模式
 ::: demo
 ``` html
-<AmTag text="纯文字" size="small"/>
-<AmTag text="红色" color="red" level="dark"/>
-<AmTag text="红色" color="red" level="dark" size="big"/>
+<AmTag text="default" mode="default"/>
+<AmTag text="primary" mode="primary"/>
+<AmTag text="light-primary" mode="light-primary"/>
+<AmTag text="border-primary" mode="border-primary"/>
+<AmTag text="black" mode="black"/>
+<AmTag text="text" mode="text"/>
 <script>
 export default {
     data(){
         return {
-            value: '',
+
         }
     }
 }
 </script>
+
 <style>
 .am-tag {
     margin-right: 8px;
@@ -22,14 +26,13 @@ export default {
 </style>
 ```
 :::
-
 
 ## 大小
 ::: demo
 ``` html
-<AmTag text="红色" color="red" level="dark" size="small"/>
-<AmTag text="红色" color="red" level="dark"/>
-<AmTag text="红色" color="red" level="dark" size="big"/>
+<AmTag text="小标签" level="dark"/>
+<AmTag text="中标签" level="dark" size="middle"/>
+<AmTag text="大标签" level="dark" size="big"/>
 <script>
 export default {
     data(){
@@ -39,94 +42,6 @@ export default {
     }
 }
 </script>
-<style>
-.am-tag {
-    margin-right: 8px;
-}
-</style>
-```
-:::
-
-## 颜色
-::: demo
-``` html
-<AmTag text="红色" color="red" level="dark"/>
-<AmTag text="橙色" color="orange" level="dark"/>
-<AmTag text="黄色" color="yellow" level="dark"/>
-<AmTag text="绿色" color="green" level="dark"/>
-<AmTag text="青色" color="cyan" level="dark"/>
-<AmTag text="蓝色" color="blue" level="dark"/>
-<AmTag text="紫色" color="purple" level="dark"/>
-<div style="height: 8px;"></div>
-<AmTag text="红色" color="red"/>
-<AmTag text="橙色" color="orange"/>
-<AmTag text="黄色" color="yellow"/>
-<AmTag text="绿色" color="green"/>
-<AmTag text="青色" color="cyan"/>
-<AmTag text="蓝色" color="blue"/>
-<AmTag text="紫色" color="purple"/>
-
-<script>
-export default {
-    data(){
-        return {
-            value: '',
-        }
-    }
-}
-</script>
-
-<style>
-.am-tag {
-    margin-right: 8px;
-}
-</style>
-```
-:::
-
-## 程度
-dark 为深色模式，light为浅色模式
-::: demo
-``` html
-<AmTag text="红色" color="red" level="dark"/>
-<AmTag text="红色" color="red" level="light"/>
-
-<script>
-export default {
-    data(){
-        return {
-
-        }
-    }
-}
-</script>
-
-<style>
-.am-tag {
-    margin-right: 8px;
-}
-</style>
-```
-:::
-
-## 显示边框
-::: demo
-``` html
-<AmTag text="红色" color="red" level="dark" show-border />
-<AmTag text="红色" color="red" level="light" show-border />
-<AmTag text="蓝色" color="blue" level="dark" show-border />
-<AmTag text="蓝色" color="blue" level="light" show-border />
-
-<script>
-export default {
-    data(){
-        return {
-
-        }
-    }
-}
-</script>
-
 <style>
 .am-tag {
     margin-right: 8px;
@@ -139,10 +54,23 @@ export default {
 ::: demo
 ``` html
 <AmTag
+    text="默认标签"
+    show-delete
+    :value="'默认标签'"
+    @delete="deleteTag"
+/>
+<AmTag
     text="主题色标签"
-    color="primary"
+    mode="primary"
     show-delete
     :value="'主题色标签'"
+    @delete="deleteTag"
+/>
+<AmTag
+    text="黑色标签"
+    mode="black"
+    show-delete
+    :value="'黑色标签'"
     @delete="deleteTag"
 />
 
@@ -160,29 +88,9 @@ export default {
     }
 }
 </script>
-```
-:::
-
-## 自定模式
-::: demo
-``` html
-<AmTag text="惊喜价" mode="suprice" />
-
-<script>
-export default {
-    data(){
-        return {
-
-        }
-    }
-}
-</script>
-
 <style>
 .am-tag {
-    &.is-suprice {
-        color: red;
-    }
+    margin-right: 8px;
 }
 </style>
 ```

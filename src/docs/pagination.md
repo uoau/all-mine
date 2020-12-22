@@ -12,7 +12,7 @@
 export default {
     data(){
         return {
-            total: 1050,
+            total: 0,
             pageSize: 20,
             current: 1,
         }
@@ -27,6 +27,20 @@ pager-count 至少要大于等于7
 ::: demo
 ```html
 <AmPagination
+    :pager-count="7"
+    :total="total"
+    :current.sync="current"
+    :page-size.sync="pageSize"
+/>
+<br/>
+<AmPagination
+    :pager-count="8"
+    :total="total"
+    :current.sync="current"
+    :page-size.sync="pageSize"
+/>
+<br/>
+<AmPagination
     :pager-count="9"
     :total="total"
     :current.sync="current"
@@ -36,7 +50,7 @@ pager-count 至少要大于等于7
 export default {
     data(){
         return {
-            total: 1050,
+            total: 195,
             pageSize: 20,
             current: 1,
         }

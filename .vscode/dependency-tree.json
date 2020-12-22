@@ -23,6 +23,7 @@
         ],
         "./packages/stylesheet/default.theme.less": [],
         "./packages/components/button/index.vue": [],
+        "./packages/components/icon-button/index.vue": [],
         "./packages/components/icon/index.vue": [],
         "./packages/components/divider/index.vue": [],
         "./packages/components/input/index.vue": [],
@@ -393,7 +394,6 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./packages/components/icon-button/index.vue": [],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",

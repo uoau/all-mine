@@ -1,8 +1,12 @@
 <template>
-    <div class="am-img-viewer">
+    <div
+        class="am-img-viewer"
+        v-hotkey="keymap"
+    >
         <AmMovieScreen
             v-bind="$attrs"
             v-on="$listeners"
+            @after-leave="afterLeave"
         >
             <!-- 图片 -->
             <div
@@ -101,7 +105,27 @@ export default {
             showControl: false,
         };
     },
+    computed: {
+        keymap() {
+            return {
+                left: {
+                    keydown: this.prev,
+                },
+                right: {
+                    keydown: this.next,
+                },
+                esc: {
+                    keydown: this.close,
+                },
+            };
+        },
+    },
     watch: {
+        '$attrs.show': function () {
+            if (this.$attrs.show) {
+                this.initImgs();
+            }
+        },
         initIndex: {
             immediate: true,
             deep: true,
@@ -168,6 +192,15 @@ export default {
                 this.nowIndex += 1;
             }
         },
+        prev() {
+            this.clickSwitch('prev');
+        },
+        next() {
+            this.clickSwitch('next');
+        },
+        close() {
+            this.$emit('update:show', false);
+        },
         // 缩放图片
         async scaleImg(type) {
             const el = this.$refs.img[0];
@@ -231,6 +264,9 @@ export default {
         imgEnter() {
             console.log(12345);
             this.checkShowControl();
+        },
+        afterLeave() {
+            this.dealedImgs = [];
         },
     },
 };

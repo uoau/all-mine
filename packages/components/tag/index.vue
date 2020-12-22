@@ -5,20 +5,23 @@
             ['is-' + size]: size,
             ['is-' + mode]: mode,
         }"
-        :style="tagStyle"
+        @click="handleClick"
     >
         <span>{{ text }}</span>
-        <AmIconButton
-            icon-name="close"
-            @click="clickDelete"
+        <AmIcon
+            name="close"
+            @click.stop="clickDelete"
             v-if="showDelete"
-            mode="white-text"
-            size="small"
         />
     </div>
 </template>
 
 <script>
+// 常见的标签有哪几款
+// 灰标签
+// 主题色标签
+// 彩色标签（用在如特惠价之类的）
+//
 export default {
     name: 'AmTag',
     props: {
@@ -27,22 +30,7 @@ export default {
         // 大小 small middle big
         size: {
             type: String,
-            default: 'middle',
-        },
-        // 颜色 红橙黄绿青蓝紫灰黑白
-        color: {
-            type: String,
-            default: 'gray',
-        },
-        // 程度
-        level: {
-            type: String,
-            default: 'light', // light,dark,
-        },
-        // 边框
-        showBorder: {
-            type: Boolean,
-            default: false,
+            default: 'small',
         },
         // 内容
         text: {
@@ -54,33 +42,16 @@ export default {
             type: Boolean,
             default: false,
         },
-        // 模式,自定义模糊
+        // 模式, 有预设也有自定义模式
         mode: {
             type: String,
-            default: '',
-        },
-    },
-    computed: {
-        tagStyle() {
-            const style = {};
-            // 程度
-            if (this.level === 'light') {
-                style.background = `var(--light-${this.color})`;
-                style.color = `var(--${this.color})`;
-                if (this.showBorder) {
-                    style.border = `1px solid var(--${this.color})`;
-                }
-            } else {
-                style.background = `var(--${this.color})`;
-                style.color = '#fff';
-                if (this.showBorder) {
-                    style.border = `1px solid var(--dark-${this.color})`;
-                }
-            }
-            return style;
+            default: 'default',
         },
     },
     methods: {
+        handleClick() {
+            this.$emit('click', this.value);
+        },
         clickDelete() {
             this.$emit('delete', this.value);
         },
@@ -93,24 +64,58 @@ export default {
     display: inline-flex;
     align-items: center;
     color: #333;
+    // 删除按钮
+    .am-icon {
+        cursor: pointer;
+        margin-left: 4px;
+    }
     // 大小
     &.is-small {
         height: 20px;
         padding: 0 4px;
         font-size: 12px;
-        border-radius: 2px;
     }
     &.is-middle {
-        height: 28px;
+        height: 24px;
         font-size: 14px;
         padding: 0 8px;
-        border-radius: 3px;
     }
     &.is-big {
-        height: 32px;
+        height: 28px;
         font-size: 14px;
         padding: 0 12px;
-        border-radius: 4px;
+    }
+    // 预设模式
+    // 默认标签
+    &.is-default {
+        background: var(--light-bg);
+        color: var(--fcolor-2);
+        border: 1px solid var(--border);
+    }
+    // 主题色标签
+    &.is-primary {
+        background: var(--primary);
+        color: #fff;
+    }
+    // 主题浅色标签
+    &.is-light-primary {
+        background: var(--light-primary);
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+    // 主题浅色标签
+    &.is-border-primary {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+    // 黑色标签
+    &.is-black {
+        color: #fff;
+        background: #333;
+    }
+    // 文本标签
+    &.is-text {
+        color: var(--fcolor-2);
     }
 }
 </style>

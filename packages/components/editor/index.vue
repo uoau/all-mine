@@ -6,10 +6,10 @@
             <div class="am-editor__control-bar">
                 <div v-clickoutside="()=>{ addImgDropDownShow = false }">
                     <!-- 添加图片 -->
-                    <AmButton
+                    <AmIconButton
                         ref="addImg"
-                        icon="image-fill"
-                        :icon-size="20"
+                        icon-name="image-fill"
+                        mode="text"
                         @click="addImgDropDownShow = !addImgDropDownShow"
                     />
                     <!-- 添加图片下拉窗口 -->
@@ -21,7 +21,11 @@
                             <AmButton type="primary" class="i1" @click="selectImg('file')">
                                 本地图片
                             </AmButton>
-                            <AmInput placeholder="输入网络地址,回车确认" v-model="imgHref" @enter="selectImg('url')"/>
+                            <AmInput
+                                placeholder="输入网络地址,回车确认"
+                                v-model="imgHref"
+                                @enter="selectImg('url')"
+                            />
                         </div>
                     </AmPopover>
                 </div>
@@ -43,7 +47,9 @@
 
 <script>
 import MarkdownIt from 'markdown-it';
-import { fileTo64, urlTo64, selectFile, urlToImg } from '../../utils/browser';
+import {
+    fileTo64, urlTo64, selectFile, urlToImg,
+} from '../../utils/browser';
 import '../../stylesheet/markdown.css';
 
 const md = new MarkdownIt();
@@ -82,9 +88,9 @@ export default {
             this.$emit('update:htmlContent', md.render(this.inputContent));
             this.$emit('update:mdContent', this.inputContent);
         },
-        mdContent(){
+        mdContent() {
             this.inputContent = this.mdContent;
-        }
+        },
     },
     methods: {
         async selectImg(mode) {
@@ -95,21 +101,19 @@ export default {
                 const files = await selectFile({
                     multiple: true,
                 });
-                await Promise.all(files.map((item)=>{
-                    return new Promise(async (resolve,reject)=>{
-                        try{
-                            const base64 = await fileTo64(item);
-                            base64Arr.push(base64);
-                            resolve();
-                        }catch(e){
-                            reject();
-                        }
-                    })
-                }));
+                await Promise.all(files.map((item) => new Promise(async (resolve, reject) => {
+                    try {
+                        const base64 = await fileTo64(item);
+                        base64Arr.push(base64);
+                        resolve();
+                    } catch (e) {
+                        reject();
+                    }
+                })));
             } else if (mode === 'url') {
                 try {
                     await urlToImg(this.imgHref);
-                } catch(e) {
+                } catch (e) {
                     this.$message.fail('图片加载失败');
                     return;
                 }
@@ -119,25 +123,22 @@ export default {
             console.log('# base64Arr', base64Arr);
             // 将base64统一交给上级处理
             const urlArr = [];
-            await Promise.all(base64Arr.map((item)=> {
-                return new Promise(async (resolve,reject) => {
-                    try {
-                        const res = await this.dealImg(item);
-                        urlArr.push(res);
-                        resolve();
-                    } catch(e) {
-                        reject();
-                    }
-                })
-            }))
+            await Promise.all(base64Arr.map((item) => new Promise((resolve, reject) => {
+                this.dealImg(item).then((res) => {
+                    urlArr.push(res);
+                    resolve();
+                }).catch((e) => {
+                    reject(e);
+                });
+            })));
 
             // 统一将url 输入进md里
-            if(urlArr.length) {
+            if (urlArr.length) {
                 urlArr.forEach((url) => {
-                    if(url){
+                    if (url) {
                         this.inputContent += `\n![img](${url})  `;
                     }
-                })
+                });
             }
         },
     },

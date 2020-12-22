@@ -26,8 +26,8 @@
         <AmButton
             class="am-pagination-number"
             :class="item === current ? 'active': ''"
-            v-for="item in pagers"
-            :key="item"
+            v-for="(item,index) in pagers"
+            :key="index"
             @click="clickPager(item)"
         >
             <AmIcon name="ellipsis" v-if="item=='prev' || item==='next'"/>
@@ -99,20 +99,21 @@ export default {
 
             let array = [1];
             if (showPrevMore && !showNextMore) {
-                const startPage = pageCount - (pagerCount - 2);
                 array.push('prev');
+                const startPage = pageCount - (pagerCount - 3);
                 for (let i = startPage; i < pageCount; i += 1) {
                     array.push(i);
                 }
             } else if (!showPrevMore && showNextMore) {
-                for (let i = 2; i < pagerCount; i += 1) {
-                    array.push(i);
+                for (let i = 1; i <= pagerCount - 3; i += 1) {
+                    array.push(i + 1);
                 }
                 array.push('next');
             } else if (showPrevMore && showNextMore) {
                 array.push('prev');
-                const offset = Math.floor(pagerCount / 2) - 1;
-                for (let i = currentPage - offset; i <= currentPage + offset - 1; i += 1) {
+                const p = Math.ceil((pagerCount - 5) / 2);
+                const n = Math.floor((pagerCount - 5) / 2);
+                for (let i = currentPage - p; i <= currentPage + n; i += 1) {
                     array.push(i);
                 }
                 array.push('next');
@@ -121,7 +122,7 @@ export default {
                     array.push(i);
                 }
             }
-            array.push(pageCount);
+            if (pageCount) array.push(pageCount);
             array = Array.from(new Set(array));
             return array;
         },
@@ -135,9 +136,9 @@ export default {
         clickPager(num) {
             let { current } = this;
             if (num === 'prev') {
-                current -= (this.pagerCount - 3);
+                current -= Math.floor(this.pagerCount / 2);
             } else if (num === 'next') {
-                current += (this.pagerCount - 3);
+                current += Math.floor(this.pagerCount / 2);
             } else {
                 current = num;
             }

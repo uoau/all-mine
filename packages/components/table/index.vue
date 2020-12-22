@@ -76,10 +76,7 @@ export default {
     },
     props: {
         // 表格数据
-        data: {
-            type: Array,
-            default: () => [],
-        },
+        data: null,
         // 高度
         height: {
             type: String,

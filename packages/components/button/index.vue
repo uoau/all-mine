@@ -112,7 +112,7 @@ export default {
     font-size: 14px;
     user-select: none;
     cursor: pointer;
-    transition: background .2s, border .2s, color .2s;
+    transition: background .2s, border .2s, color .2s, filter .2s, box-shadow .2s;
     box-sizing: border-box;
     &__content {
         display: flex;
@@ -148,6 +148,7 @@ export default {
     }
     // 按钮风格
     &.is-default {
+        background: #fff;
         border: 1px solid var(--border);
         &:hover {
             background: var(--light-bg);
@@ -157,32 +158,54 @@ export default {
         }
     }
     &.is-primary {
-        border: 1px solid var(--primary);
         background: var(--primary);
         color: #fff;
         &:hover {
-            background: var(--dark-primary);
+            background: #265dc0;
+        }
+        &.is-down {
+            background: var(--primary);
         }
     }
     &.is-line-primary {
         border: 1px solid var(--primary);
         color: var(--primary);
+        background: #fff;
         &:hover {
-            background: var(--light-primary);
+            border-color: #265dc0;
+            color: #265dc0;
+        }
+        &.is-down {
+            color: #1a4187;
+            border-color: #1a4187;
         }
     }
     &.is-text {
         padding: 0;
         color: var(--fcolor-1);
         &:hover {
-            color: var(--fcolor-0);
+            color: #265dc0;
+        }
+        &.is-down {
+            color: #1a4187;
+        }
+        &.is-disabled {
+            color: var(--fcolor-3);
+            background: none;
         }
     }
     &.is-text-primary {
         padding: 0;
         color: var(--primary);
         &:hover {
-            color: var(--dark-primary);
+            color:  #265dc0;
+        }
+        &.is-down {
+            color: #1a4187;
+        }
+        &.is-disabled {
+            color: var(--fcolor-3);
+            background: none;
         }
     }
     // 按钮不可用

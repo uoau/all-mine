@@ -1,35 +1,9 @@
 :root {
-  --primary: #409EFF;
-  --light-primary: #E6F7FF;
-  --dark-primary: #096dd9;
+  --primary: #3479f6;
   --success: #67C23A;
   --warning: #E6A23C;
   --fail: #F56C6C;
   --info: #909399;
-  --red: #f5222d;
-  --light-red: #fff1f0;
-  --dark-red: #820014;
-  --orange: #fa8c16;
-  --light-orange: #fff7e6;
-  --dark-orange: #873800;
-  --yellow: #fadb14;
-  --light-yellow: #feffe6;
-  --dark-yellow: #876800;
-  --green: #52c41a;
-  --light-green: #f6ffed;
-  --dark-green: #135200;
-  --cyan: #13c2c2;
-  --light-cyan: #e6fffb;
-  --dark-cyan: #00474f;
-  --blue: #1890ff;
-  --light-blue: #e6f7ff;
-  --dark-blue: #003a8c;
-  --purple: #722ed1;
-  --light-purple: #f9f0ff;
-  --dark-purple: #22075e;
-  --pink: #eb2f96;
-  --light-pink: #fff0f6;
-  --dark-pink: #780650;
   --fcolor-0: #000;
   --fcolor-1: #333;
   --fcolor-2: #666;
@@ -406,7 +380,7 @@ body {
 }
 body {
   background: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', 'Segoe UI Emoji', 'Apple Color Emoji';
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft Yahei UI, Microsoft Yahei, Source Han Sans CN, 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -485,7 +459,7 @@ code {
   font-size: 14px;
   user-select: none;
   cursor: pointer;
-  transition: background 0.2s, border 0.2s, color 0.2s;
+  transition: background 0.2s, border 0.2s, color 0.2s, filter 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
 }
 .am-button__content {
@@ -519,6 +493,7 @@ code {
   padding: 0 16px;
 }
 .am-button.is-default {
+  background: #fff;
   border: 1px solid var(--border);
 }
 .am-button.is-default:hover {
@@ -528,33 +503,55 @@ code {
   background: var(--border);
 }
 .am-button.is-primary {
-  border: 1px solid var(--primary);
   background: var(--primary);
   color: #fff;
 }
 .am-button.is-primary:hover {
-  background: var(--dark-primary);
+  background: #265dc0;
+}
+.am-button.is-primary.is-down {
+  background: var(--primary);
 }
 .am-button.is-line-primary {
   border: 1px solid var(--primary);
   color: var(--primary);
+  background: #fff;
 }
 .am-button.is-line-primary:hover {
-  background: var(--light-primary);
+  border-color: #265dc0;
+  color: #265dc0;
+}
+.am-button.is-line-primary.is-down {
+  color: #1a4187;
+  border-color: #1a4187;
 }
 .am-button.is-text {
   padding: 0;
   color: var(--fcolor-1);
 }
 .am-button.is-text:hover {
-  color: var(--fcolor-0);
+  color: #265dc0;
+}
+.am-button.is-text.is-down {
+  color: #1a4187;
+}
+.am-button.is-text.is-disabled {
+  color: var(--fcolor-3);
+  background: none;
 }
 .am-button.is-text-primary {
   padding: 0;
   color: var(--primary);
 }
 .am-button.is-text-primary:hover {
-  color: var(--dark-primary);
+  color: #265dc0;
+}
+.am-button.is-text-primary.is-down {
+  color: #1a4187;
+}
+.am-button.is-text-primary.is-disabled {
+  color: var(--fcolor-3);
+  background: none;
 }
 .am-button.is-disabled {
   background: #eee;
@@ -736,19 +733,22 @@ code {
   font-size: 14px;
 }
 .am-breadcrumb-item__content {
-  color: #666;
+  color: var(--fcolor-2);
   text-decoration: none;
 }
 .am-breadcrumb-item > i {
   margin: 0 10px;
+  color: var(--fcolor-3);
+  cursor: default;
 }
 .am-breadcrumb-item > .am-icon {
   margin: 0 8px;
   font-size: 12px;
+  cursor: default;
 }
 .am-breadcrumb-item.is-current .am-breadcrumb-item__content {
-  color: #000;
-  font-weight: bold;
+  color: var(--fcolor-1);
+  cursor: default;
 }
 .am-breadcrumb-item.is-hasto .am-breadcrumb-item__content:hover {
   text-decoration: underline;
@@ -1512,23 +1512,49 @@ to {
   align-items: center;
   color: #333;
 }
+.am-tag .am-icon {
+  cursor: pointer;
+  margin-left: 4px;
+}
 .am-tag.is-small {
   height: 20px;
   padding: 0 4px;
   font-size: 12px;
-  border-radius: 2px;
 }
 .am-tag.is-middle {
-  height: 28px;
+  height: 24px;
   font-size: 14px;
   padding: 0 8px;
-  border-radius: 3px;
 }
 .am-tag.is-big {
-  height: 32px;
+  height: 28px;
   font-size: 14px;
   padding: 0 12px;
-  border-radius: 4px;
+}
+.am-tag.is-default {
+  background: var(--light-bg);
+  color: var(--fcolor-2);
+  border: 1px solid var(--border);
+}
+.am-tag.is-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.am-tag.is-light-primary {
+  background: var(--light-primary);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.am-tag.is-border-primary {
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+.am-tag.is-black {
+  color: #fff;
+  background: #333;
+}
+.am-tag.is-text {
+  color: var(--fcolor-2);
 }
 
 .am-color-picker {
@@ -1637,6 +1663,14 @@ to {
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.4);
+}
+.am-movie-screen__mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }
 .am-movie-screen__anime-enter-active,
 .am-movie-screen__anime-leave-active {

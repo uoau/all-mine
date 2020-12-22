@@ -42,22 +42,25 @@ export default {
     align-items: center;
     font-size: 14px;
     &__content {
-        color: #666;
+        color: var(--fcolor-2);
         text-decoration: none;
     }
     > i {
         margin: 0 10px;
+        color: var(--fcolor-3);
+        cursor: default;
     }
     > .am-icon {
         margin: 0 8px;
         font-size: 12px;
+        cursor: default;
     }
 
     // 当前
     &.is-current {
         .am-breadcrumb-item__content {
-            color: #000;
-            font-weight: bold;
+            color: var(--fcolor-1);
+            cursor: default;
         }
     }
     &.is-hasto {

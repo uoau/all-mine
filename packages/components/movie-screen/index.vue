@@ -40,10 +40,9 @@ export default {
     methods: {
         hide() {
             this.$emit('update:show', false);
-            console.log(this.show);
         },
         afterLeave() {
-            this.$emit('onhide');
+            this.$emit('after-leave');
         },
         clickCloseBtn() {
             this.hide();
@@ -61,6 +60,14 @@ export default {
     left: 0;
     top: 0;
     background: rgba(0,0,0,.4);
+    &__mask {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+    }
     &__anime {
         &-enter-active, &-leave-active {
             transition: opacity .4s;

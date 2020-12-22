@@ -16,7 +16,11 @@ export function getScrollBoxOfEl(el) {
     while (true) {
         thisEl = thisEl.parentElement;
         const style = window.getComputedStyle(thisEl, null);
-        if (style.overflow === 'scroll' || style.overflow === 'auto') {
+        if (
+            style.overflow === 'scroll' || style.overflow === 'auto'
+            || style.overflowY === 'scroll' || style.overflowY === 'auto'
+            || style.overflowX === 'scroll' || style.overflowX === 'auto'
+        ) {
             els.push(thisEl);
         }
         if (thisEl === document.body) {

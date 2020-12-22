@@ -13,9 +13,17 @@ body {
     background: #fff;
     font-family:
         -apple-system,BlinkMacSystemFont,
-        'Microsoft YaHei',
+        Segoe UI,Roboto,Ubuntu,
+        Helvetica Neue,
+        Helvetica,Arial,
+        PingFang SC,
+        Hiragino Sans GB,
+        Microsoft Yahei UI,
+        Microsoft Yahei,
+        Source Han Sans CN,
         'Segoe UI Emoji',
-        'Apple Color Emoji';
+        'Apple Color Emoji',
+        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
