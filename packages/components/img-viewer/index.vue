@@ -21,7 +21,6 @@
                     name="am-img-viewer__anime"
                     v-for="(item,index) in dealedImgs"
                     :key="index"
-                    @after-enter="imgEnter"
                 >
                     <div
                         ref="imgbox"
@@ -35,6 +34,7 @@
                             :src="item.url"
                             :style="item.style"
                             ref="img"
+                            @load="loadImg"
                         />
                     </div>
                 </transition>
@@ -57,7 +57,7 @@
                 @click="clickSwitch('next')"
             />
             <!-- 底部控制栏 -->
-            <div class="am-img-viewer__control-bar" v-if="showControl">
+            <div class="am-img-viewer__control-bar" v-if="nowItem && nowItem.showControl">
                 <AmIconButton
                     icon-name="zoomin"
                     @click="scaleImg('big')"
@@ -81,8 +81,6 @@
 </template>
 
 <script>
-import { urlToImg } from '../../utils/browser';
-
 export default {
     name: 'AmImgViewer',
     props: {
@@ -96,13 +94,16 @@ export default {
             type: Number,
             default: 0,
         },
+        // 图片初始化宽度
+        initWidth: {
+            type: Number,
+        },
     },
     data() {
         return {
             dealedImgs: [],
             nowIndex: 0,
             direction: 'left',
-            showControl: false,
         };
     },
     computed: {
@@ -119,6 +120,9 @@ export default {
                 },
             };
         },
+        nowItem() {
+            return this.dealedImgs[this.nowIndex];
+        },
     },
     watch: {
         '$attrs.show': function () {
@@ -133,60 +137,54 @@ export default {
                 this.nowIndex = this.initIndex;
             },
         },
-        imgs: {
-            immediate: true,
-            deep: true,
-            handler() {
-                this.initImgs();
-            },
+        imgs() {
+            this.initImgs();
         },
     },
     mounted() {
         window.addEventListener('resize', this.onWindowResize);
     },
     methods: {
-        // 初始化图片
+        // 初始化图片列表
         async initImgs() {
             const arr = [];
-            this.imgs.forEach(async (item, index) => {
+            this.imgs.forEach(async (item) => {
                 const obj = {
                     url: '', // 图片链接
-                    scale: 0.9, // 放大倍数
-                    isOriginal: false, // 原始图
-                    style: { // 图片样式
-                        maxWidth: '90%',
-                        maxHeight: '90%',
-                    },
-                    loaded: false, // 是否已加载
-                    width: 0,
-                    height: 0,
+                    initScaleX: '90%', // 初始最大宽度 '90%' '1000px'
+                    initScaleY: '90%', // 初始最大高度 '80%' '1000px'
                     ...item,
+                    isOriginal: false, // 原始图
+                    loaded: false, // 是否已加载
+                    showControl: true,
                 };
+                // 转换为px的最大宽度、最大高度
+                this.resetImg(obj);
                 arr.push(obj);
-                const res = await urlToImg(obj.url);
-                obj.width = res.clientWidth;
-                obj.height = res.clientHeight;
-                obj.loaded = true;
-                if (index === this.nowIndex) {
-                    this.checkShowControl();
-                }
             });
             this.dealedImgs = arr;
+        },
+        // 加载图片
+        async loadImg(e) {
+            const imgEl = e.target;
+            this.nowItem.loaded = true;
+            // 初始宽高
+            this.nowItem.width = imgEl.naturalWidth;
+            this.nowItem.height = imgEl.naturalHeight;
+            this.nowItem.showControl = ((this.nowItem.width - this.nowItem.initScaleXpx) > -1)
+                || ((this.nowItem.height - this.nowItem.initScaleYpx) > -1);
         },
         // 点击切换按钮
         async clickSwitch(type) {
             const imgLen = this.dealedImgs.length;
-            const nowItem = this.dealedImgs[this.nowIndex];
             if (type === 'prev' && this.nowIndex > 0) {
                 // 先将大小缩放取消
-                nowItem.scale = 0.9;
-                nowItem.style = this.dealItemStyle(nowItem);
+                this.resetImg(this.nowItem);
                 await this.$nextTick();
                 this.direction = 'left';
                 this.nowIndex -= 1;
             } else if (type === 'next' && this.nowIndex < (imgLen - 1)) {
-                nowItem.scale = 0.9;
-                nowItem.style = this.dealItemStyle(nowItem);
+                this.resetImg(this.nowItem);
                 await this.$nextTick();
                 this.direction = 'right';
                 this.nowIndex += 1;
@@ -205,65 +203,104 @@ export default {
         async scaleImg(type) {
             const el = this.$refs.img[0];
             const oldWH = [el.clientWidth, el.clientHeight];
-            const item = this.dealedImgs[this.nowIndex];
-            if (type === 'big') {
-                item.scale += 0.2;
-            } else if (type === 'small') {
-                item.scale -= 0.2;
+            let oneStepX = 0;
+            let oneStepY = 0;
+            const wCha = el.clientWidth - this.nowItem.initScaleXpx;
+            const hCha = el.clientHeight - this.nowItem.initScaleYpx;
+            // 变大 原和大 使用mode1
+            // 变小 大 使用mode1
+            // 变大 小  使用mode2
+            // 变小 原和小 使用mode2
+            if (
+                ((wCha > -1 || hCha > -1) && type === 'big')
+                || ((wCha > 0 || hCha > 0) && type === 'small')
+            ) {
+                oneStepX = (this.nowItem.width - this.nowItem.initScaleXpx) / 5;
+                oneStepX = oneStepX > 100 ? oneStepX : 100;
+                oneStepY = (this.nowItem.height - this.nowItem.initScaleYpx) / 5;
+                oneStepY = oneStepY > 100 ? oneStepY : 100;
+            } else {
+                oneStepX = (this.nowItem.initScaleXpx) / 5;
+                oneStepY = (this.nowItem.initScaleYpx) / 5;
             }
-            item.style = this.dealItemStyle(item);
+            if (type === 'big') {
+                this.nowItem.scaleX += oneStepX;
+                this.nowItem.scaleY += oneStepY;
+            } else if (type === 'small') {
+                this.nowItem.scaleX -= oneStepX;
+                this.nowItem.scaleY -= oneStepY;
+            }
+            this.nowItem.style = this.dealItemStyle(this.nowItem);
             await this.$nextTick();
+            // 放大后
+            if (el.clientWidth === this.nowItem.width) {
+                this.nowItem.isOriginal = true;
+            } else {
+                this.nowItem.isOriginal = false;
+            }
             const newWH = [el.clientWidth, el.clientHeight];
             if (type === 'big') {
                 if (newWH[0] === oldWH[0]) {
-                    item.scale -= 0.2;
+                    this.nowItem.scaleX -= oneStepX;
+                    this.nowItem.scaleY -= oneStepY;
+                    this.isOriginal = true;
                 }
             } else if (type === 'small') {
                 if (newWH[0] === oldWH[0]) {
-                    item.scale += 0.2;
+                    this.nowItem.scaleX += oneStepX;
+                    this.nowItem.scaleY += oneStepY;
                 }
             }
+            this.nowItem.style = this.dealItemStyle(this.nowItem);
         },
-        // 原比例
+        // 原图大小
         async originalImg() {
-            const item = this.dealedImgs[this.nowIndex];
-            item.isOriginal = !item.isOriginal;
-            await this.$nextTick();
-            item.scale = 0.9;
-            item.style = this.dealItemStyle(item);
+            if (!this.nowItem.isOriginal) {
+                this.nowItem.scaleX = this.nowItem.width; // 实际使用的最大宽度
+                this.nowItem.scaleY = this.nowItem.height; // 实际使用的最大高度
+                this.nowItem.style = this.dealItemStyle(this.nowItem);
+                this.nowItem.isOriginal = true;
+            } else {
+                this.resetImg(this.nowItem);
+                this.nowItem.isOriginal = false;
+            }
         },
+        // 恢复大小
+        resetImg(item) {
+            const obj = item;
+            obj.initScaleXpx = obj.initScaleX ? parseFloat(obj.initScaleX) : null;
+            obj.initScaleYpx = obj.initScaleY ? parseFloat(obj.initScaleY) : null;
+            if (obj.initScaleX.indexOf('%') > -1) {
+                obj.initScaleXpx = document.body.clientWidth
+                        * (parseFloat(obj.initScaleX) / 100);
+            }
+            if (obj.initScaleY.indexOf('%') > -1) {
+                obj.initScaleYpx = document.body.clientHeight
+                        * (parseFloat(obj.initScaleY) / 100);
+            }
+            obj.scaleX = obj.initScaleXpx; // 实际使用的最大宽度
+            obj.scaleY = obj.initScaleYpx; // 实际使用的最大高度
+            obj.isOriginal = false;
+            if (obj.loaded) {
+                obj.showControl = ((obj.width - obj.initScaleXpx) > -1)
+                || ((obj.height - obj.initScaleYpx) > -1);
+            }
+            obj.style = this.dealItemStyle(obj);
+        },
+        // 处理item样式
         dealItemStyle(item) {
             const style = {};
-            style.maxHeight = `${item.scale * 100}%`;
-            style.maxWidth = `${item.scale * 100}%`;
+            style.maxWidth = `${item.scaleX}px`;
+            style.maxHeight = `${item.scaleY}px`;
             return style;
         },
         // 监听窗口变化
         onWindowResize() {
             if (this.dealedImgs.length) {
                 this.dealedImgs.forEach((item, index) => {
-                    this.dealedImgs[index].scale = 0.9;
-                    this.dealedImgs[index].style = this.dealItemStyle(item);
+                    this.resetImg(this.dealedImgs[index]);
                 });
             }
-        },
-        // 计算是否出现
-        checkShowControl() {
-            if (this.$refs.img && this.$refs.img.length) {
-                console.log(2222);
-                const el = this.$refs.img[0];
-                const elbox = this.$refs.imgbox[0];
-                console.log(el.clientHeight, elbox.clientHeight);
-                if (el.clientHeight >= (elbox.clientHeight * 0.9 - 1)) {
-                    this.showControl = true;
-                } else {
-                    this.showControl = false;
-                }
-            }
-        },
-        imgEnter() {
-            console.log(12345);
-            this.checkShowControl();
         },
         afterLeave() {
             this.dealedImgs = [];
@@ -290,17 +327,15 @@ export default {
         right: 0;
         bottom: 0;
         margin: auto;
-        overflow: auto;
         display: flex;
+        overflow: auto;
         img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: initial;
+            max-height: initial;
             margin: auto;
         }
         &.is-original {
             img {
-                max-width: none!important;
-                max-height: none!important;
             }
         }
     }
@@ -308,22 +343,33 @@ export default {
     &--dir-left {
         .am-img-viewer__anime {
             &-enter-active, &-leave-active {
-                transition: transform .5s, opacity .5s;
+                transition: opacity .5s;
+                img {
+                     transition: transform .5s;
+                }
             }
             &-enter {
-                transform: translateX(-160px);
+                img {
+                    transform: translateX(-160px);
+                }
                 opacity: 0;
             }
             &-enter-to {
-                transform: translateX(0px);
+                img {
+                    transform: translateX(0px);
+                }
                 opacity: 1;
             }
             &-leave {
-                transform: translateX(0px);
+                img {
+                    transform: translateX(0px);
+                }
                 opacity: 1;
             }
             &-leave-to {
-                transform: translateX(160px);
+                img {
+                    transform: translateX(160px);
+                }
                 opacity: 0;
             }
         }
@@ -331,22 +377,33 @@ export default {
     &--dir-right {
         .am-img-viewer__anime {
             &-enter-active, &-leave-active {
-                transition: transform .5s, opacity .5s;
+                transition: opacity .5s;
+                img {
+                     transition: transform .5s;
+                }
             }
             &-enter {
-                transform: translateX(160px);
+                img {
+                    transform: translateX(160px);
+                }
                 opacity: 0;
             }
             &-enter-to {
-                transform: translateX(0px);
+                img {
+                    transform: translateX(0px);
+                }
                 opacity: 1;
             }
             &-leave {
-                transform: translateX(0px);
+                img {
+                    transform: translateX(0px);
+                }
                 opacity: 1;
             }
             &-leave-to {
-                transform: translateX(-160px);
+                img {
+                    transform: translateX(-160px);
+                }
                 opacity: 0;
             }
         }

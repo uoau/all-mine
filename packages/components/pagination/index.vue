@@ -143,14 +143,17 @@ export default {
                 current = num;
             }
             this.$emit('update:current', current);
+            this.$emit('click-pager', num, current);
         },
         clickPrev() {
             const current = this.current - 1;
             this.$emit('update:current', current);
+            this.$emit('click-prev');
         },
         clickNext() {
             const current = this.current + 1;
             this.$emit('update:current', current);
+            this.$emit('click-next');
         },
         changePageSize(value) {
             this.$emit('update:current', 1);

@@ -3,6 +3,7 @@
         class="am-input"
         :class="aiClass">
         <input
+            :type="type"
             :value="value"
             :placeholder="placeholder"
             @input="onInput"
@@ -42,6 +43,11 @@ export default {
         // 最大字符数（未实现）
         maxLength: {
             type: Number,
+        },
+        // 类型
+        type: {
+            type: String,
+            default: 'text',
         },
     },
     data() {

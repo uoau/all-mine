@@ -1365,57 +1365,77 @@ to {
   right: 0;
   bottom: 0;
   margin: auto;
-  overflow: auto;
   display: flex;
+  overflow: auto;
 }
 .am-img-viewer__img img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: initial;
+  max-height: initial;
   margin: auto;
-}
-.am-img-viewer__img.is-original img {
-  max-width: none!important;
-  max-height: none!important;
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-enter-active,
 .am-img-viewer--dir-left .am-img-viewer__anime-leave-active {
-  transition: transform 0.5s, opacity 0.5s;
+  transition: opacity 0.5s;
+}
+.am-img-viewer--dir-left .am-img-viewer__anime-enter-active img,
+.am-img-viewer--dir-left .am-img-viewer__anime-leave-active img {
+  transition: transform 0.5s;
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-enter {
-  transform: translateX(-160px);
   opacity: 0;
+}
+.am-img-viewer--dir-left .am-img-viewer__anime-enter img {
+  transform: translateX(-160px);
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-enter-to {
-  transform: translateX(0px);
   opacity: 1;
+}
+.am-img-viewer--dir-left .am-img-viewer__anime-enter-to img {
+  transform: translateX(0px);
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-leave {
-  transform: translateX(0px);
   opacity: 1;
 }
+.am-img-viewer--dir-left .am-img-viewer__anime-leave img {
+  transform: translateX(0px);
+}
 .am-img-viewer--dir-left .am-img-viewer__anime-leave-to {
-  transform: translateX(160px);
   opacity: 0;
+}
+.am-img-viewer--dir-left .am-img-viewer__anime-leave-to img {
+  transform: translateX(160px);
 }
 .am-img-viewer--dir-right .am-img-viewer__anime-enter-active,
 .am-img-viewer--dir-right .am-img-viewer__anime-leave-active {
-  transition: transform 0.5s, opacity 0.5s;
+  transition: opacity 0.5s;
+}
+.am-img-viewer--dir-right .am-img-viewer__anime-enter-active img,
+.am-img-viewer--dir-right .am-img-viewer__anime-leave-active img {
+  transition: transform 0.5s;
 }
 .am-img-viewer--dir-right .am-img-viewer__anime-enter {
-  transform: translateX(160px);
   opacity: 0;
+}
+.am-img-viewer--dir-right .am-img-viewer__anime-enter img {
+  transform: translateX(160px);
 }
 .am-img-viewer--dir-right .am-img-viewer__anime-enter-to {
-  transform: translateX(0px);
   opacity: 1;
+}
+.am-img-viewer--dir-right .am-img-viewer__anime-enter-to img {
+  transform: translateX(0px);
 }
 .am-img-viewer--dir-right .am-img-viewer__anime-leave {
-  transform: translateX(0px);
   opacity: 1;
 }
+.am-img-viewer--dir-right .am-img-viewer__anime-leave img {
+  transform: translateX(0px);
+}
 .am-img-viewer--dir-right .am-img-viewer__anime-leave-to {
-  transform: translateX(-160px);
   opacity: 0;
+}
+.am-img-viewer--dir-right .am-img-viewer__anime-leave-to img {
+  transform: translateX(-160px);
 }
 .am-img-viewer__left {
   position: absolute;
