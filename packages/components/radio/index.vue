@@ -6,12 +6,12 @@
         }"
         @click="handleClick"
     >
-        <div class="radio">
+        <div class="am-radio__radio">
             <transition name="am-radio-anime">
                 <i v-show="label === selectedValue"></i>
             </transition>
         </div>
-        <div class="text" v-if="$slots.default">
+        <div class="am-radio__text" v-if="$slots.default">
             <slot />
         </div>
     </div>
@@ -45,7 +45,10 @@ export default {
     align-items: center;
     height: 32px;
     cursor: pointer;
-    >.radio {
+    + .am-radio {
+        margin-left: 16px;
+    }
+    &__radio {
         width: 16px;
         height: 16px;
         border-radius: 50%;
@@ -63,8 +66,8 @@ export default {
             border-radius: 50%;
         }
     }
-    >.text {
-        margin-left: 8px;
+    &__text {
+        margin-left: 6px;
         font-size: 14px;
     }
     .am-radio-anime-enter-active {
@@ -89,12 +92,12 @@ export default {
 
     // 悬停
     &:hover {
-        >.radio {
+        .am-radio__radio {
             border-color: var(--primary);
         }
     }
     &.is-active {
-        >.radio {
+        .am-radio__radio {
             border: 1px solid var(--primary);
         }
     }

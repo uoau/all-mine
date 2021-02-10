@@ -61,7 +61,7 @@ export default {
     &__hd {
         line-height: 32px;
         display: flex;
-        padding-right: 12px;
+        padding-right: 8px;
         font-size: 14px;
     }
     &__bd {

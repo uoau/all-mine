@@ -2,6 +2,7 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
     mode: 'production',
@@ -40,7 +41,7 @@ module.exports = {
                 loaders: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'less-loader'
+                    'less-loader',
                 ],
             },
             {
@@ -66,10 +67,12 @@ module.exports = {
             filename: 'index.css',
         }),
         new CleanWebpackPlugin(),
+        // new BundleAnalyzerPlugin(),
     ],
     resolve: {
         alias: {
             vue$: 'vue/dist/vue.esm.js',
+            '@': path.join(__dirname),
         },
         extensions: ['.js', '.vue', '.json'],
     },

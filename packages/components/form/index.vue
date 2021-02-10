@@ -28,7 +28,7 @@ export default {
 <style lang="less">
 .am-form {
     >.am-form-item {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
 }
 </style>

@@ -47,8 +47,8 @@ export default {
             default: '',
         },
         iconSize: {
-            type: Number,
-            default: 14,
+            type: String,
+            default: '14px',
         },
         iconPosition: {
             type: String,
@@ -61,11 +61,6 @@ export default {
         // 路由切换
         to: {
             type: Object,
-        },
-        // 自定义模式
-        mode: {
-            type: String,
-            default: '',
         },
     },
     computed: {
@@ -83,7 +78,6 @@ export default {
                 'is-disabled': this.disabled,
                 [`is-${this.type}`]: this.type,
                 [`is-${this.size}`]: this.size,
-                [`is-${this.mode}`]: this.mode,
             };
         },
         iconClass() {
@@ -132,19 +126,21 @@ export default {
     // 按钮大小
     &.is-small {
         height: 24px;
-        padding: 0 8px;
+        padding: 0 4px;
         min-width: 24px;
     }
     &.is-middle {
         height: 32px;
         min-width: 32px;
-        padding: 0 12px;
+        padding: 0 8px;
         min-width: 32px;
+        font-size: 14px;
+        line-height: 20px;
     }
     &.is-big {
         height:40px;
         min-width: 40px;
-        padding: 0 16px;
+        padding: 0 12px;
     }
     // 按钮风格
     &.is-default {
@@ -161,7 +157,7 @@ export default {
         background: var(--primary);
         color: #fff;
         &:hover {
-            background: #265dc0;
+            background: #5d8bf2;
         }
         &.is-down {
             background: var(--primary);
@@ -172,36 +168,22 @@ export default {
         color: var(--primary);
         background: #fff;
         &:hover {
-            border-color: #265dc0;
-            color: #265dc0;
+            background: #f0f1f5;
         }
         &.is-down {
-            color: #1a4187;
-            border-color: #1a4187;
+            background: var(--primary);
+            color: #fff;
         }
     }
     &.is-text {
+        height: 20px;
         padding: 0;
         color: var(--fcolor-1);
         &:hover {
-            color: #265dc0;
+
         }
         &.is-down {
-            color: #1a4187;
-        }
-        &.is-disabled {
-            color: var(--fcolor-3);
-            background: none;
-        }
-    }
-    &.is-text-primary {
-        padding: 0;
-        color: var(--primary);
-        &:hover {
-            color:  #265dc0;
-        }
-        &.is-down {
-            color: #1a4187;
+            color: var(--primary);
         }
         &.is-disabled {
             color: var(--fcolor-3);

@@ -34,10 +34,10 @@ export default {
         iconName() {
             let iconName = '';
             switch (this.type) {
-            case 'success': iconName = 'check-circle-fill'; break;
-            case 'fail': iconName = 'close-circle-fill'; break;
-            case 'info': iconName = 'info-circle-fill'; break;
-            case 'warning': iconName = 'warning-circle-fill'; break;
+            case 'success': iconName = 'success-fill'; break;
+            case 'fail': iconName = 'fail-fill'; break;
+            case 'info': iconName = 'warn-fill'; break;
+            case 'warning': iconName = 'warn-fill'; break;
             default: break;
             }
             return iconName;
@@ -91,8 +91,8 @@ export default {
         line-height:1.8;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         .am-icon {
-            font-size: 16px;
-            margin-right: 3px;
+            font-size: 22px;
+            margin-right: 4px;
         }
         &--success {
             color: var(--success);

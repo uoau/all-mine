@@ -4,8 +4,22 @@
 ::: demo
 ``` html
 <AmTextarea v-model="value" placeholder="自定义请输入"/>
-<p>{{ value }}</p>
+<script>
+export default {
+    data(){
+        return {
+            value: '',
+        }
+    }
+}
+</script>
+```
+:::
 
+## 自动计算高度
+::: demo
+``` html
+<AmTextarea v-model="value" placeholder="自定义请输入" autosize/>
 <script>
 export default {
     data(){
@@ -23,7 +37,8 @@ export default {
 | 参数       | 说明        | 类型       | 可选值         | 默认值   |
 |---------- |------------ |---------- |-------------  |-------- |
 | v-model      | 双向绑定值      |  -  |  -  |   -   |
-| placeholder |  提示文案  |  string  | - | - |
+| placeholder |  提示文案  |  String  | - | '请输入' |
+| autosize |  自动计算高度  |  Boolean  | - | false |
 
 ## Emit
 

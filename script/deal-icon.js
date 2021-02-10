@@ -2,7 +2,7 @@ const fs = require('fs');
 const axios = require('axios');
 
 // iconfont 的 地址
-const ICON_FONT_URL = '//at.alicdn.com/t/font_1954226_vcqiukilo08';
+const ICON_FONT_URL = '//at.alicdn.com/t/font_1954226_3yftakzb1m7';
 
 const iconJsUrl = `http:${ICON_FONT_URL}.js`;
 
@@ -16,6 +16,5 @@ axios.get(iconJsUrl)
             .map((item) => item.match(/symbol id="([^"]+)"/)[1]);
         const iconMd = fs.readFileSync('./src/docs/icon.md').toString();
         const newIconMd = iconMd.replace(/iconList:\[[^\]]*\]/, `iconList:${JSON.stringify(ids)}`);
-        console.log(newIconMd);
         fs.writeFileSync('./src/docs/icon.md', newIconMd);
     });

@@ -9,9 +9,9 @@
 ## 形状
 ::: demo
 ``` html
-<AmIconButton shape="round" icon-name="message"/>
+<AmIconButton shape="round" icon-name="left"/>
 <AmDivider />
-<AmIconButton shape="square" icon-name="edit-square"/>
+<AmIconButton shape="square" icon-name="left"/>
 ```
 :::
 
@@ -19,13 +19,13 @@
 ::: demo
 ``` html
 <div class="row">
-    <AmIconButton shape="round" size="mini" icon-name="close"/>
+    <AmIconButton shape="round" size="mini" icon-name="left"/>
     <AmDivider />
-    <AmIconButton shape="round" size="small" icon-name="message"/>
+    <AmIconButton shape="round" size="small" icon-name="left"/>
     <AmDivider />
-    <AmIconButton shape="round" size="middle" icon-name="edit-square"/>
+    <AmIconButton shape="round" size="middle" icon-name="left"/>
     <AmDivider />
-    <AmIconButton shape="round" size="big" icon-name="edit-square"/>
+    <AmIconButton shape="round" size="big" icon-name="left"/>
 </div>
 
 <style>
@@ -41,7 +41,7 @@
 ::: demo
 ``` html
 <div class="row">
-    <AmIconButton shape="round" icon-name="close" disabled />
+    <AmIconButton shape="round" icon-name="left" disabled />
 </div>
 
 <style>
@@ -60,48 +60,48 @@
 <div class="row">
     <span>text</span>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="close" mode="text" size="mini"/>
+    <AmIconButton shape="round" icon-name="left" mode="text" size="mini"/>
     <AmDivider />
-    <AmIconButton shape="square" icon-name="edit-square" mode="text"/>
+    <AmIconButton shape="square" icon-name="left" mode="text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="text" size="small"/>
+    <AmIconButton shape="round" icon-name="left" mode="text" size="small"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="text"/>
+    <AmIconButton shape="round" icon-name="left" mode="text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="text" size="big"/>
+    <AmIconButton shape="round" icon-name="left" mode="text" size="big"/>
 </div>
 <div class="row">
     <span>border-text</span>
     <AmDivider />
-    <AmIconButton shape="square" icon-name="edit-square" mode="border-text"/>
+    <AmIconButton shape="square" icon-name="left" mode="border-text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="border-text" size="small"/>
+    <AmIconButton shape="round" icon-name="left" mode="border-text" size="small"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="border-text"/>
+    <AmIconButton shape="round" icon-name="left" mode="border-text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="border-text" size="big"/>
+    <AmIconButton shape="round" icon-name="left" mode="border-text" size="big"/>
 </div>
 <div class="row" style="background: #333;color: #fff;">
     <span>white-text</span>
     <AmDivider />
-    <AmIconButton shape="square" icon-name="edit-square" mode="white-text"/>
+    <AmIconButton shape="square" icon-name="left" mode="white-text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="white-text" size="small"/>
+    <AmIconButton shape="round" icon-name="left" mode="white-text" size="small"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="white-text"/>
+    <AmIconButton shape="round" icon-name="left" mode="white-text"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="edit-square" mode="white-text" size="big"/>
+    <AmIconButton shape="round" icon-name="left" mode="white-text" size="big"/>
 </div>
 <div class="row">
     <span>black</span>
     <AmDivider />
-    <AmIconButton shape="square" icon-name="close" mode="black"/>
+    <AmIconButton shape="square" icon-name="left" mode="black"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="close" mode="black" size="small"/>
+    <AmIconButton shape="round" icon-name="left" mode="black" size="small"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="close" mode="black"/>
+    <AmIconButton shape="round" icon-name="left" mode="black"/>
     <AmDivider />
-    <AmIconButton shape="round" icon-name="close" mode="black" size="big"/>
+    <AmIconButton shape="round" icon-name="left" mode="black" size="big"/>
 </div>
 
 <style>

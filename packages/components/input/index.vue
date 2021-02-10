@@ -38,7 +38,7 @@ export default {
         // 提示文字
         placeholder: {
             type: String,
-            default: '',
+            default: '请输入',
         },
         // 最大字符数（未实现）
         maxLength: {

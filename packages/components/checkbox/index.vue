@@ -6,12 +6,12 @@
         }"
         @click="handleClick"
     >
-        <div class="checkbox">
+        <div class="am-checkbox__box">
             <transition name="am-checkbox-anime">
-                <AmIcon name="check2" v-show="selected"/>
+                <AmIcon name="check2" v-show="selected" size="12px" />
             </transition>
         </div>
-        <div class="text" v-if="$slots.default">
+        <div class="am-checkbox__text" v-if="$slots.default">
             <slot />
         </div>
     </div>
@@ -88,7 +88,7 @@ export default {
     height: 32px;
     user-select: none;
     cursor: pointer;
-    >.checkbox {
+    &__box {
         width: 16px;
         height: 16px;
         display: flex;
@@ -96,16 +96,15 @@ export default {
         justify-content: center;
         border-radius: 2px;
         border: 1px solid var(--border);
-        transition: border .2s;
+        transition: border .2s, background .2s;
         .am-icon {
             opacity: 1;
             transform: scale(1);
-            background: var(--primary);
             color: #fff;
         }
     }
-    >.text {
-        margin-left: 8px;
+    &__text {
+        margin-left: 6px;
         font-size: 14px;
     }
 
@@ -120,23 +119,22 @@ export default {
         from {
             opacity: 0;
             transform: scale(0);
-            background: none;
         }
         to {
             opacity: 1;
             transform: scale(1);
-            background: var(--primary);
         }
     }
 
     // 状态
     &:hover {
-        >.checkbox {
+        .am-checkbox__box {
             border-color: var(--primary);
         }
     }
     &.is-active {
-        >.checkbox {
+        .am-checkbox__box {
+            background: var(--primary);
             border-color: var(--primary);
         }
     }

@@ -17,19 +17,17 @@ export default {
     }
 }
 </script>
-
-<style>
-.am-radio {
-    margin-right: 16px;
-}
-</style>
 ```
 :::
 
-## Attributes
+## 属性
 
 | 参数       | 说明        | 类型       | 可选值         | 默认值   |
 |---------- |------------ |---------- |-------------  |-------- |
-| v-model      | 双向绑定值      |  array  |  -  |   -   |
-| label |  绑定的值  |  -  | - | - |
+| v-model      | 双向绑定值      |  Any  |  -  |   -   |
+| label |  绑定的值  |  Any  | - | - |
 
+# Slot
+| slot name       | 说明        |
+|---------- |------------ |
+| default     | 文本内容      |

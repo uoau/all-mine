@@ -660,6 +660,17 @@ code {
   color: #e5e5e5;
 }
 
+.am-date-format__date {
+  color: var(--fcolor-1);
+}
+.am-date-format__time {
+  color: var(--fcolor-3);
+}
+.am-date-format.is-compact {
+  display: flex;
+  flex-direction: column;
+}
+
 .am-input {
   width: 230px;
   height: 32px;
@@ -1322,30 +1333,66 @@ to {
 .am-table {
   width: 100%;
 }
-.am-table > .hd > table {
+.am-table__hd > table {
   width: 100%;
   table-layout: fixed;
 }
-.am-table > .hd > table > thead > tr {
+.am-table__hd > table > thead > tr {
   border-bottom: 1px solid var(--border);
 }
-.am-table > .hd > table > thead > tr > th {
+.am-table__hd > table > thead > tr > th {
   padding: 16px;
   color: #999;
   font-size: 14px;
   text-align: left;
 }
-.am-table > .bd > table {
+.am-table__bd > table {
   width: 100%;
   table-layout: fixed;
 }
-.am-table > .bd > table > tbody > tr {
+.am-table__bd > table > tbody > tr {
   border-bottom: 1px solid var(--border);
 }
-.am-table > .bd > table > tbody > tr > td {
+.am-table__bd > table > tbody > tr > td {
   padding: 16px;
   font-size: 14px;
   text-align: left;
+}
+.am-table__th-cell {
+  display: flex;
+  align-items: center;
+}
+.am-table__sort {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  height: 16px;
+  width: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: initial;
+}
+.am-table__sort i {
+  position: absolute;
+  left: 5px;
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+.am-table__sort i:first-child {
+  border-bottom-color: #c0c4cc;
+  top: -1px;
+}
+.am-table__sort i:last-child {
+  border-top-color: #c0c4cc;
+  bottom: -1px;
+}
+.am-table__sort.is-asc i:first-child {
+  border-bottom-color: #333;
+}
+.am-table__sort.is-desc i:last-child {
+  border-top-color: #333;
 }
 
 .am-img-viewer {
@@ -1355,6 +1402,7 @@ to {
   width: 100%;
   height: 100%;
   position: relative;
+  z-index: 3;
 }
 .am-img-viewer__img {
   max-width: 100%;
@@ -1367,11 +1415,23 @@ to {
   margin: auto;
   display: flex;
   overflow: auto;
+  z-index: 3;
+}
+.am-img-viewer__img-mask {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
 }
 .am-img-viewer__img img {
   max-width: initial;
   max-height: initial;
   margin: auto;
+  position: relative;
+  z-index: 2;
 }
 .am-img-viewer--dir-left .am-img-viewer__anime-enter-active,
 .am-img-viewer--dir-left .am-img-viewer__anime-leave-active {
@@ -1443,6 +1503,7 @@ to {
   bottom: 0;
   left: 24px;
   margin: auto;
+  z-index: 5;
 }
 .am-img-viewer__right {
   position: absolute;
@@ -1450,6 +1511,7 @@ to {
   bottom: 0;
   right: 24px;
   margin: auto;
+  z-index: 5;
 }
 .am-img-viewer__control-bar {
   height: 48px;
@@ -1464,12 +1526,21 @@ to {
   align-items: center;
   justify-content: center;
   transform: translateX(-50%);
+  z-index: 5;
 }
 .am-img-viewer__control-bar .am-icon-button {
   margin-right: 8px;
 }
 .am-img-viewer__control-bar .am-icon-button:last-child {
   margin-right: 0;
+}
+.am-img-viewer__control-bar.control-fade-enter-active,
+.am-img-viewer__control-bar.control-fade-leave-active {
+  transition: opacity 0.2s;
+}
+.am-img-viewer__control-bar.control-fade-enter,
+.am-img-viewer__control-bar.control-fade-leave-to {
+  opacity: 0;
 }
 
 .am-textarea {
@@ -1774,6 +1845,62 @@ from {
 }
 to {
     opacity: 1;
+}
+}
+
+.am-loading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 1;
+  z-index: 999;
+}
+.am-loading .spinner {
+  margin-bottom: 8px;
+}
+.am-loading .spinner .path {
+  stroke: var(--primary);
+  transform-origin: center;
+  position: relative;
+  animation: dash 1s linear infinite;
+  stroke-dasharray: 20, 80;
+  stroke-dashoffset: 0;
+}
+.am-loading .spinner .path2 {
+  stroke: var(--light-bg);
+  transform-origin: center;
+  position: relative;
+}
+.am-loading > span {
+  font-size: 14px;
+}
+.am-loading-anime-enter-active {
+  transition: opacity 0s;
+}
+.am-loading-anime-leave-active {
+  transition: opacity 0.5s;
+}
+.am-loading-anime-enter,
+.am-loading-anime-leave-to {
+  opacity: 0;
+}
+@keyframes dash {
+0% {
+    transform: rotate(0deg);
+}
+50% {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+100% {
+    transform: rotate(360deg);
 }
 }
 

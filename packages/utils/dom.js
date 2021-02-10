@@ -6,8 +6,9 @@
  *   判断 el A是否在 elB 内 （待办）
  *   监听元素属性变化,如宽高变化 (完成)
  *   事件 - 委托
- *
+ *   平滑滚动到目标位置
  */
+import { getType } from './base';
 
 // 获取元素处于哪个滚动视图里
 export function getScrollBoxOfEl(el) {
@@ -69,4 +70,77 @@ export function getHiddenDomRect(el) {
     };
     cloneEl.remove();
     return obj;
+}
+
+// 平滑滚动到目标区域
+export function scrollTo({
+    scrollEl, // 滚动元素
+    time, // 滚动时间
+    x, // 滚动的水平距离
+    y, // 滚动的垂直距离
+    minTime, // 最小时间
+    maxTime, // 最大时间
+    speed = 0.2, // 速度
+}) {
+    return new Promise((resolve) => {
+        const scrollBody = scrollEl;
+        // 选择计时器方式
+        const startTime = new Date();
+        const newSetTimeout = window.requestAnimationFrame || ((func) => setTimeout(func, 16));
+        // 获取滚动对象、计算滚动初始值
+        const beginY = scrollBody.scrollTop;
+        const beginX = scrollBody.scrollLeft;
+        // 计算时间
+        let durationTime = time;
+        if (!durationTime) {
+            let durationY = Math.abs(y - beginY) * speed;
+            let durationX = Math.abs(x - beginX) * speed;
+            if (minTime && durationY < minTime) {
+                durationY = minTime;
+            }
+            if (minTime && durationX < minTime) {
+                durationX = minTime;
+            }
+            durationTime = durationY || durationX;
+        }
+        if (durationTime > maxTime) {
+            durationTime = maxTime;
+        }
+        // 计算距离函数
+        function sFun(t, type) {
+            const begin = type === 'y' ? beginY : beginX;
+            const to = type === 'y' ? y : x;
+            return begin + (to - begin) * (t / durationTime);
+        }
+        // 开始滚动
+        let xyEnd = false;
+        function scroll(type) {
+            return () => {
+                const t = (new Date()) - startTime;
+                const s = sFun(t, type);
+                const scrollKey = type === 'y' ? 'scrollTop' : 'scrollLeft';
+                const to = type === 'y' ? y : x;
+                if (t <= durationTime) {
+                    scrollBody[scrollKey] = s;
+                    newSetTimeout(scroll(type));
+                } else {
+                    scrollBody[scrollKey] = to;
+                    if (xyEnd) {
+                        resolve();
+                    } else {
+                        xyEnd = true;
+                    }
+                }
+            };
+        }
+        if (getType(x) === 'Number') {
+            newSetTimeout(scroll('x'));
+        }
+        if (getType(y) === 'Number') {
+            newSetTimeout(scroll('y'));
+        }
+        if (getType(x) !== 'Number' || getType(y) !== 'Number') {
+            xyEnd = true;
+        }
+    });
 }

@@ -52,8 +52,8 @@ export default {
 <style lang='less'>
 .am-dialog {
     .am-popup {
-        .bd {
-
+        &__popup {
+            width: 400px;
         }
     }
 }

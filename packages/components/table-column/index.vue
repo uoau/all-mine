@@ -22,11 +22,16 @@ export default {
         },
         // 宽度
         width: {
-            type: Number,
+            type: String,
         },
         // 类型
         type: {
             type: String,
+        },
+        // 排序
+        sort: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {

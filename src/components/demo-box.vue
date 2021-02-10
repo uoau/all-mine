@@ -4,7 +4,7 @@
             <slot name="demo"/>
         </div>
         <div class="btn" @click="()=>{open = !open}">
-            <AmIcon :name="!open ? 'caret-down' : 'caret-up'" />
+            <AmIcon :name="!open ? 'caret-bottom' : 'caret-top'" />
         </div>
         <div class="code" v-fold="open">
             <slot name="code"/>

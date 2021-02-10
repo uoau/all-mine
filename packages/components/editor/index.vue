@@ -52,7 +52,9 @@ import {
 } from '../../utils/browser';
 import '../../stylesheet/markdown.css';
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+    html: true,
+});
 export default {
     name: 'AmEditor',
     props: {

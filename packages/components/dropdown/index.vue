@@ -6,9 +6,10 @@
         @mouseleave="mouseleave"
     >
         <AmButton
-            icon-name="caret-down"
+            :type="type"
+            icon-name="caret-bottom"
             icon-position="back"
-            :icon-size="12"
+            icon-size="12px"
             ref="btn"
             @click="clickBtn"
         >
@@ -28,10 +29,14 @@
 export default {
     name: 'AmDropdown',
     props: {
+        type: {
+            type: String,
+            default: 'default',
+        },
         // 占位符
         placeholder: {
             type: String,
-            default: '点击展开下拉',
+            default: '请选择',
         },
         // 更新占位符
         updatePlaceholder: {

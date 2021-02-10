@@ -7,6 +7,7 @@
             v-bind="$attrs"
             v-on="$listeners"
             @after-leave="afterLeave"
+            @mousemove.native="mousemove"
         >
             <!-- 图片 -->
             <div
@@ -35,7 +36,10 @@
                             :style="item.style"
                             ref="img"
                             @load="loadImg"
+                            @click="clickImg"
                         />
+                        <!-- 底层 -->
+                        <div class="am-img-viewer__img-mask" @click="clickMask"></div>
                     </div>
                 </transition>
             </div>
@@ -57,25 +61,30 @@
                 @click="clickSwitch('next')"
             />
             <!-- 底部控制栏 -->
-            <div class="am-img-viewer__control-bar" v-if="nowItem && nowItem.showControl">
-                <AmIconButton
-                    icon-name="zoomin"
-                    @click="scaleImg('big')"
-                    mode="white-text"
-                />
-                <AmIconButton
-                    :icon-name="dealedImgs[nowIndex] &&
-                        dealedImgs[nowIndex].isOriginal
-                        ? 'compress' : 'expend'"
-                    mode="white-text"
-                    @click="originalImg"
-                />
-                <AmIconButton
-                    icon-name="zoomout"
-                    @click="scaleImg('small')"
-                    mode="white-text"
-                />
-            </div>
+            <transition name="control-fade">
+                <div
+                    class="am-img-viewer__control-bar"
+                    v-if="nowItem && nowItem.showControl && mouseInDown"
+                >
+                    <AmIconButton
+                        icon-name="zoomin"
+                        @click="scaleImg('big')"
+                        mode="white-text"
+                    />
+                    <AmIconButton
+                        :icon-name="dealedImgs[nowIndex] &&
+                            dealedImgs[nowIndex].isOriginal
+                            ? 'compress' : 'expend'"
+                        mode="white-text"
+                        @click="originalImg"
+                    />
+                    <AmIconButton
+                        icon-name="zoomout"
+                        @click="scaleImg('small')"
+                        mode="white-text"
+                    />
+                </div>
+            </transition>
         </AmMovieScreen>
     </div>
 </template>
@@ -94,16 +103,13 @@ export default {
             type: Number,
             default: 0,
         },
-        // 图片初始化宽度
-        initWidth: {
-            type: Number,
-        },
     },
     data() {
         return {
             dealedImgs: [],
             nowIndex: 0,
             direction: 'left',
+            mouseInDown: false,
         };
     },
     computed: {
@@ -305,6 +311,20 @@ export default {
         afterLeave() {
             this.dealedImgs = [];
         },
+        // 点击图片事件
+        clickImg(e) {
+            this.$emit('click-img', e);
+        },
+        clickMask(e) {
+            this.$emit('click-mask', e);
+        },
+        mousemove(e) {
+            if ((document.body.clientHeight - e.clientY) < 150) {
+                this.mouseInDown = true;
+            } else {
+                this.mouseInDown = false;
+            }
+        },
     },
 };
 </script>
@@ -317,6 +337,7 @@ export default {
         width: 100%;
         height: 100%;
         position: relative;
+        z-index: 3;
     }
     &__img {
         max-width: 100%;
@@ -329,10 +350,23 @@ export default {
         margin: auto;
         display: flex;
         overflow: auto;
+        z-index: 3;
+        // 遮掩层
+        &-mask {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
         img {
             max-width: initial;
             max-height: initial;
             margin: auto;
+            position: relative;
+            z-index: 2;
         }
         &.is-original {
             img {
@@ -415,6 +449,7 @@ export default {
         bottom: 0;
         left: 24px;
         margin: auto;
+        z-index: 5;
     }
     &__right {
         position: absolute;
@@ -422,6 +457,7 @@ export default {
         bottom: 0;
         right: 24px;
         margin: auto;
+        z-index: 5;
     }
     // 控制栏
     &__control-bar {
@@ -437,11 +473,18 @@ export default {
         align-items: center;
         justify-content: center;
         transform: translateX(-50%);
+        z-index: 5;
         .am-icon-button {
             margin-right: 8px;
             &:last-child {
                 margin-right: 0;
             }
+        }
+        &.control-fade-enter-active, &.control-fade-leave-active {
+            transition: opacity .2s;
+        }
+        &.control-fade-enter, &.control-fade-leave-to {
+            opacity: 0;
         }
     }
 }

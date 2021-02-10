@@ -1,7 +1,7 @@
 <template>
     <div class="am-table">
         <div style="display:none"><slot /></div>
-        <div class="hd">
+        <div class="am-table__hd">
             <table>
                 <thead>
                     <tr>
@@ -9,39 +9,86 @@
                             v-for="(item,index) in columnData"
                             :key="index"
                             :style="{
-                                width: item.width + 'px',
-                            }">
+                                width: item.width,
+                            }"
+                        >
                             <!-- slot th -->
                             <Cell :slot-fun="item.$scopedSlots.th" v-if="item.$scopedSlots.th"/>
                             <!-- checkbox th -->
-                            <div class="cell" v-else-if="item.type === 'selection'"><AmCheckbox/></div>
+                            <div
+                                class="am-table__hd-cell"
+                                v-else-if="item.type === 'selection'"
+                            >
+                                <AmCheckbox/>
+                            </div>
                             <!-- 文字 th -->
-                            <div class="cell" v-else>{{ item.label }}</div>
+                            <div class="am-table__th-cell" v-else>
+                                {{ item.label }}
+                                <!-- 排序 -->
+                                <div
+                                    v-if="item.sort"
+                                    class="am-table__sort"
+                                    :class="{
+                                        ['is-asc']:
+                                            sort.prop === item.prop &&
+                                            sort.order === 'asc',
+                                        ['is-desc']:
+                                            sort.prop === item.prop &&
+                                            sort.order === 'desc',
+                                    }"
+                                    @click="clickSort(item.prop)"
+                                >
+                                    <i></i><i></i>
+                                </div>
+                            </div>
                         </th>
                         <th :style="'padding:0;width:'+scrollBarWidth+'px'"></th>
                     </tr>
                 </thead>
             </table>
         </div>
-        <div class="bd" :style="bdStyle" ref="bd">
+        <div class="am-table__bd" :style="bdStyle" ref="bd">
             <table>
                 <colgroup>
-                    <col v-for="(item, index) in columnData" :key="index" :width="item.width"/>
+                    <col
+                        v-for="(item, index) in columnData"
+                        :key="index"
+                        :style="{
+                            width: item.width,
+                        }"
+                    />
                 </colgroup>
                 <tbody>
-                    <tr v-for="(item1, index1) in data" :key="index1">
+                    <tr
+                        v-for="(item1, index1) in data"
+                        :key="index1"
+                        :class="rowClass(item1)"
+                        @click="clickRow(item1)"
+                    >
                         <td
                             v-for="(item2, index2) in columnData"
                             :key="index2"
-                            :style="{
-                                width: item1.width + 'px',
-                            }">
+                            @click="clickCell(item1, item2)"
+                        >
                             <!-- slot td -->
-                            <Cell :slot-fun="item2.$scopedSlots.default" :data="item1" v-if="item2.$scopedSlots.default"/>
+                            <Cell
+                                :slot-fun="item2.$scopedSlots.default"
+                                :data="item1"
+                                v-if="item2.$scopedSlots.default"
+                            />
                             <!-- checkbox td -->
-                            <div class="cell" v-else-if="item2.type === 'selection'"><AmCheckbox v-model="item1.isSelected"/></div>
+                            <div
+                                class="am-table__td-cell"
+                                v-else-if="item2.type === 'selection'"
+                            >
+                                <AmCheckbox v-model="item1.isSelected"/>
+                            </div>
                             <!-- 文字 td -->
-                            <div class="cell" v-else :style="cellStyle">{{ item1[item2.prop] }}</div>
+                            <div
+                                class="am-table__td-cell"
+                                v-else
+                                :style="cellStyle"
+                            >{{ item1[item2.prop] }}</div>
                         </td>
                     </tr>
                 </tbody>
@@ -86,6 +133,11 @@ export default {
             type: String,
             default: 'left', // left center right
         },
+        // 行类
+        rowClass: {
+            type: Function,
+            default: () => {},
+        },
     },
     provide() {
         return {
@@ -98,6 +150,11 @@ export default {
             columnData: [],
             // 滚动条宽度
             scrollBarWidth: 0,
+            // 排序
+            sort: {
+                prop: '',
+                order: '',
+            },
         };
     },
     computed: {
@@ -125,7 +182,26 @@ export default {
         });
     },
     methods: {
-        // 检测宽度
+        // 点击排序
+        clickSort(prop) {
+            const arr = ['', 'asc', 'desc'];
+            if (this.sort.prop && this.sort.prop !== prop) {
+                this.sort.order = '';
+            }
+            this.sort.prop = prop;
+            const index = arr.findIndex((i) => i === this.sort.order);
+            const nextIndex = index + 1 > arr.length - 1 ? 0 : index + 1;
+            this.sort.order = arr[nextIndex];
+            this.$emit('sort-change', this.sort);
+        },
+        // 点击行
+        clickRow(row) {
+            this.$emit('row-click', row);
+        },
+        // 点击单元格
+        clickCell(row, column) {
+            this.$emit('cell-click', row, column);
+        },
     },
 };
 </script>
@@ -133,7 +209,7 @@ export default {
 <style lang="less">
 .am-table {
     width: 100%;
-    >.hd {
+    &__hd {
         >table {
             width: 100%;
             table-layout: fixed;
@@ -150,7 +226,7 @@ export default {
             }
         }
     }
-    >.bd {
+    &__bd {
         >table {
             width: 100%;
             table-layout: fixed;
@@ -163,6 +239,48 @@ export default {
                         text-align: left;
                     }
                 }
+            }
+        }
+    }
+
+    &__th-cell {
+        display: flex;
+        align-items: center;
+    }
+
+    &__sort {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        height: 16px;
+        width: 20px;
+        vertical-align: middle;
+        cursor: pointer;
+        overflow: initial;
+        i {
+            position: absolute;
+            left: 5px;
+            width: 0;
+            height: 0;
+            border: 4px solid transparent;
+            &:first-child {
+                border-bottom-color: #c0c4cc;
+                top: -1px;
+            }
+            &:last-child {
+                border-top-color: #c0c4cc;
+                bottom: -1px;
+            }
+        }
+        &.is-asc {
+            i:first-child {
+                border-bottom-color: #333;
+            }
+        }
+        &.is-desc {
+            i:last-child {
+                border-top-color: #333;
             }
         }
     }

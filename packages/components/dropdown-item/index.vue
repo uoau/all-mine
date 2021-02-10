@@ -9,16 +9,6 @@ export default {
     name: 'AmDropdownItem',
     inject: ['dropdown'],
     props: {
-        // 禁用
-        disabled: {
-            type: Boolean,
-            default: false,
-        },
-        // 分组名
-        group: {
-            type: String,
-            default: '',
-        },
         // 标签名
         label: {
             type: String,

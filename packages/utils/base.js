@@ -20,6 +20,7 @@ export function getType(content) {
     case '[object Symbol]': type = 'Symbol'; break;
     case '[object Undefined]': type = 'Undefined'; break;
     case '[object Null]': type = 'Null'; break;
+    case '[object Object]': type = 'Object'; break;
     case '[object Function]': type = 'Function'; break;
     case '[object Date]': type = 'Date'; break;
     case '[object Array]': type = 'Array'; break;

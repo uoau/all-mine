@@ -136,7 +136,7 @@ export default {
         }
     }
     &__popup {
-        width: 400px;
+        width: 480px;
         max-height: calc(100% - 80px);
         background: #fff;
         overflow: auto;
@@ -158,14 +158,12 @@ export default {
 
     &__hd {
         >.title {
-            height: 50px;
             margin: auto;
             font-size: 16px;
             font-weight: bold;
-            height: 50px;
             display: flex;
             align-items: center;
-            padding: 0 20px;
+            padding: 24px 24px 0 24px;
         }
         >.close {
             position: absolute;
@@ -176,14 +174,14 @@ export default {
     }
     &__bd {
         flex: 1;
-        padding: 32px;
+        padding: 24px;
         padding-bottom: 24px;
     }
     &__ft {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding: 24px 32px;
+        padding: 16px 24px;
         padding-top: 0;
         >.am-button {
             margin-left: 8px;

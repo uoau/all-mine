@@ -2,7 +2,16 @@
     <div
         class="am-divider"
         :style="'margin:'+margin+';font-size:'+size+'px;color:'+color">
-        {{ content }}
+        <span
+            v-if="content">
+            {{ content }}
+        </span>
+        <AmIcon
+            v-else-if="iconName"
+            :name="iconName"
+            :size="iconSize"
+        />
+        <i v-else-if="showLine" class="am-divider__line"></i>
     </div>
 </template>
 
@@ -26,6 +35,16 @@ export default {
             type: String,
             default: '#999',
         },
+        iconName: {
+            type: String,
+        },
+        iconSize: {
+            type: String,
+        },
+        showLine: {
+            type: Boolean,
+            default: false,
+        },
     },
 };
 </script>
@@ -34,8 +53,12 @@ export default {
     .am-divider {
         display: inline-flex;
         color: #e5e5e5;
-        &:before {
-
+        align-items: center;
+        &__line {
+            width: 1px;
+            height: 8px;
+            background: #ccc;
+            display: inline-flex;
         }
     }
 </style>

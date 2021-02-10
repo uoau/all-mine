@@ -67,7 +67,8 @@ export default {
     // 删除按钮
     .am-icon {
         cursor: pointer;
-        margin-left: 4px;
+        margin-left: 2px;
+        margin-right: -2px;
     }
     // 大小
     &.is-small {
@@ -78,12 +79,12 @@ export default {
     &.is-middle {
         height: 24px;
         font-size: 14px;
-        padding: 0 8px;
+        padding: 0 6px;
     }
     &.is-big {
         height: 28px;
         font-size: 14px;
-        padding: 0 12px;
+        padding: 0 8px;
     }
     // 预设模式
     // 默认标签
@@ -98,12 +99,6 @@ export default {
         color: #fff;
     }
     // 主题浅色标签
-    &.is-light-primary {
-        background: var(--light-primary);
-        color: var(--primary);
-        border: 1px solid var(--primary);
-    }
-    // 主题浅色标签
     &.is-border-primary {
         color: var(--primary);
         border: 1px solid var(--primary);
@@ -112,10 +107,6 @@ export default {
     &.is-black {
         color: #fff;
         background: #333;
-    }
-    // 文本标签
-    &.is-text {
-        color: var(--fcolor-2);
     }
 }
 </style>

@@ -29,7 +29,7 @@ export default {
         // 显示
         show: {
             type: Boolean,
-            default: true,
+            default: false,
         },
         // 显示关闭按钮
         showClose: {

@@ -2,29 +2,34 @@
     <div
         class="am-select"
         :class="asClass"
-        v-clickoutside="clickOutside">
+        v-clickoutside="clickOutside"
+    >
         <!-- 选择框 -->
-        <div class="select-box" @click="clickSelectBox" ref="selectBox">
+        <div class="am-select__box" @click="clickSelectBox" ref="selectBox">
+            <!-- 默认文本 -->
+            <p
+                class="am-select__placeholder"
+                v-if="(!multiple && !selectedItem) || (multiple && !selectedItem.length)"
+            >{{ placeholder }}</p>
             <!-- 单选 -->
-            <div class="alone" v-if="!multiple">
-                <p class="placeholder" v-if="!selectedItem">{{ placeholder }}</p>
-                <div v-else class="content">{{ selectedItem.label }}</div>
-                <AmIcon name="down"/>
-            </div>
+            <div
+                v-else-if="!multiple"
+                class="am-select__content am-select__content-alone"
+            >{{ selectedItem.label }}</div>
             <!-- 多选 -->
-            <div class="multiple" v-else>
-                <p class="placeholder" v-if="!selectedItem.length">{{ placeholder }}</p>
-                <div v-else class="content">
-                    <div
-                        class="tag"
-                        v-for="item in selectedItem"
-                        :key="item.value"
-                    >
-                        <span>{{ item.label }}</span>
-                        <AmIcon name="close"/>
-                    </div>
-                </div>
-                <AmIcon name="down"/>
+            <div
+                v-else
+                class="am-select__content am-select__content-multiple"
+            >
+                <AmTag
+                    :text="item.label"
+                    v-for="item in selectedItem"
+                    :key="item.value"
+                />
+            </div>
+            <!-- 下拉按钮 -->
+            <div class="am-select__down-icon">
+                <AmIcon name="caret-bottom" size="12px"/>
             </div>
         </div>
         <!-- 下拉框内容 -->
@@ -78,7 +83,7 @@ export default {
     computed: {
         asClass() {
             return {
-                'is-focus': this.dropDownShow,
+                'is-focus': this.isFocus,
             };
         },
         selectedItem() {
@@ -102,6 +107,9 @@ export default {
             });
             return res;
         },
+        isFocus() {
+            return this.dropDownShow;
+        },
     },
     mounted() {
         this.selectBoxEl = this.$refs.selectBox;
@@ -119,7 +127,12 @@ export default {
             if (this.multiple) {
                 // 多选
                 const newValue = this.selectedValue ? this.selectedValue : [];
-                newValue.push(option.value);
+                const index = newValue.findIndex((i) => i === option.value);
+                if (index > -1) {
+                    newValue.splice(index, 1);
+                } else {
+                    newValue.push(option.value);
+                }
                 this.$emit('changeValue', newValue);
             } else {
                 // 单选
@@ -140,7 +153,8 @@ export default {
 <style lang="less">
 .am-select {
     width: 230px;
-    .select-box {
+    // 输入框
+    &__box {
         width: 100%;
         min-height: 32px;
         border: 1px solid var(--border);
@@ -148,58 +162,41 @@ export default {
         cursor: pointer;
         transition: border .2s;
         font-size: 14px;
-        >.alone {
-            height: 100%;
-            min-height: 32px;
-            padding: 0 8px;
-            display: flex;
-            align-items: center;
-            >.placeholder {
-                flex: 1;
-                color: var(--placeholder);
-            }
-            >.content {
-                flex: 1;
-            }
-            >.am-icon {
-                font-size: 12px;
-            }
+        display: flex;
+        align-items: center;
+    }
+    // 默认文本
+    &__placeholder {
+        width: calc(100% - 32px);
+        color: var(--placeholder);
+        padding-left: 8px;
+    }
+    // 内容
+    &__content {
+        width: calc(100% - 32px);
+        padding-left: 8px;
+        &-alone {
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
         }
-        >.multiple {
-            height: 100%;
-            min-height: 32px;
-            padding: 0 8px;
+        &-multiple {
             display: flex;
-            align-items: center;
-            >.placeholder {
-                flex: 1;
-                color: var(--placeholder);
-            }
-            >.content {
-                display: flex;
-                flex-wrap: wrap;
-                flex: 1;
-                padding-top: 2px;
-                .tag {
-                    display: inline-flex;
-                    background: var(--light-bg);
-                    padding: 0 5px;
-                    margin-right: 2px;
-                    margin-bottom: 2px;
-                    align-items: center;
-                    span {
-                    }
-                    > .am-icon {
-                        margin-left: 4px;
-                        font-size: 12px;
-                    }
-                }
-            }
-            >.am-icon {
-                font-size: 12px;
+            flex-wrap: wrap;
+            padding: 3px 0 3px 8px;
+            .am-tag {
+                margin: 2px 4px 2px 0;
             }
         }
     }
+    // 下拉按钮
+    &__down-icon {
+        width: 32px;
+        height: 100%;
+        display: inline-flex;
+        justify-content: center;
+    }
+
     .am-popover {
         &__pop {
             max-height: 180px;
@@ -207,12 +204,12 @@ export default {
     }
     // 修饰
     &:hover {
-        .select-box {
+        .am-select__box {
             border-color: #333;
         }
     }
     &.is-focus {
-        .select-box {
+        .am-select__box {
             border-color: #333;
         }
     }

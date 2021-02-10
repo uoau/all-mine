@@ -21,7 +21,7 @@ export default {
         },
         // 图标字号
         iconSize: {
-            type: Number,
+            type: String,
         },
         // 形状 圆形round 方形 square
         shape: {

@@ -16,7 +16,7 @@ export default {
             default: '',
         },
         size: {
-            type: Number,
+            type: String,
         },
         color: {
             type: String,
@@ -26,7 +26,7 @@ export default {
         style() {
             let style = '';
             if (this.size) {
-                style += `font-size: ${this.size}px;`;
+                style += `font-size: ${this.size};`;
             }
             if (this.color) {
                 style += `color: ${this.color};`;

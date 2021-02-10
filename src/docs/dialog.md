@@ -22,3 +22,12 @@ export default {
 </script>
 ```
 :::
+
+## 函数参数
+
+| 参数       | 说明        | 类型       | 默认值         |
+|---------- |------------ |---------- |-------------  |
+| content   | 文本内容       | String   | |              |
+| cancelText      | 取消按钮文本         | String      | '取消' |
+| confirmText      | 确认按钮文本         | String      | '确认' |
+

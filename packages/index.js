@@ -9,6 +9,7 @@ import AmButton from './components/button';
 import AmIconButton from './components/icon-button';
 import AmIcon from './components/icon';
 import AmDivider from './components/divider';
+import AmDateFormat from './components/date-format';
 import AmInput from './components/input';
 import AmForm from './components/form';
 import AmFormItem from './components/form-item';
@@ -45,6 +46,7 @@ import clickoutside from './directives/clickoutside';
 import VueHotkey from 'v-hotkey';
 import fold from './directives/fold';
 import tooltip from './directives/tooltip';
+import loading from './directives/loading';
 import clickanime from './directives/clickanime';
 
 const AM = {
@@ -52,6 +54,7 @@ const AM = {
     AmIcon,
     AmDivider,
     AmInput,
+    AmDateFormat,
     AmForm,
     AmFormItem,
     AmBreadcrumb,
@@ -99,6 +102,7 @@ const install = (Vue) => {
     Vue.directive('fold',fold);
     Vue.directive('clickanime',clickanime);
     Vue.use(tooltip);
+    Vue.use(loading);
 };
 AM.install = install;
 

@@ -5,8 +5,8 @@
 支持设置`size`和`color`属性。
 ::: demo
 ```html
-<AmIcon name="error" :size="28" />
-<AmIcon name="message" :size="28" color="#999"/>
+<AmIcon name="success-fill" size="32px" />
+<AmIcon name="success-fill" size="28px" color="#1890ff"/>
 
 <style>
 .am-icon {
@@ -22,12 +22,12 @@
 | **size**  | 尺寸         | Number   |   30           |    —    |
 | **color** | 颜色         | String   | red / #666 / rgba(255,255,255,1) |    —    |
 
-## 默认图标
+## 基础图标
 ::: example
 ``` html
 <div class="box">
     <div class="item" v-for="(item,index) in iconList" :key="index">
-        <AmIcon :name="item" :size="28"/>
+        <AmIcon :name="item" size="32px" />
         <span @click="copy(item)">{{ item }}</span>
     </div>
 </div>
@@ -35,7 +35,7 @@
     export default {
         data(){
             return {
-                iconList:["undo","redo","fullscreen","fullscreen-exit","drag","zoomout","zoomin","rotate-left","rotate-right","compress","expend","appstore","piechart-circle-fil","appstore-fill","bulb-fill","pie","piechart","bulb","read","block","verticalright","verticalleft","step-backward","step-forward","image-fill","see","calendar","calendar-fill","plus","ellipsis","doubleleft","doubleright","check2","check-circle-fill","close-circle-fill","info-circle-fill","warning-circle-fill","check-circle","close-circle","info-circle","warning-circle","sync","reload","message","poweroff","logout","setting","edit-square","save","file-text","folder","folder-open","cloud-upload","cloud-download","error","edit","link","right","left","up","down","arrowright","arrowup","arrowleft","arrowdown","menu","check","close","caret-down","caret-up","caret-right","caret-left","search"],
+                iconList:["ellipsis","check2","add","warn-fill","fail","warn","success","success-fill","fail-fill","check","close","double-left","double-right","left","down","up","right","caret-left","caret-right","caret-bottom","caret-top","calendar"],
             }
         },
         methods: {

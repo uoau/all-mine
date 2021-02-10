@@ -3,6 +3,7 @@
         <!-- 每页条数 -->
         <AmDropdown
             v-if="showPageSize"
+            trigger="hover"
             :placeholder="`每页${pageSize}条`"
             @change="changePageSize"
         >
@@ -16,27 +17,34 @@
             </AmDropdownItem>
         </AmDropdown>
         <!-- 上一页 -->
-        <AmButton
-            class="am-pagination-left"
-            icon-name="left"
+        <AmIconButton
+            class="am-pagination__left"
+            shape="square"
+            icon-name="caret-left"
+            icon-size="12px"
             :disabled="current <= 1"
             @click="clickPrev"
         />
         <!-- 页码 -->
         <AmButton
-            class="am-pagination-number"
-            :class="item === current ? 'active': ''"
+            class="am-pagination__number"
+            :class="item === current ? 'is-active': ''"
             v-for="(item,index) in pagers"
             :key="index"
             @click="clickPager(item)"
         >
-            <AmIcon name="ellipsis" v-if="item=='prev' || item==='next'"/>
+            <AmIcon
+                name="ellipsis"
+                v-if="item=='prev' || item==='next'"
+            />
             <span v-else>{{ item }}</span>
         </AmButton>
         <!-- 下一页 -->
-        <AmButton
-            class="am-pagination-right"
-            icon-name="right"
+        <AmIconButton
+            class="am-pagination__right"
+            shape="square"
+            icon-name="caret-right"
+            icon-size="12px"
             :disabled="current >= pagerTotal"
             @click="clickNext"
         />
@@ -166,25 +174,28 @@ export default {
 <style lang="less">
 .am-pagination {
     display: flex;
-    .am-button {
+    .am-button,.am-icon-button {
         margin-right: 5px;
     }
     // 左页码
-    .am-pagination-left {
+    &__left {
         padding: 0;
     }
     // 右页码
-    .am-pagination-right {
+    &__right {
         padding: 0;
     }
     // 页码
-    .am-pagination-number {
+    &__number {
         padding: 0;
         // 选中状态
-        &.active {
+        &.is-active {
             background: var(--primary);
             color: #fff;
             border: none;
+            &:hover {
+                background: var(--primary);
+            }
         }
     }
 }

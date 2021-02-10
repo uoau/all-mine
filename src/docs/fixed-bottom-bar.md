@@ -24,6 +24,7 @@ export default {
 }
 </script>
 
+
 <style>
 .am-fixed-bottom-bar {
     background: #fff;

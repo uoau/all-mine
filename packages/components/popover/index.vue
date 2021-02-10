@@ -3,11 +3,19 @@
         ref="ap"
         class="am-popover"
         :style='apStyle'
-        v-show="apShow">
+        v-show="apShow"
+    >
         <transition
             name="am-popover-pop-anime"
-            @after-leave="onPopHide">
-            <div class="am-popover__pop" v-show="popShow" ref="pop" :style="popStyle">
+            @after-leave="onPopHide"
+            @after-enter="onPopShow"
+        >
+            <div
+                class="am-popover__pop"
+                v-show="popShow"
+                ref="pop"
+                :style="popStyle"
+            >
                 <slot />
             </div>
         </transition>
@@ -38,6 +46,11 @@ export default {
         // ap高
         height: {
             type: Number,
+        },
+        // ap保留宽度
+        apWidthFollowFather: {
+            type: Boolean,
+            default: true,
         },
         show: {
             type: Boolean,
@@ -70,7 +83,7 @@ export default {
             obj.width = `${this.popWidth}px`;
             obj.transformOrigin = this.popOrigin;
             if (this.height) {
-                obj.height = `${this.popHeight}`;
+                obj.height = `${this.popHeight}px`;
             }
             return obj;
         },
@@ -100,9 +113,10 @@ export default {
             const {
                 left, top, width, height,
             } = linkRect;
+            const { apWidthFollowFather } = this;
             const bottom = window.innerHeight - top - height;
             // 计算弹出层宽高
-            this.popWidth = this.width || `${popRect.width < width ? width : popRect.width}`;
+            this.popWidth = this.width || `${popRect.width < width && apWidthFollowFather ? width : popRect.width}`;
             this.popHeight = this.height || `${popRect.height}`;
             // 计算 x
             const leftX = left;
@@ -152,6 +166,10 @@ export default {
         // 监听pop动画结束
         onPopHide() {
             this.apShow = false;
+            this.$emit('after-hide');
+        },
+        onPopShow() {
+            this.$emit('after-enter');
         },
     },
 };

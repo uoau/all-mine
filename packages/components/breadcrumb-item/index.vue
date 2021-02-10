@@ -5,7 +5,7 @@
             <slot />
         </component>
         <!-- 图标 -->
-        <AmIcon :name="breadcrumb.separatorIcon" v-if="breadcrumb.separatorIcon"/>
+        <AmIcon :name="breadcrumb.separatorIcon" v-if="breadcrumb.separatorIcon" />
         <i v-else>{{ breadcrumb.separator }}</i>
     </div>
 </template>

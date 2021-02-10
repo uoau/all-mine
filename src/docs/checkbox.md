@@ -27,9 +27,15 @@ export default {
 ```
 :::
 
-## Attributes
+## 属性
 
 | 参数       | 说明        | 类型       | 可选值         | 默认值   |
 |---------- |------------ |---------- |-------------  |-------- |
-| v-model      | 双向绑定值      |  array  |  -  |   -   |
-| label |  绑定的值  |  -  | - | - |
+| v-model      | 双向绑定值      |  Any Array  |  -  |   -   |
+| label |  绑定的值  |  Any  | - | - |
+| disabled |  是否禁用  |  Boolean  | - | false |
+
+# Slot
+| slot name       | 说明        |
+|---------- |------------ |
+| default     | 文本内容      |
