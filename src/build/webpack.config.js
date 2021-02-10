@@ -7,7 +7,6 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const DependencyTreePlugin = require('dependency-tree-webpack-plugin').default;
 
 module.exports = {
     mode: 'development',
@@ -89,10 +88,6 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
         }),
-        new DependencyTreePlugin({
-            filename: path.join(__dirname, '../../.vscode/dependency-tree.json'),
-        }),
-
     ],
     resolve: {
         alias: {
