@@ -14,7 +14,7 @@ module.exports = {
     entry: path.join(__dirname, '../index.js'),
     output: {
         filename: 'bundle.js',
-        path: path.join(__dirname, '../../dist'),
+        path: path.join(__dirname, '../../docs'),
     },
     module: {
         rules: [
@@ -103,7 +103,7 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
     },
     devServer: {
-        contentBase: path.join(__dirname, '../../dist'),
+        contentBase: path.join(__dirname, '../../docs'),
         port: 9527,
         open: true,
     },

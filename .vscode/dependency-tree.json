@@ -1,70 +1,18 @@
 {
     "rootDir": "/Users/luxun/self/git/all-mine",
     "entry": [
-        "node_modules/webpack-dev-server",
         "./src/index.js"
     ],
     "modules": {
-        "./src/index.js": [
-            "node_modules/vue-router",
-            "node_modules/vue",
-            "./packages/components/cropper/index.js",
-            "./packages/components/editor/index.js",
-            "./packages/index.js",
-            "./src/App.vue",
-            "./src/routes.js"
+        "./packages/components/textarea/index.vue": [
+            "node_modules/autosize"
         ],
-        "./packages/stylesheet/reset.css": [
-            "node_modules/normalize.css"
+        "./packages/components/cropper/index.vue": [
+            "node_modules/croppie",
+            "./packages/utils/browser.js"
         ],
-        "./src/App.vue": [
-            "./packages/stylesheet/reset.css",
-            "./src/routes.js"
-        ],
-        "./packages/stylesheet/default.theme.less": [],
-        "./packages/components/button/index.vue": [],
-        "./packages/components/icon-button/index.vue": [],
-        "./packages/components/icon/index.vue": [],
-        "./packages/components/divider/index.vue": [],
         "./packages/components/date-format/index.vue": [
             "node_modules/dayjs"
-        ],
-        "./packages/components/input/index.vue": [],
-        "./packages/components/form/index.vue": [],
-        "./packages/components/form-item/index.vue": [],
-        "./packages/components/breadcrumb/index.vue": [],
-        "./packages/components/breadcrumb-item/index.vue": [],
-        "./packages/components/message/index.vue": [
-            "./packages/components/icon/index.vue"
-        ],
-        "./packages/components/dialog/index.vue": [],
-        "./packages/components/notification/index.vue": [],
-        "./packages/components/popover/index.vue": [
-            "./packages/utils/dom.js"
-        ],
-        "./packages/components/select/index.vue": [
-            "./packages/utils/base.js"
-        ],
-        "./packages/components/option/index.vue": [
-            "./packages/utils/base.js"
-        ],
-        "./packages/components/checkbox/index.vue": [
-            "./packages/utils/base.js"
-        ],
-        "./packages/components/radio/index.vue": [],
-        "./packages/components/switch/index.vue": [],
-        "./packages/components/date-picker/panel/year.vue": [
-            "node_modules/dayjs"
-        ],
-        "./packages/components/date-picker/panel/month.vue": [
-            "node_modules/dayjs"
-        ],
-        "./packages/components/date-picker/panel/day.vue": [
-            "node_modules/dayjs"
-        ],
-        "./packages/components/date-picker/panel/time.vue": [
-            "node_modules/dayjs",
-            "./packages/utils/dom.js"
         ],
         "./packages/components/date-picker/date-base.vue": [
             "node_modules/dayjs",
@@ -77,50 +25,20 @@
             "node_modules/dayjs",
             "./packages/components/date-picker/date-base.vue"
         ],
-        "./packages/components/pagination/index.vue": [],
-        "./packages/components/dropdown/index.vue": [],
-        "./packages/components/dropdown-item/index.vue": [],
-        "./packages/components/popup/index.vue": [],
-        "./packages/components/table/index.vue": [
+        "./packages/components/date-picker/panel/day.vue": [
+            "node_modules/dayjs"
+        ],
+        "./packages/components/date-picker/panel/month.vue": [
+            "node_modules/dayjs"
+        ],
+        "./packages/components/date-picker/panel/time.vue": [
+            "node_modules/dayjs",
             "./packages/utils/dom.js"
         ],
-        "./packages/components/img-viewer/index.vue": [],
-        "./packages/components/textarea/index.vue": [
-            "node_modules/autosize"
+        "./packages/components/date-picker/panel/year.vue": [
+            "node_modules/dayjs"
         ],
-        "./packages/components/upload/index.vue": [],
-        "./packages/components/fixed-bottom-bar/index.vue": [
-            "./packages/utils/dom.js"
-        ],
-        "./packages/components/tag/index.vue": [],
-        "./packages/components/color-picker/index.vue": [
-            "node_modules/vanilla-picker",
-            "./packages/utils/base.js"
-        ],
-        "./packages/components/movie-screen/index.vue": [],
-        "./packages/directives/tooltip/index.vue": [
-            "./packages/utils/dom.js"
-        ],
-        "./packages/directives/loading/index.vue": [],
-        "./packages/stylesheet/markdown.css": [],
-        "./packages/components/editor/index.vue": [
-            "node_modules/markdown-it",
-            "./packages/stylesheet/markdown.css",
-            "./packages/utils/browser.js"
-        ],
-        "./packages/components/cropper/index.vue": [
-            "node_modules/croppie",
-            "./packages/utils/browser.js"
-        ],
-        "./src/components/slider-nav.vue": [],
-        "./src/components/demo-box.vue": [],
         "./src/docs/RegExp.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
-        "./src/docs/text.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -228,12 +146,6 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
-        "./src/docs/name-rule.md": [
-            "node_modules/highlight.js",
-            "./packages/stylesheet/markdown.css",
-            "./src/components/demo-box.vue",
-            "./src/components/slider-nav.vue"
-        ],
         "./src/docs/form.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
@@ -283,6 +195,12 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/movie-screen.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/name-rule.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -343,6 +261,12 @@
             "./src/components/slider-nav.vue"
         ],
         "./src/docs/tag.md": [
+            "node_modules/highlight.js",
+            "./packages/stylesheet/markdown.css",
+            "./src/components/demo-box.vue",
+            "./src/components/slider-nav.vue"
+        ],
+        "./src/docs/text.md": [
             "node_modules/highlight.js",
             "./packages/stylesheet/markdown.css",
             "./src/components/demo-box.vue",
@@ -432,6 +356,67 @@
             "./src/components/demo-box.vue",
             "./src/components/slider-nav.vue"
         ],
+        "./packages/components/breadcrumb-item/index.vue": [],
+        "./packages/components/breadcrumb/index.vue": [],
+        "./packages/components/button/index.vue": [],
+        "./packages/components/checkbox/index.vue": [
+            "./packages/utils/base.js"
+        ],
+        "./packages/components/color-picker/index.vue": [
+            "node_modules/vanilla-picker",
+            "./packages/utils/base.js"
+        ],
+        "./packages/components/dialog/index.vue": [],
+        "./packages/components/divider/index.vue": [],
+        "./packages/components/dropdown-item/index.vue": [],
+        "./packages/components/dropdown/index.vue": [],
+        "./packages/components/editor/index.vue": [
+            "node_modules/markdown-it",
+            "./packages/stylesheet/markdown.css",
+            "./packages/utils/browser.js"
+        ],
+        "./packages/components/fixed-bottom-bar/index.vue": [
+            "./packages/utils/dom.js"
+        ],
+        "./packages/components/form-item/index.vue": [],
+        "./packages/components/form/index.vue": [],
+        "./packages/components/icon-button/index.vue": [],
+        "./packages/components/icon/index.vue": [],
+        "./packages/components/img-viewer/index.vue": [],
+        "./packages/components/input/index.vue": [],
+        "./packages/components/message/index.vue": [
+            "./packages/components/icon/index.vue"
+        ],
+        "./packages/components/movie-screen/index.vue": [],
+        "./packages/components/notification/index.vue": [],
+        "./packages/components/option/index.vue": [
+            "./packages/utils/base.js"
+        ],
+        "./packages/components/pagination/index.vue": [],
+        "./packages/components/popover/index.vue": [
+            "./packages/utils/dom.js"
+        ],
+        "./packages/components/popup/index.vue": [],
+        "./packages/components/radio/index.vue": [],
+        "./packages/components/select/index.vue": [
+            "./packages/utils/base.js"
+        ],
+        "./packages/components/switch/index.vue": [],
+        "./packages/components/table/index.vue": [
+            "./packages/utils/dom.js"
+        ],
+        "./packages/components/tag/index.vue": [],
+        "./packages/components/upload/index.vue": [],
+        "./packages/directives/loading/index.vue": [],
+        "./packages/directives/tooltip/index.vue": [
+            "./packages/utils/dom.js"
+        ],
+        "./src/App.vue": [
+            "./packages/stylesheet/reset.css",
+            "./src/routes.js"
+        ],
+        "./src/components/demo-box.vue": [],
+        "./src/components/slider-nav.vue": [],
         "./packages/index.js": [
             "node_modules/v-hotkey",
             "./packages/components/backtop/index.js",
@@ -477,6 +462,15 @@
             "./packages/iconfont/default.js",
             "./packages/stylesheet/default.theme.less",
             "./packages/stylesheet/reset.css"
+        ],
+        "./src/index.js": [
+            "node_modules/vue-router",
+            "node_modules/vue",
+            "./packages/components/cropper/index.js",
+            "./packages/components/editor/index.js",
+            "./packages/index.js",
+            "./src/App.vue",
+            "./src/routes.js"
         ],
         "./packages/directives/clickoutside/index.js": [
             "node_modules/vue"
@@ -601,6 +595,11 @@
             "./packages/directives/tooltip/index.vue"
         ],
         "./packages/iconfont/default.js": [],
+        "./packages/stylesheet/default.theme.less": [],
+        "./packages/stylesheet/markdown.css": [],
+        "./packages/stylesheet/reset.css": [
+            "node_modules/normalize.css"
+        ],
         "./packages/utils/base.js": [],
         "./packages/utils/browser.js": [
             "./packages/utils/base.js"

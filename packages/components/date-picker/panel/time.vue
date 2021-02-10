@@ -104,14 +104,10 @@ export default {
                     }
 
                     // 判断禁用情况
-                    if (nowSelectDate && disabledTime) {
-                        const re
-
-
-
-
-                        // const result = disabledTime(nowSelectDate.startOf('day'),)
-                    }
+                    // if (nowSelectDate && disabledTime) {
+                    //     const re
+                    //     // const result = disabledTime(nowSelectDate.startOf('day'),)
+                    // }
 
                     return {
                         num,
