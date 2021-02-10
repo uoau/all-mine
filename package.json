@@ -21,7 +21,7 @@
   "homepage": "https://github.com/uoau/all-mine#readme",
   "dependencies": {
     "autosize": "^4.0.2",
-    "axios": "^0.19.2",
+    "axios": ">=0.21.1",
     "croppie": "^2.6.5",
     "dayjs": "^1.8.31",
     "highlight.js": "^10.1.1",
@@ -41,7 +41,6 @@
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.6.0",
     "dependency-tree-webpack-plugin": "^1.0.12",
