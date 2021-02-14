@@ -802,10 +802,10 @@ body {
 .am-form-item.is-right .am-form-item__hd {
   justify-content: flex-end;
 }
-.am-form-item.is-required span {
+.am-form-item.is-required .am-form-item__hd > span {
   position: relative;
 }
-.am-form-item.is-required span:before {
+.am-form-item.is-required .am-form-item__hd > span:before {
   content: '*';
   position: absolute;
   left: -10px;

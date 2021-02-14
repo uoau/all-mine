@@ -87,15 +87,17 @@ export default {
     }
     // 必须
     &.is-required {
-        span {
-            position: relative;
-            &:before {
-                content: '*';
-                position: absolute;
-                left: -10px;
-                color: var(--fail);
-                font-family: SimSun,sans-serif;
-                font-size: 16px;
+        .am-form-item__hd {
+            > span {
+                position: relative;
+                &:before {
+                    content: '*';
+                    position: absolute;
+                    left: -10px;
+                    color: var(--fail);
+                    font-family: SimSun,sans-serif;
+                    font-size: 16px;
+                }
             }
         }
     }

@@ -22,11 +22,11 @@
                 <div class="am-popup__hd">
                     <div class="title" v-if="title">{{ title }}</div>
                     <slot name="hd"/>
-                    <AmButton
+                    <AmIconButton
                         v-if="showCloseBtn"
                         class="close"
-                        icon="close"
-                        type="text"
+                        icon-name="close"
+                        mode="text"
                         icon-size="16"
                         @click="close"
                     />

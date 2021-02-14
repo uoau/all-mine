@@ -5,14 +5,14 @@
                 <div class="am-date-base__hd">
                     <div class="prev-btns">
                         <AmIconButton
-                            icon-name="doubleleft"
+                            icon-name="double-left"
                             size="small"
                             @click="clickHdBtn('prev12Year')"
                             v-if="nowPanel === 'year'"
                         >
                         </AmIconButton>
                         <AmIconButton
-                            icon-name="doubleleft"
+                            icon-name="double-left"
                             size="small"
                             @click="clickHdBtn('prevYear')"
                             v-if="nowPanel !== 'year'"
@@ -50,14 +50,14 @@
                         >
                         </AmIconButton>
                         <AmIconButton
-                            icon-name="doubleright"
+                            icon-name="double-right"
                             size="small"
                             @click="clickHdBtn('nextYear')"
                             v-if="nowPanel !== 'year'"
                         >
                         </AmIconButton>
                         <AmIconButton
-                            icon-name="doubleright"
+                            icon-name="double-right"
                             size="small"
                             @click="clickHdBtn('next12Year')"
                             v-if="nowPanel === 'year'"

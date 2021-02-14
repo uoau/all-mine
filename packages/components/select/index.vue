@@ -134,10 +134,12 @@ export default {
                     newValue.push(option.value);
                 }
                 this.$emit('changeValue', newValue);
+                this.$emit('change', newValue);
             } else {
                 // 单选
                 this.$emit('changeValue', option.value);
                 this.dropDownShow = false;
+                this.$emit('change', option.value);
             }
         },
         delOption(option) {
@@ -145,6 +147,7 @@ export default {
             const index = this.selectedValue.findIndex((item) => option.value === item);
             this.selectedValue.splice(index, 1);
             this.$emit('changeValue', this.selectedValue);
+            this.$emit('change', this.selectedValue);
         },
     },
 };
