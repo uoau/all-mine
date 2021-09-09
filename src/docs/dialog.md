@@ -3,6 +3,8 @@
 ## 用法
 ::: demo
 ``` html
+<AmDialogTest />
+12333
 <AmButton @click="deleteItem">删除这条记录</AmButton>
 
 <script>

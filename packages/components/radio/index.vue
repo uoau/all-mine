@@ -2,7 +2,7 @@
     <div
         class="am-radio"
         :class="{
-            ['is-active']: label === selectedValue
+            'is-active': label === selectedValue
         }"
         @click="handleClick"
     >

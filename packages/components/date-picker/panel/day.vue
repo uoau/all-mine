@@ -19,8 +19,12 @@
             <div
                 class="am-date-day-panel__item-cell"
                 :class="item.class"
+                v-tooltip:top="item.isHoliday"
             >
+                <!-- 日期序号 -->
                 <span>{{ item.label }}</span>
+                <!-- 节日圆点 -->
+                <i></i>
             </div>
         </div>
     </div>
@@ -28,6 +32,7 @@
 
 <script>
 import dayjs from 'dayjs';
+import calendar from '../utils/calendar';
 
 window.dayjs = dayjs;
 
@@ -94,7 +99,7 @@ export default {
                 }
                 // 状态
                 let {
-                    isSelected, isStart, isEnd, isThrough, isDisabled,
+                    isSelected, isStart, isEnd, isThrough, isDisabled, isHoliday,
                 } = {};
                 if (!isDayRange) {
                     isSelected = dateStart && value === dateStart;
@@ -106,9 +111,10 @@ export default {
                     isDisabled = (dateStart && dateValuePosition === 'end' && value < dateStart)
                         || (dateEnd && dateValuePosition === 'start' && value > dateEnd);
                 }
+                isHoliday = calendar.getDayStr(date.$y, date.$M + 1, date.$D);
                 // 日期限制
                 let disabledMsg = '';
-                const res = disabledDate(date.startOf('day'));
+                const res = disabledDate(date.startOf('day').valueOf());
                 if (res) {
                     isDisabled = true;
                     if (typeof (res) === 'string') {
@@ -123,6 +129,7 @@ export default {
                     value,
                     position,
                     isDisabled,
+                    isHoliday,
                     disabledMsg,
                     class: {
                         [`am-date-day-panel__item-cell--${position}`]: position,
@@ -132,6 +139,7 @@ export default {
                         'am-date-day-panel__item-cell--through': isThis && isThrough,
                         'am-date-day-panel__item-cell--disabled': isThis && isDisabled,
                         'am-date-day-panel__item-cell--today': isToday,
+                        'am-date-day-panel__item-cell--holiday': isHoliday,
                     },
                 };
             });
@@ -161,8 +169,13 @@ export default {
                     minute = obj.$m;
                     second = obj.$s;
                 }
-                const newDate = dayjs(dayItem.value).hour(hour).minute(minute).second(second)
+                // 选择日期，自动赋值时分秒
+                let newDate = dayjs(dayItem.value).hour(hour).minute(minute).second(second)
                     .valueOf();
+                // 看看时分秒是否符合要求
+                if (this.base.checkTimeIsDisabled(newDate)) {
+                    newDate = this.base.selectAbleTime(newDate);
+                }
                 this.$set(dateValue, dateValuePosition, newDate);
             }
         },
@@ -290,6 +303,21 @@ export default {
             }
             &--today {
                 color: var(--primary);
+            }
+            &--holiday {
+                i {
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background: red;
+                    position: absolute;
+                    bottom: -6px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    z-index: 12;
+                }
             }
         }
         &:nth-child(7n+1) {

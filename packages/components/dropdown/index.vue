@@ -19,6 +19,9 @@
             v-if="linkEl"
             :link-el="linkEl"
             :show.sync="show"
+            @mouseenter.native="mouseenter"
+            @mouseleave.native="mouseleave"
+
         >
             <slot />
         </AmPopover>

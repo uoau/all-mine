@@ -1,12 +1,22 @@
 <template>
-    <div class='am-message'>
+    <div
+        class='am-message'
+    >
         <transition
             name='am-message__anime'
             v-on:after-leave='afterLeave'>
             <div
                 class='am-message__body'
-                v-show='show'>
-                <AmIcon :class="'am-message__body--'+type" v-if="type" :name="iconName" />
+                :class="'am-message__body--'+type"
+                :style="{
+                    'z-index': zIndex,
+                }"
+                v-show='show'
+            >
+                <AmIcon
+                    v-if="type"
+                    :name="iconName"
+                />
                 <span>{{ content }}</span>
             </div>
         </transition>
@@ -14,13 +24,10 @@
 </template>
 
 <script>
-import AmIcon from '../icon/index.vue';
+import popupManager from '../../mixins/popup/manager';
 
 export default {
     name: 'AmMessage',
-    components: {
-        AmIcon,
-    },
     data() {
         return {
             type: '',
@@ -28,7 +35,11 @@ export default {
             content: 'This is a toast.',
             duration: 2000,
             autoCloseTimer: null,
+            zIndex: 0,
         };
+    },
+    created() {
+        this.zIndex = popupManager.getZIndex();
     },
     computed: {
         iconName() {
@@ -75,36 +86,45 @@ export default {
         align-items:center;
         justify-content:center;
         position:fixed;
-        top:0;
+        top: 0;
         left: 50%;
-        transform: translate(-50%, 30px);
+        transform: translate(-50%, calc(12vh));
         background: #fff;
         color:#333;
-        z-index:120;
         border-radius:4px;
-        max-width:250px;
-        min-width:120px;
-        min-height:30px;
-        padding:5px 10px;
+        max-width:480px;
+        min-width:240px;
+        min-height:48px;
+        padding:4px 24px;
         word-break:break-all;
         font-size:14px;
-        line-height:1.8;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        line-height:20px;
+        border:1px solid #8AD0FF;
+        color: var(--info);
+        background: #E6F7FF;
         .am-icon {
-            font-size: 22px;
+            font-size: 28px;
             margin-right: 4px;
         }
         &--success {
+            border:1px solid #7ED9B0;
             color: var(--success);
+            background: #E3FCEF;
         }
         &--fail {
+            border:1px solid #FC847C;
             color: var(--fail);
+            background: #FFF2F0;
         }
         &--info {
+            border:1px solid #8AD0FF;
             color: var(--info);
+            background: #E6F7FF;
         }
         &--warning {
+            border:1px solid #FFCE96;
             color: var(--warning);
+            background: #FFF6E8;
         }
     }
     &__anime-enter-active {
@@ -116,11 +136,11 @@ export default {
     @keyframes message-in {
         from {
             opacity: 0;
-            transform: translate(-50%, 0);
+            transform: translate(-50%, calc(6vh));
         }
         to {
             opacity: 1;
-            transform: translate(-50%, 30px);
+            transform: translate(-50%, calc(12vh));
         }
     }
 }

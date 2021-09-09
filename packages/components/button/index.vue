@@ -33,9 +33,10 @@ export default {
             type: String,
             default: 'default',
         },
-        size: {
+        // 模式
+        mode: {
             type: String,
-            default: 'middle',
+            default: '',
         },
         disabled: {
             type: Boolean,
@@ -76,8 +77,7 @@ export default {
         className() {
             return {
                 'is-disabled': this.disabled,
-                [`is-${this.type}`]: this.type,
-                [`is-${this.size}`]: this.size,
+                [`is-${this.mode}`]: this.mode,
             };
         },
         iconClass() {
@@ -108,6 +108,13 @@ export default {
     cursor: pointer;
     transition: background .2s, border .2s, color .2s, filter .2s, box-shadow .2s;
     box-sizing: border-box;
+    height: 32px;
+    min-width: 32px;
+    padding: 0 8px;
+    min-width: 32px;
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid var(--border);
     &__content {
         display: flex;
         align-items: center;
@@ -123,79 +130,18 @@ export default {
         margin-right: 4px;
         order: 4;
     }
-    // 按钮大小
-    &.is-small {
-        height: 24px;
-        padding: 0 4px;
-        min-width: 24px;
-    }
-    &.is-middle {
-        height: 32px;
-        min-width: 32px;
-        padding: 0 8px;
-        min-width: 32px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    &.is-big {
-        height:40px;
-        min-width: 40px;
-        padding: 0 12px;
-    }
-    // 按钮风格
-    &.is-default {
-        background: #fff;
-        border: 1px solid var(--border);
-        &:hover {
-            background: var(--light-bg);
-        }
-        &.is-down {
-            background: var(--border);
-        }
-    }
-    &.is-primary {
-        background: var(--primary);
-        color: #fff;
-        &:hover {
-            background: #5d8bf2;
-        }
-        &.is-down {
-            background: var(--primary);
-        }
-    }
-    &.is-line-primary {
-        border: 1px solid var(--primary);
-        color: var(--primary);
-        background: #fff;
-        &:hover {
-            background: #f0f1f5;
-        }
-        &.is-down {
-            background: var(--primary);
-            color: #fff;
-        }
-    }
-    &.is-text {
-        height: 20px;
-        padding: 0;
-        color: var(--fcolor-1);
-        &:hover {
-
-        }
-        &.is-down {
-            color: var(--primary);
-        }
-        &.is-disabled {
-            color: var(--fcolor-3);
-            background: none;
-        }
-    }
     // 按钮不可用
     &.is-disabled {
         background: #eee;
         color: #999;
         border: none;
         pointer-events: none;
+    }
+    &:hover {
+        background: #eee;
+    }
+    &.is-down {
+        background: #ddd;
     }
 }
 </style>

@@ -35,7 +35,7 @@
     export default {
         data(){
             return {
-                iconList:["ellipsis","check2","add","warn-fill","fail","warn","success","success-fill","fail-fill","check","close","double-left","double-right","left","down","up","right","caret-left","caret-right","caret-bottom","caret-top","calendar"],
+                iconList:["ellipsis","check2","add","warn-fill","fail","warn","success","success-fill","fail-fill","check","close","double-left","double-right","left","down","up","right","caret-left","caret-right","caret-bottom","caret-top","zoomout","zoomin","compress","expend","calendar"],
             }
         },
         methods: {

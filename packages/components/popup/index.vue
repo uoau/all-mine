@@ -2,6 +2,7 @@
     <div
         class="am-popup"
     >
+        <!-- 遮掩层 -->
         <transition name="mask-anime">
             <div
                 class="am-popup__mask"
@@ -10,6 +11,7 @@
                 :style="'z-index:'+zIndex"
             ></div>
         </transition>
+        <!-- 主体 -->
         <transition
             name="popup-anime"
             v-on:after-leave="afterLeave"
@@ -19,23 +21,23 @@
                 :style="popupStyle"
                 v-show="show"
             >
-                <div class="am-popup__hd">
-                    <div class="title" v-if="title">{{ title }}</div>
+                <AmIconButton
+                    v-if="showCloseBtn"
+                    class="am-popup__close"
+                    icon-name="close"
+                    mode="text"
+                    icon-size="16"
+                    @click="close"
+                />
+                <div class="am-popup__hd" v-if="$slots.hd || title">
+                    <div class="am-popup__title" v-if="title">{{ title }}</div>
                     <slot name="hd"/>
-                    <AmIconButton
-                        v-if="showCloseBtn"
-                        class="close"
-                        icon-name="close"
-                        mode="text"
-                        icon-size="16"
-                        @click="close"
-                    />
                 </div>
                 <div class="am-popup__bd">
                     <slot />
                 </div>
                 <div class="am-popup__ft" v-if="$slots.ft">
-                    <slot name="ft"/>
+                    <slot name="ft" />
                 </div>
             </div>
         </transition>
@@ -102,6 +104,9 @@ export default {
             this.zIndex = window.AMPOPINDEX;
         },
     },
+    mounted() {
+        document.body.appendChild(this.$el);
+    },
     methods: {
         close() {
             this.$emit('update:show', false);
@@ -129,7 +134,7 @@ export default {
         top: 0;
         background: rgba(0, 0, 0, .2);
         &.mask-anime-enter-active, &.mask-anime-leave-active {
-            transition: opacity .4s;
+            transition: opacity .3s;
         }
         &.mask-anime-enter, &.mask-anime-leave-to {
             opacity: 0;
@@ -141,36 +146,37 @@ export default {
         background: #fff;
         overflow: auto;
         position: fixed;
-        top: 50px;
-        left: 0;
-        right: 0;
-        margin: auto;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%, calc(-50% - 50px));
         display: flex;
         flex-direction: column;
         &.popup-anime-enter-active, &.popup-anime-leave-active {
-            transition: transform .4s, opacity .4s;
+            transition: transform .3s, opacity .3s;
         }
         &.popup-anime-enter, &.popup-anime-leave-to {
-            transform: translateY(-20px);
+            transform: translate(-50%, calc(-50% - 70px));
             opacity: 0;
         }
     }
 
     &__hd {
-        >.title {
-            margin: auto;
-            font-size: 16px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            padding: 24px 24px 0 24px;
-        }
-        >.close {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            margin: auto;
-        }
+
+    }
+    &__title {
+        margin: auto;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 24px 24px 0 24px;
+    }
+    &__close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        margin: auto;
+        z-index: 10;
     }
     &__bd {
         flex: 1;

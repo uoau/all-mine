@@ -30,38 +30,26 @@
 <script>
 import dayjs from 'dayjs';
 import { scrollTo } from '../../../utils/dom';
+import { timeTypeArr } from '../utils/constants';
 
 export default {
     data() {
         return {
             // 是否展示滚动动画
             showScrollAnime: true,
-            // 类型数组
-            typeArr: [{
-                key: 'hour',
-                number: 24,
-            },
-            {
-                key: 'minute',
-                number: 60,
-            }, {
-                key: 'second',
-                number: 60,
-            }],
         };
     },
     inject: ['base'],
     computed: {
         cells() {
             const res = {};
-            const { typeArr } = this;
             const {
-                dateValue, dateValuePosition, nowSelectDate, domReady, disabledTime,
+                dateValue, dateValuePosition, nowSelectDate, domReady,
             } = this.base;
             const dateStart = dateValue.start;
             const dateEnd = dateValue.end;
             // const isTimeRange = type === 'dayTimeRange';
-            typeArr.forEach((type) => {
+            timeTypeArr.forEach((type) => {
                 const arr = '1'.repeat(type.number - 1).split('1').map((i, index) => {
                     // 值
                     const num = index;
@@ -74,7 +62,7 @@ export default {
                         || (dateEnd && dateValuePosition === 'start' && date.startOf(type.key) > dateEnd);
                     }
 
-                    // 日期选中
+                    // 时间选中
                     if (!nowSelectDate || !domReady) {
                         isSelected = false;
                     } else if (type.key === 'hour') {
@@ -84,7 +72,6 @@ export default {
                     } else {
                         isSelected = dayjs(nowSelectDate).$s === num;
                     }
-
                     if (isSelected) {
                         this.$nextTick(() => {
                             if (!this.showScrollAnime) {
@@ -103,12 +90,14 @@ export default {
                         });
                     }
 
-                    // 判断禁用情况
-                    // if (nowSelectDate && disabledTime) {
-                    //     const re
-                    //     // const result = disabledTime(nowSelectDate.startOf('day'),)
-                    // }
-
+                    // 时间禁止情况
+                    if (date) {
+                        const result = this.base[type.disabledFun](date.startOf(type.key)
+                            .valueOf());
+                        if (result) {
+                            isDisabled = true;
+                        }
+                    }
                     return {
                         num,
                         label,
@@ -156,10 +145,9 @@ export default {
         dateValuePosition() {
             // 监听切换输入位置
             const { nowSelectDate } = this.base;
-            const { typeArr } = this;
             this.showScrollAnime = false;
             if (!nowSelectDate) {
-                typeArr.forEach((type) => {
+                timeTypeArr.forEach((type) => {
                     this.$nextTick(() => {
                         this.$refs[type.key][0].scrollTop = 0;
                     });
@@ -172,20 +160,16 @@ export default {
             this.showScrollAnime = true;
             const arr = ['hour', 'minute', 'second'];
             const {
-                nowSelectDate, dateValue, dateValuePosition,
+                nowSelectDate, dateValuePosition,
             } = this.base;
             // 赋值
             arr.forEach((key) => {
                 if (key === type) {
                     const date = nowSelectDate ? dayjs(nowSelectDate) : dayjs().startOf('day');
                     let newValue = date[key](timeItem.num).valueOf();
-                    // 设置start值时，必须小于end值
-                    if (dateValuePosition === 'start' && dateValue.end && newValue > dateValue.end) {
-                        newValue = dateValue.end;
-                    }
-                    // 设置end值时，必须大于start值
-                    if (dateValuePosition === 'end' && dateValue.start && newValue < dateValue.start) {
-                        newValue = dateValue.start;
+                    // 看看时分秒是否符合要求
+                    if (this.base.checkTimeIsDisabled(newValue)) {
+                        newValue = this.base.selectAbleTime(newValue);
                     }
                     this.base.dateValue[dateValuePosition] = newValue;
                 }

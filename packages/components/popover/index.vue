@@ -103,6 +103,9 @@ export default {
             }
         },
     },
+    mounted() {
+        document.body.appendChild(this.$el);
+    },
     methods: {
         // 检查位置
         async check() {

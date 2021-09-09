@@ -1,6 +1,6 @@
 <template>
     <div class="am-form">
-        <slot/>
+        <slot />
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
             form: this,
         };
     },
+    data() {
+        return {
+
+        };
+    },
     props: {
         labelWidth: {
             type: String,
@@ -20,6 +25,11 @@ export default {
         position: {
             type: String,
             default: 'left',
+        },
+    },
+    methods: {
+        validate() {
+
         },
     },
 };

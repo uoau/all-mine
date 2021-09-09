@@ -2,14 +2,11 @@
 最基础的组件
 
 ## 按钮类型
-默认按钮样式有五种，白按钮、主题色按钮、主题色描边按钮、文字按钮、主题色文字按钮、
+默认按钮样式
 ::: demo
 ``` html
 <div class="row">
     <AmButton @click="sayHi">默认按钮</AmButton>
-    <AmButton type="primary">主题色按钮</AmButton>
-    <AmButton type="line-primary">主题色线边按钮</AmButton>
-    <AmButton type="text">文字按钮</AmButton>
 </div>
 <script>
 export default {
@@ -25,9 +22,6 @@ export default {
     display: flex;
     align-items: center;
 }
-.am-button {
-    margin-right: 8px;
-}
 </style>
 
 ```
@@ -37,27 +31,9 @@ export default {
 ::: demo
 ``` html
 <AmButton disabled>Disabled</AmButton>
-<AmButton type="primary" disabled>Disabled</AmButton>
-<AmButton type="primary" disabled>Disabled</AmButton>
-<AmButton type="text" disabled>Disabled</AmButton>
 <style>
 .am-button {
     margin-right: 8px;
-}
-</style>
-```
-:::
-
-## 规格
-small 24px, 默认是 32px, big 40px
-::: demo
-``` html
-<AmButton size="small">Small Button</AmButton>
-<AmButton>Default Button</AmButton>
-<AmButton size="big">Big Button</AmButton>
-<style>
-.am-button {
-    margin-right:8px;
 }
 </style>
 ```
@@ -92,7 +68,7 @@ small 24px, 默认是 32px, big 40px
 ::: demo
 ``` html
 <div class="row">
-    <AmButton type="coco">Coco按钮</AmButton>
+    <AmButton mode="a-mini-dark">Coco按钮</AmButton>
 </div>
 
 <style>
@@ -100,8 +76,8 @@ small 24px, 默认是 32px, big 40px
     display: flex;
 }
 .am-button {
-    &.is-coco {
-        border-radius: 3px;
+    &.is-a-mini-dark {
+        border-radius: 12px;
         &:hover {
             border-color: var(--red);
             background: var(--red);
@@ -122,8 +98,7 @@ small 24px, 默认是 32px, big 40px
 
 | 参数       | 说明        | 类型       | 可选值         | 默认值   |
 |---------- |------------ |---------- |-------------  |-------- |
-| size      | 尺寸         | String   | 'small' 'big'   |    -    |
-| type      | 类型         | String   | 'default' 'primary' 'line-primary' 'text' |    'default'    |
+| mode  | 模式     | String    |     -        |     -  |
 | icon-name      | 图标名称     | String    | -             | -        |
-| icon-size  | 图标大小     | String    | -             |       |
+| icon-size  | 图标大小     | String    | -             |    -   |
 | icon-position  | 图标位置     | String    | 'front' 'back'             | 'front'      |

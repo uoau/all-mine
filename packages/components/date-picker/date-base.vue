@@ -127,6 +127,7 @@
 
 <script>
 import dayjs from 'dayjs';
+import { timeTypeArr } from './utils/constants';
 import YearPanel from './panel/year.vue';
 import MonthPanel from './panel/month.vue';
 import DayPanel from './panel/day.vue';
@@ -172,8 +173,18 @@ export default {
             type: Function,
             default: () => false,
         },
-        // 不可用时间
-        disabledTime: {
+        // 不可用时
+        disabledHour: {
+            type: Function,
+            default: () => false,
+        },
+        // 不可用分
+        disabledMinute: {
+            type: Function,
+            default: () => false,
+        },
+        // 不可用秒
+        disabledSecond: {
             type: Function,
             default: () => false,
         },
@@ -301,6 +312,29 @@ export default {
         confirm() {
             // 点击确认
             this.$emit('confirm-value');
+        },
+
+        // 检测日期时间是否可用
+        checkTimeIsDisabled(dateValue) {
+            return timeTypeArr.some((type) => {
+                const res = this[type.disabledFun](dayjs(dateValue)
+                    .startOf(type.key).valueOf());
+                return res;
+            });
+        },
+
+        // 从日期里选出一个可用时间
+        selectAbleTime(dateValue) {
+            let pushDateTime = dayjs(dateValue);
+            timeTypeArr.forEach((type) => {
+                for (let i = 0; i < type.number; i += 1) {
+                    pushDateTime = pushDateTime[type.key](i).startOf(type.key);
+                    if (!this[type.disabledFun](pushDateTime.valueOf())) {
+                        break;
+                    }
+                }
+            });
+            return pushDateTime.valueOf();
         },
 
     },

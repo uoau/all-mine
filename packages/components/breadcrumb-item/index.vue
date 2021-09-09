@@ -1,11 +1,22 @@
 <template>
-    <div class="am-breadcrumb-item" :class="biClass">
+    <div
+        class="am-breadcrumb-item"
+        :class="biClass"
+        @click="handleClick"
+    >
         <!-- 内容 -->
-        <component :is="to?'router-link':'a'" :to="to" class="am-breadcrumb-item__content">
+        <component
+            :is="to?'router-link':'a'"
+            :to="to"
+            class="am-breadcrumb-item__content"
+        >
             <slot />
         </component>
         <!-- 图标 -->
-        <AmIcon :name="breadcrumb.separatorIcon" v-if="breadcrumb.separatorIcon" />
+        <AmIcon
+            :name="breadcrumb.separatorIcon"
+            v-if="breadcrumb.separatorIcon"
+        />
         <i v-else>{{ breadcrumb.separator }}</i>
     </div>
 </template>
@@ -31,6 +42,11 @@ export default {
                 'is-current': this.current,
                 'is-hasto': this.to,
             };
+        },
+    },
+    methods: {
+        handleClick() {
+            this.$emit('click');
         },
     },
 };

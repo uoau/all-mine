@@ -72,6 +72,9 @@
                 :date-value-position="dateValuePosition"
                 :dom-ready="domReady"
                 :disabled-date="disabledDate"
+                :disabled-hour="disabledHour"
+                :disabled-minute="disabledMinute"
+                :disabled-second="disabledSecond"
                 v-model="dateValue"
                 @panel-change="datePanelChange"
                 @confirm-value="dateConfirmValue"
@@ -162,6 +165,21 @@ export default {
         },
         // 不可用日期(date)
         disabledDate: {
+            type: Function,
+            default: () => false,
+        },
+        // 不可用时
+        disabledHour: {
+            type: Function,
+            default: () => false,
+        },
+        // 不可用分
+        disabledMinute: {
+            type: Function,
+            default: () => false,
+        },
+        // 不可用秒
+        disabledSecond: {
             type: Function,
             default: () => false,
         },

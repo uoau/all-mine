@@ -18,6 +18,7 @@ import AmBreadcrumbItem from './components/breadcrumb-item';
 import AmMessage from './components/message';
 import AmBacktop from './components/backtop';
 import AmDialog from './components/dialog';
+import AmDialogTest from './components/dialog-test';
 import AmNotification from './components/notification';
 import AmPopover from './components/popover';
 import AmSelect from './components/select';
@@ -81,6 +82,7 @@ const AM = {
     AmColorPicker,
     AmMovieScreen,
     AmIconButton,
+    AmDialogTest,
 };
 
 const install = (Vue) => {

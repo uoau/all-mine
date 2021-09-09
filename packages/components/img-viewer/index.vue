@@ -39,7 +39,10 @@
                             @click="clickImg"
                         />
                         <!-- 底层 -->
-                        <div class="am-img-viewer__img-mask" @click="clickMask"></div>
+                        <div
+                            class="am-img-viewer__img-mask"
+                            @click="clickMask"
+                        ></div>
                     </div>
                 </transition>
             </div>
@@ -109,7 +112,7 @@ export default {
             dealedImgs: [],
             nowIndex: 0,
             direction: 'left',
-            mouseInDown: false,
+            mouseInDown: true,
         };
     },
     computed: {
@@ -148,6 +151,7 @@ export default {
         },
     },
     mounted() {
+        document.body.appendChild(this.$el);
         window.addEventListener('resize', this.onWindowResize);
     },
     methods: {
@@ -158,7 +162,7 @@ export default {
                 const obj = {
                     url: '', // 图片链接
                     initScaleX: '90%', // 初始最大宽度 '90%' '1000px'
-                    initScaleY: '90%', // 初始最大高度 '80%' '1000px'
+                    initScaleY: '90%', // 初始最大高度 '90%' '1000px'
                     ...item,
                     isOriginal: false, // 原始图
                     loaded: false, // 是否已加载
@@ -319,12 +323,18 @@ export default {
             this.$emit('click-mask', e);
         },
         mousemove(e) {
-            if ((document.body.clientHeight - e.clientY) < 150) {
-                this.mouseInDown = true;
-            } else {
-                this.mouseInDown = false;
-            }
+            // if ((document.body.clientHeight - e.clientY) < 150) {
+            //     this.mouseInDown = true;
+            // } else {
+            //     this.mouseInDown = false;
+            // }
         },
+
+        async getItemDetail() {
+            const res = await $get('xxx');
+            return res;
+        },
+
     },
 };
 </script>
@@ -450,6 +460,8 @@ export default {
         left: 24px;
         margin: auto;
         z-index: 5;
+        width: 100px;
+        height: 100%;
     }
     &__right {
         position: absolute;

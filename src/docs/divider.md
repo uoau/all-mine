@@ -7,15 +7,15 @@
 ``` html
 <template>
     <div class="row">
-        <AmButton type="default">Default</AmButton>
+        <AmButton>Default</AmButton>
         <AmDivider />
-        <AmButton type="primary">Primary</AmButton>
+        <AmButton>Primary</AmButton>
         <AmDivider margin="0 10px" content="$"/>
-        <AmButton type="text">Fail</AmButton>
+        <AmButton>Fail</AmButton>
         <AmDivider margin="0 10px" show-line/>
-        <AmButton type="default">Default</AmButton>
+        <AmButton>Default</AmButton>
         <AmDivider margin="0 10px" icon-name="left" />
-        <AmButton type="default">Default</AmButton>
+        <AmButton>Default</AmButton>
     </div>
 </template>
 <style>

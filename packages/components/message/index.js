@@ -15,7 +15,7 @@ export default {
             };
             // 选择挂载的父元素
             let father = document.body;
-            if (getType(arg) === 'String') {
+            if (typeof arg === 'string') {
                 initData.content = arg;
             } else {
                 initData = { ...initData, ...arg };
@@ -60,7 +60,7 @@ export default {
                 type: 'warning',
             });
         };
-        Vue.prototype.$hideMessage = (instance) => {
+        Vue.prototype.$closeMessage = (instance) => {
             if (instance) {
                 instance.close();
             } else {

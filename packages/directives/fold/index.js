@@ -48,6 +48,7 @@ export default {
     },
 
     update(el, binding, vnode) {
+        console.log(binding);
         const show = binding.value;
         const height = getHeight(el);
         if(show) {

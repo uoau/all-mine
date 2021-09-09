@@ -1,0 +1,53 @@
+.am-button {
+    // 默认
+    &.is-default {
+        background: #fff;
+        border: 1px solid var(--border);
+        &:hover {
+            background: var(--light-bg);
+        }
+        &.is-down {
+            background: var(--border);
+        }
+    }
+    // 主题色按钮
+    &.is-primary {
+        background: var(--primary);
+        color: #fff;
+        &:hover {
+            background: #5d8bf2;
+        }
+        &.is-down {
+            background: var(--primary);
+        }
+    }
+    // 线描主题
+    &.is-line-primary {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background: #fff;
+        &:hover {
+            background: #f0f1f5;
+        }
+        &.is-down {
+            background: var(--primary);
+            color: #fff;
+        }
+    }
+    // 文字主题
+    &.is-text {
+        height: 20px;
+        padding: 0;
+        color: var(--fcolor-1);
+        &:hover {
+
+        }
+        &.is-down {
+            color: var(--primary);
+        }
+        &.is-disabled {
+            color: var(--fcolor-3);
+            background: none;
+        }
+    }
+}

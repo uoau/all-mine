@@ -32,6 +32,43 @@
 ```
 :::
 
+## 设置类型
+::: demo
+``` html
+<AmInput v-model="value" type="password"/>
+<script>
+    export default {
+        data() {
+            return {
+                value: '1234567890'
+            }
+        }
+    }
+</script>
+```
+:::
+
+## 校验
+::: demo
+``` html
+<AmInput v-model="value" :validate="validateInput"/>
+<script>
+    export default {
+        data() {
+            return {
+                value: '1234567890',
+            }
+        },
+        methods: {
+            validateInput(value){
+                return value;
+            }
+        }
+    }
+</script>
+```
+:::
+
 ## 属性
 
 | 参数       | 说明        | 类型       | 可选值         | 默认值   |

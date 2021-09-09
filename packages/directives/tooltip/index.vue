@@ -1,7 +1,12 @@
 <template>
     <div
         class='am-tooltip'
-        :style='"transform: translate("+ left +"px,"+ top +"px);"'>
+        :style='"transform: translate("+ left +"px,"+ top +"px);"'
+        @click="onClick"
+        @mouseenter="onMouseEnter()"
+        @mouseleave="onMouseLeave()"
+    >
+        <slot ref="def"/>
         <transition
             name='am-tooltip-in'
             v-on:after-leave='afterLeave'>
@@ -21,6 +26,33 @@
 import { getScrollBoxOfEl } from '../../utils/dom';
 
 export default {
+    props: {
+        // 触发方式
+        trigger: {
+            type: String,
+            default: 'hover',
+        },
+        // 气泡位置
+        direction: {
+            type: String,
+            default: 'top', // left\top\right\bottom
+        },
+        // tooltip类
+        tooltipClass: {
+            type: String,
+            default: '',
+        },
+        // 风格
+        themme: {
+            type: String,
+            default: '',
+        },
+        // 禁用
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
+    },
     data() {
         return {
             show: false,
@@ -97,6 +129,27 @@ export default {
         close() {
             this.show = false;
         },
+
+        // 监听点击
+        onClick() {
+
+        },
+
+        // 监听
+        onMouseEnter(isDirectiveCall) {
+            if (this.isDirective && !isDirectiveCall) return;
+            if (this.trigger !== 'hover') return;
+            this.clearTimer();
+            this.enterTimer = window.setTimeout(() => this.switchState(true), this.mouseEnterDelay);
+        },
+        onMouseLeave(isDirectiveCall) {
+            if (this.isDirective && !isDirectiveCall) return;
+            if (this.trigger !== 'hover') return;
+            this.clearTimer();
+            if (this.popupShow) {
+                this.leaveTimer = window.setTimeout(() => this.switchState(false), this.mouseLeaveDelay);
+            }
+        },
     },
 };
 </script>
@@ -108,6 +161,7 @@ export default {
     top: 0;
     width: 0;
     height: 0;
+    z-index: 99;
     .bd {
         left:0;
         top: 0;

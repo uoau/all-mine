@@ -31,6 +31,8 @@
             <div class="am-select__down-icon">
                 <AmIcon name="caret-bottom" size="12px"/>
             </div>
+            <!-- 错误信息 -->
+            <div class="am-select__error-msg" v-if="validateMsg">{{ validateMsg }}</div>
         </div>
         <!-- 下拉框内容 -->
         <AmPopover
@@ -44,9 +46,11 @@
 
 <script>
 import { getType, findOne } from '../../utils/base';
+import validator from '../../mixins/validator';
 
 export default {
     name: 'AmSelect',
+    mixins: [validator],
     model: {
         prop: 'selectedValue',
         event: 'changeValue',
@@ -198,6 +202,16 @@ export default {
         height: 100%;
         display: inline-flex;
         justify-content: center;
+    }
+    // 错误信息
+    &__error-msg {
+        font-size: 12px;
+        color: red;
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+        height: 20px;
+        line-height: 20px;
     }
 
     .am-popover {

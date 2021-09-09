@@ -30,7 +30,7 @@ export default {
 <style lang="less">
     .am-breadcrumb {
         display: flex;
-        >.am-breadcrumb-item {
+        &-item {
             &:last-child {
                 >i {
                     display: none;
